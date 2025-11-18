@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Help Desk | Mis KPIs</title>
+
+    <!-- CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="../assets/css/theme.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="app-shell d-flex">
+      <!-- Sidebar -->
+      <aside class="sidebar d-flex flex-column p-3" aria-label="Barra lateral">
+        <h1 class="h5 fw-bold mb-4">Help Desk</h1>
+
+        <nav class="nav flex-column" aria-label="Navegación principal">
+          <a class="nav-link" href="registro.html">
+            <i class="bi bi-plus-circle" aria-hidden="true"></i>
+            <span class="nav-label"> Registrar actividad</span>
+          </a>
+
+          <a class="nav-link" href="actividades.html">
+            <i class="bi bi-list-task" aria-hidden="true"></i>
+            <span class="nav-label"> Actividades colaboradores</span>
+          </a>
+
+          <a class="nav-link active" href="kpis.html">
+            <i class="bi bi-activity" aria-hidden="true"></i>
+            <span class="nav-label"> Mis KPIs</span>
+          </a>
+
+          <a class="nav-link" href="kpis_admin.html">
+            <i class="bi bi-bar-chart-steps" aria-hidden="true"></i>
+            <span class="nav-label"> KPIs Admin</span>
+          </a>
+
+          <hr class="border-light my-3" />
+
+          <div class="nav-item">
+            <button
+              class="nav-link d-flex align-items-center w-100 text-start bg-transparent border-0 px-0"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#perfilMenu"
+              aria-expanded="false"
+              aria-controls="perfilMenu"
+            >
+              <i class="bi bi-person-circle me-1" aria-hidden="true"></i>
+              <span class="nav-label"> Mi Perfil</span>
+              <i class="bi bi-caret-down ms-auto" aria-hidden="true"></i>
+            </button>
+            <div id="perfilMenu" class="collapse ps-3 mt-1">
+              <a class="d-block small text-light" href="perfil.html">
+                <i class="bi bi-person" aria-hidden="true"></i>
+                <span class="nav-label"> Datos personales</span>
+              </a>
+              <a
+                class="d-block small text-light mt-1"
+                href="configuraciones.html"
+              >
+                <i class="bi bi-gear" aria-hidden="true"></i>
+                <span class="nav-label"> Preferencias</span>
+              </a>
+            </div>
+          </div>
+
+          <hr class="border-light my-3" />
+
+          <a class="nav-link" href="index.html">
+            <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+            <span class="nav-label"> Cerrar sesión</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="app-main flex-grow-1 d-flex flex-column min-vh-100">
+        <header>
+          <nav
+            class="navbar bg-white shadow-sm px-4"
+            aria-label="Barra superior"
+          >
+            <h1 class="navbar-brand mb-0 h1">Mis KPIs</h1>
+            <div class="d-flex align-items-center gap-3 ms-auto">
+              <span class="text-secondary small" data-usuario-nombre
+                >Vladimir</span
+              >
+              <span class="text-muted small" data-usuario-rol>Rol</span>
+
+              <img
+                src="https://via.placeholder.com/36"
+                class="rounded-circle"
+                alt="Avatar de {data-usuario-nombre}"
+                width="36"
+                height="36"
+                loading="lazy"
+              />
+            </div>
+          </nav>
+        </header>
+
+        <main class="container-fluid py-4">
+          <!-- KPI Cards -->
+          <section class="row g-3 mb-4" aria-label="Indicadores principales">
+            <div class="col-md-3">
+              <div
+                class="card shadow-sm kpi-card card-hover"
+                role="group"
+                aria-label="Actividades Completadas 42"
+              >
+                <div class="card-body d-flex align-items-center gap-3">
+                  <div class="icon bg-success">
+                    <i class="bi bi-clipboard-data" aria-hidden="true"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-muted h6 mb-0">Actividades Completadas</h3>
+                    <p class="fw-bold h3 mb-0">42</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div
+                class="card shadow-sm kpi-card card-hover"
+                role="group"
+                aria-label="Promedio de Tiempo 3.4 horas"
+              >
+                <div class="card-body d-flex align-items-center gap-3">
+                  <div class="icon bg-warning">
+                    <i class="bi bi-stopwatch" aria-hidden="true"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-muted h6 mb-0">Promedio de Tiempo (h)</h3>
+                    <p class="fw-bold h3 mb-0">3.4</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div
+                class="card shadow-sm kpi-card card-hover"
+                role="group"
+                aria-label="Eficiencia 95 por ciento"
+              >
+                <div class="card-body d-flex align-items-center gap-3">
+                  <div class="icon bg-primary">
+                    <i class="bi bi-graph-up-arrow" aria-hidden="true"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-muted h6 mb-0">Eficiencia</h3>
+                    <p class="fw-bold h3 mb-0">95%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div
+                class="card shadow-sm kpi-card card-hover"
+                role="group"
+                aria-label="Bloqueadas 5"
+              >
+                <div class="card-body d-flex align-items-center gap-3">
+                  <div class="icon bg-danger">
+                    <i
+                      class="bi bi-exclamation-triangle"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                  <div>
+                    <h3 class="text-muted h6 mb-0">Bloqueadas</h3>
+                    <p class="fw-bold h3 mb-0">5</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Filtros -->
+          <section
+            class="card border-0 shadow-sm mb-4"
+            aria-labelledby="filtros-heading"
+          >
+            <h2 id="filtros-heading" class="visually-hidden">Filtros</h2>
+            <div class="card-body">
+              <form class="row g-3 align-items-end" method="get" action="#">
+                <div class="col-md-3">
+                  <label class="form-label" for="f-fecha"
+                    >Rango de Fechas</label
+                  >
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="f-fecha"
+                    name="fecha"
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label" for="f-tipo"
+                    >Tipo de Solicitud</label
+                  >
+                  <select class="form-select" id="f-tipo" name="tipo">
+                    <option value="">Todos</option>
+                    <option>Renovación</option>
+                    <option>Cancelación</option>
+                    <option>Aplicación de Primas</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label" for="f-estatus">Estatus</label>
+                  <select class="form-select" id="f-estatus" name="estatus">
+                    <option value="">Todos</option>
+                    <option>Finalizado</option>
+                    <option>En curso</option>
+                    <option>Pendiente</option>
+                  </select>
+                </div>
+                <div class="col-md-3 text-end">
+                  <button type="submit" class="btn btn-brand">
+                    <i class="bi bi-funnel me-2" aria-hidden="true"></i>Aplicar
+                    Filtros
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <!-- Charts -->
+          <section class="row g-3 mb-4" aria-label="Gráficas principales">
+            <div class="col-lg-6">
+              <div class="card shadow-sm border-0">
+                <div class="card-header bg-white fw-semibold">
+                  Actividades por Tipo
+                </div>
+                <div class="card-body text-center text-muted py-5">
+                  [Gráfica de barras aquí]
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card shadow-sm border-0">
+                <div class="card-header bg-white fw-semibold">
+                  Estatus de Mis Actividades
+                </div>
+                <div class="card-body text-center text-muted py-5">
+                  [Gráfica de pastel aquí]
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="row g-3" aria-label="Gráficas secundarias">
+            <div class="col-lg-6">
+              <div class="card shadow-sm border-0">
+                <div class="card-header bg-white fw-semibold">
+                  Tiempos Promedio por Semana
+                </div>
+                <div class="card-body text-center text-muted py-5">
+                  [Gráfica de líneas aquí]
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card shadow-sm border-0">
+                <div class="card-header bg-white fw-semibold">
+                  Actividades Diarias (últimos 7 días)
+                </div>
+                <div class="card-body text-center text-muted py-5">
+                  [Gráfica de barras horizontal aquí]
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <!-- Mantener abierto el submenú Mi Perfil según ruta -->
+    <script defer>
+      document.addEventListener("DOMContentLoaded", () => {
+        const current = location.pathname.split("/").pop() || "";
+        const perfilMenu = document.getElementById("perfilMenu");
+        const trigger = document.querySelector(
+          '[data-bs-target="#perfilMenu"]'
+        );
+        const pages = ["7_perfil_usuario.html", "5_kpis_user.html"];
+
+        if (perfilMenu && pages.includes(current)) {
+          perfilMenu.classList.add("show");
+          trigger?.classList.add("active");
+          const link = perfilMenu.querySelector(`a[href$="${current}"]`);
+          link?.classList.add("active");
+        }
+      });
+    </script>
+
+    <!-- Router SPA (intacto) -->
+    <script defer>
+      (function () {
+        const supportsVT = "startViewTransition" in document;
+
+        async function loadPartial(url) {
+          const res = await fetch(url, { credentials: "same-origin" });
+          const html = await res.text();
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const newMain = doc.querySelector(".app-main");
+          const newTitle =
+            doc.querySelector("title")?.textContent || document.title;
+          return { newMain, newTitle, doc };
+        }
+
+        function setActiveLink(url) {
+          const links = document.querySelectorAll(".sidebar a[data-spa]");
+          links.forEach((a) => a.classList.toggle("active", a.href === url));
+        }
+
+        async function navigate(url, push = true) {
+          const currentMain = document.querySelector(".app-main");
+          const doSwap = async () => {
+            const { newMain, newTitle, doc } = await loadPartial(url);
+            if (!newMain) {
+              location.href = url;
+              return;
+            } // fallback total
+
+            currentMain.classList.add("is-leaving");
+            await new Promise((r) => setTimeout(r, 120));
+
+            currentMain.replaceWith(newMain);
+            document.title = newTitle;
+
+            newMain.classList.add("is-entering");
+            requestAnimationFrame(() =>
+              newMain.classList.add("app-main--ready")
+            );
+            setTimeout(
+              () => newMain.classList.remove("is-entering", "app-main--ready"),
+              180
+            );
+
+            if (window.bootstrap) {
+              document
+                .querySelectorAll('[data-bs-toggle="tooltip"]')
+                .forEach((el) => new bootstrap.Tooltip(el));
+            }
+
+            setActiveLink(new URL(url, location.href).href);
+
+            doc.querySelectorAll("script[data-init]").forEach((s) => {
+              try {
+                eval(s.textContent);
+              } catch (e) {
+                console.error(e);
+              }
+            });
+          };
+
+          if (supportsVT) {
+            document.startViewTransition(doSwap);
+          } else {
+            await doSwap();
+          }
+
+          if (push) history.pushState({ spa: true }, "", url);
+        }
+
+        document.addEventListener("click", (e) => {
+          const a = e.target.closest("a[data-spa]");
+          if (!a) return;
+          const url = a.getAttribute("href");
+          if (!url || url.startsWith("http") || url.startsWith("#")) return;
+          e.preventDefault();
+          navigate(url, true);
+        });
+
+        window.addEventListener("popstate", (e) => {
+          if (e.state && e.state.spa) {
+            navigate(location.href, false);
+          } else location.reload();
+        });
+      })();
+    </script>
+  </body>
+</html>

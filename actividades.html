@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Help Desk | Actividades</title>
+
+    <!-- CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="css/theme.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="app-shell d-flex">
+      <!-- Sidebar -->
+      <aside class="sidebar d-flex flex-column p-3" aria-label="Barra lateral">
+        <h1 class="h5 fw-bold mb-4">Help Desk</h1>
+
+        <nav class="nav flex-column" aria-label="Navegación principal">
+          <a class="nav-link" href="registro.html">
+            <i class="bi bi-plus-circle" aria-hidden="true"></i>
+            <span class="nav-label"> Registrar actividad</span>
+          </a>
+
+          <a class="nav-link active" href="actividades.html">
+            <i class="bi bi-list-task" aria-hidden="true"></i>
+            <span class="nav-label"> Actividades colaboradores</span>
+          </a>
+
+          <a class="nav-link" href="kpis.html">
+            <i class="bi bi-activity" aria-hidden="true"></i>
+            <span class="nav-label"> Mis KPIs</span>
+          </a>
+
+          <a class="nav-link" href="kpis_admin.html">
+            <i class="bi bi-bar-chart-steps" aria-hidden="true"></i>
+            <span class="nav-label"> KPIs Admin</span>
+          </a>
+
+          <hr class="border-light my-3" />
+
+          <div class="nav-item">
+            <button
+              class="nav-link d-flex align-items-center w-100 text-start bg-transparent border-0 px-0"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#perfilMenu"
+              aria-expanded="false"
+              aria-controls="perfilMenu"
+            >
+              <i class="bi bi-person-circle me-1" aria-hidden="true"></i>
+              <span class="nav-label"> Mi Perfil</span>
+              <i class="bi bi-caret-down ms-auto" aria-hidden="true"></i>
+            </button>
+            <div id="perfilMenu" class="collapse ps-3 mt-1">
+              <a class="d-block small text-light" href="perfil.html">
+                <i class="bi bi-person" aria-hidden="true"></i>
+                <span class="nav-label"> Datos personales</span>
+              </a>
+              <a
+                class="d-block small text-light mt-1"
+                href="configuraciones.html"
+              >
+                <i class="bi bi-gear" aria-hidden="true"></i>
+                <span class="nav-label"> Preferencias</span>
+              </a>
+            </div>
+          </div>
+
+          <hr class="border-light my-3" />
+
+          <a class="nav-link" href="index.html">
+            <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+            <span class="nav-label"> Cerrar sesión</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main -->
+      <div class="app-main flex-grow-1 d-flex flex-column min-vh-100">
+        <header>
+          <nav
+            class="navbar bg-white shadow-sm px-4"
+            aria-label="Barra superior"
+          >
+            <span class="navbar-brand mb-0 h1">Listado de Actividades</span>
+            <div class="d-flex align-items-center gap-3 ms-auto">
+              <span class="text-secondary small" data-usuario-nombre
+                >Usuario</span
+              >
+              <span class="text-muted small" data-usuario-rol>Rol</span>
+
+              <img
+                src="https://via.placeholder.com/36"
+                class="rounded-circle"
+                alt="Avatar de {data-usuario-nombre}"
+                width="36"
+                height="36"
+                loading="lazy"
+              />
+            </div>
+          </nav>
+        </header>
+
+        <main class="container-fluid py-4">
+          <!-- Filtros -->
+          <section
+            class="filter-card mb-4 shadow-sm"
+            aria-labelledby="filtros-heading"
+          >
+            <h2 id="filtros-heading" class="visually-hidden">
+              Filtros de búsqueda
+            </h2>
+            <form class="row g-3 align-items-end" method="get" action="#">
+              <div class="col-md-3">
+                <label class="form-label" for="f-colaborador"
+                  >Colaborador</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="f-colaborador"
+                  name="q"
+                  placeholder="Buscar por nombre..."
+                />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label" for="f-tipo">Tipo de Solicitud</label>
+                <select class="form-select" id="f-tipo" name="tipo">
+                  <option value="">Todos</option>
+                  <option>Renovación</option>
+                  <option>Cancelación</option>
+                  <option>Aplicación de Primas</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label" for="f-estatus">Estatus</label>
+                <select class="form-select" id="f-estatus" name="estatus">
+                  <option value="">Todos</option>
+                  <option>Finalizado</option>
+                  <option>En curso</option>
+                  <option>Pendiente</option>
+                  <option>Bloqueado</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label" for="f-fecha">Fecha</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="f-fecha"
+                  name="fecha"
+                />
+              </div>
+              <div class="col-12 text-end">
+                <button type="submit" class="btn btn-brand">
+                  <i class="bi bi-funnel me-2" aria-hidden="true"></i>Filtrar
+                </button>
+                <button type="reset" class="btn btn-outline-secondary">
+                  <i class="bi bi-arrow-clockwise me-2" aria-hidden="true"></i
+                  >Reiniciar
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <!-- Tabla de actividades -->
+          <section aria-labelledby="tabla-heading">
+            <div class="card border-0 shadow-sm">
+              <div
+                class="card-header bg-white d-flex justify-content-between align-items-center"
+              >
+                <h2 id="tabla-heading" class="h6 fw-bold mb-0 text-secondary">
+                  Resultados
+                  <span class="text-muted fw-normal">(36 registros)</span>
+                </h2>
+                <a
+                  href="registro.html"
+                  data-spa
+                  class="btn btn-sm btn-outline-primary"
+                >
+                  <i class="bi bi-plus-lg" aria-hidden="true"></i>
+                  <span class="d-none d-sm-inline">Nueva Actividad</span>
+                </a>
+              </div>
+          
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table align-middle mb-0">
+                    <thead class="table-light">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Colaborador</th>
+                        <th scope="col">Tipo Solicitud</th>
+                        <th scope="col">Área</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">Tiempo total</th>
+                        <th scope="col" class="text-end">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- aquí ya luego metemos las filas dinámicas -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          
+              <div class="card-footer bg-white">
+                <!-- Primera fila: info y paginación -->
+                <div
+                  class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2"
+                >
+                  <div class="text-muted small" aria-live="polite">
+                    Mostrando 1–10 de 36 registros
+                  </div>
+                  <nav aria-label="Paginación de resultados">
+                    <ul class="pagination pagination-sm mb-0">
+                      <li class="page-item disabled" aria-disabled="true">
+                        <a
+                          class="page-link"
+                          href="#"
+                          tabindex="-1"
+                          aria-label="Anterior"
+                          rel="prev"
+                          >«</a
+                        >
+                      </li>
+                      <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="#">1</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#" rel="next">2</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                      </li>
+                      <li class="page-item">
+                        <a
+                          class="page-link"
+                          href="#"
+                          aria-label="Siguiente"
+                          rel="next"
+                          >»</a
+                        >
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+          
+                <!-- Segunda fila: botones CSV -->
+                <div class="mt-3 d-flex justify-content-end gap-2 flex-wrap">
+                  <!-- Exportar: TODOS lo ven -->
+                <button class="btn btn-sm btn-outline-primary" id="btnExportCsv">
+                  <i class="bi bi-envelope-paper me-1"></i>
+                  Descargar borrador de correo
+                </button>
+          
+                  <!-- Importar: solo admin (lo controla JS con display:none/flex) -->
+                  <div
+                    id="importSection"
+                    class="d-flex align-items-center gap-2"
+                    style="display:none;"
+                  >
+                    <input
+                      type="file"
+                      id="fileImportCsv"
+                      accept=".csv"
+                      class="form-control form-control-sm"
+                    />
+                    <button class="btn btn-sm btn-outline-success" id="btnImportCsv">
+                      <i class="bi bi-file-earmark-arrow-up me-1"></i>
+                      Importar CSV
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+    <script src="js/app.js"></script>
+    <script src="js/actividades.js"></script>
+    <!-- solo en actividades.html -->
+
+    <!-- Router SPA (sin cambios funcionales) -->
+    <script defer>
+      (function () {
+        const supportsVT = "startViewTransition" in document;
+
+        async function loadPartial(url) {
+          const res = await fetch(url, { credentials: "same-origin" });
+          const html = await res.text();
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const newMain = doc.querySelector(".app-main");
+          const newTitle =
+            doc.querySelector("title")?.textContent || document.title;
+          return { newMain, newTitle, doc };
+        }
+
+        function setActiveLink(url) {
+          const links = document.querySelectorAll(".sidebar a[data-spa]");
+          links.forEach((a) => a.classList.toggle("active", a.href === url));
+        }
+
+        async function navigate(url, push = true) {
+          const currentMain = document.querySelector(".app-main");
+          const doSwap = async () => {
+            const { newMain, newTitle, doc } = await loadPartial(url);
+            if (!newMain) {
+              location.href = url;
+              return;
+            } // fallback total
+
+            currentMain.classList.add("is-leaving");
+            await new Promise((r) => setTimeout(r, 120));
+
+            currentMain.replaceWith(newMain);
+            document.title = newTitle;
+
+            newMain.classList.add("is-entering");
+            requestAnimationFrame(() =>
+              newMain.classList.add("app-main--ready")
+            );
+            setTimeout(
+              () => newMain.classList.remove("is-entering", "app-main--ready"),
+              180
+            );
+
+            if (window.bootstrap) {
+              document
+                .querySelectorAll('[data-bs-toggle="tooltip"]')
+                .forEach((el) => new bootstrap.Tooltip(el));
+            }
+
+            setActiveLink(new URL(url, location.href).href);
+
+            doc.querySelectorAll("script[data-init]").forEach((s) => {
+              try {
+                eval(s.textContent);
+              } catch (e) {
+                console.error(e);
+              }
+            });
+          };
+
+          if (supportsVT) {
+            document.startViewTransition(doSwap);
+          } else {
+            await doSwap();
+          }
+
+          if (push) history.pushState({ spa: true }, "", url);
+        }
+
+        document.addEventListener("click", (e) => {
+          const a = e.target.closest("a[data-spa]");
+          if (!a) return;
+          const url = a.getAttribute("href");
+          if (!url || url.startsWith("http") || url.startsWith("#")) return;
+          e.preventDefault();
+          navigate(url, true);
+        });
+
+        window.addEventListener("popstate", (e) => {
+          if (e.state && e.state.spa) {
+            navigate(location.href, false);
+          } else location.reload();
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

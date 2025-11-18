@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Help Desk | Detalle de Actividad</title>
+
+    <!-- CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="css/theme.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="app-shell d-flex">
+      <!-- Sidebar -->
+      <aside class="sidebar d-flex flex-column p-3" aria-label="Barra lateral">
+        <h1 class="h5 fw-bold mb-4">Help Desk</h1>
+
+        <nav class="nav flex-column" aria-label="Navegación principal">
+          <a class="nav-link" href="registro.html">
+            <i class="bi bi-plus-circle" aria-hidden="true"></i>
+            <span class="nav-label"> Registrar actividad</span>
+          </a>
+
+          <a class="nav-link active" href="actividades.html">
+            <i class="bi bi-list-task" aria-hidden="true"></i>
+            <span class="nav-label"> Actividades colaboradores</span>
+          </a>
+
+          <a class="nav-link" href="kpis.html">
+            <i class="bi bi-activity" aria-hidden="true"></i>
+            <span class="nav-label"> Mis KPIs</span>
+          </a>
+
+          <a class="nav-link" href="kpis_admin.html">
+            <i class="bi bi-bar-chart-steps" aria-hidden="true"></i>
+            <span class="nav-label"> KPIs Admin</span>
+          </a>
+
+          <hr class="border-light my-3" />
+
+          <div class="nav-item">
+            <button
+              class="nav-link d-flex align-items-center w-100 text-start bg-transparent border-0 px-0"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#perfilMenu"
+              aria-expanded="false"
+              aria-controls="perfilMenu"
+            >
+              <i class="bi bi-person-circle me-1" aria-hidden="true"></i>
+              <span class="nav-label"> Mi Perfil</span>
+              <i class="bi bi-caret-down ms-auto" aria-hidden="true"></i>
+            </button>
+            <div id="perfilMenu" class="collapse ps-3 mt-1">
+              <a class="d-block small text-light" href="perfil.html">
+                <i class="bi bi-person" aria-hidden="true"></i>
+                <span class="nav-label"> Datos personales</span>
+              </a>
+              <a
+                class="d-block small text-light mt-1"
+                href="configuraciones.html"
+              >
+                <i class="bi bi-gear" aria-hidden="true"></i>
+                <span class="nav-label"> Preferencias</span>
+              </a>
+            </div>
+          </div>
+
+          <hr class="border-light my-3" />
+
+          <a class="nav-link" href="index.html">
+            <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+            <span class="nav-label"> Cerrar sesión</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main -->
+      <div class="app-main flex-grow-1 d-flex flex-column min-vh-100">
+        <header>
+          <nav
+            class="navbar bg-white shadow-sm px-4"
+            aria-label="Barra superior"
+          >
+            <span class="navbar-brand mb-0 h1">Detalle de Actividad</span>
+            <div class="d-flex align-items-center gap-3 ms-auto">
+              <a
+                href="./4_actividades_admin.html"
+                data-spa
+                class="btn btn-outline-secondary btn-sm"
+                id="btnBack"
+                aria-label="Volver a listado"
+              >
+                <i class="bi bi-arrow-left" aria-hidden="true"></i>
+                <span class="d-none d-sm-inline">Volver</span>
+              </a>
+              <span class="text-secondary small" data-usuario-nombre
+                >Usuario</span
+              >
+              <span class="text-muted small" data-usuario-rol>Rol</span>
+              <img
+                src="https://placeholdmon.vercel.app/"
+                class="rounded-circle"
+                alt="Avatar de Vladimir"
+                width="36"
+                height="36"
+                loading="lazy"
+              />
+            </div>
+          </nav>
+        </header>
+
+        <main class="container-fluid py-4" id="main-content">
+          <!-- Encabezado: ID, estado y acciones -->
+          <section
+            class="card border-0 shadow-sm mb-3"
+            aria-labelledby="activity-id"
+          >
+            <div
+              class="card-body d-flex flex-wrap justify-content-between align-items-center gap-3"
+            >
+              <div>
+                <h2 class="h4 mb-1" id="activity-id">20251111-1216-SER</h2>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="badge bg-success">estatus</span>
+                  <span class="meta-chip"
+                    ><i class="bi bi-person me-1" aria-hidden="true"></i>
+                    Colaborador: Usuario con sesión iniciada
+                  </span>
+                  <span class="meta-chip"
+                    ><i
+                      class="bi bi-calendar-event me-1"
+                      aria-hidden="true"
+                    ></i>
+                    dd/mm/aaaa</span
+                  >
+                  <span class="meta-chip"
+                    ><i class="bi bi-geo-alt me-1" aria-hidden="true"></i> Área
+                    destino: Área a la que se envía</span
+                  >
+                </div>
+              </div>
+              <div class="d-flex gap-2">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  aria-label="Imprimir"
+                >
+                  <i class="bi bi-printer" aria-hidden="true"></i>
+                  <span class="d-none d-sm-inline">Imprimir</span>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#offEdit"
+                >
+                  <i class="bi bi-pencil" aria-hidden="true"></i>
+                  <span class="d-none d-sm-inline">Editar</span>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalDelete"
+                >
+                  <i class="bi bi-trash" aria-hidden="true"></i>
+                  <span class="d-none d-sm-inline">Eliminar</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- KPIs rápidos de tiempos -->
+          <section class="row g-3 mb-4" aria-label="Indicadores de tiempo">
+            <div class="col-md-4">
+              <div
+                class="card shadow-sm card-hover"
+                role="group"
+                aria-label="Tiempo a enviar al área hh:mm h estado OK"
+              >
+                <div
+                  class="card-body d-flex align-items-center justify-content-between"
+                >
+                  <div>
+                    <div class="text-muted small">Tiempo a enviar al área</div>
+                    <div class="h4 mb-0" data-kpi="t-env-area">hh:mm h</div>
+                  </div>
+                  <span class="badge bg-info text-dark">OK</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div
+                class="card shadow-sm card-hover"
+                role="group"
+                aria-label="Tiempo respuesta del área hh:mm h dentro SLA"
+              >
+                <div
+                  class="card-body d-flex align-items-center justify-content-between"
+                >
+                  <div>
+                    <div class="text-muted small">
+                      Tiempo respuesta del área
+                    </div>
+                    <div class="h4 mb-0" data-kpi="t-resp-area">hh:mm h</div>
+                  </div>
+                  <span class="badge bg-success">Dentro SLA</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div
+                class="card shadow-sm card-hover"
+                role="group"
+                aria-label="Tiempo respuesta al agente hh:mm h requiere atención"
+              >
+                <div
+                  class="card-body d-flex align-items-center justify-content-between"
+                >
+                  <div>
+                    <div class="text-muted small">
+                      Tiempo respuesta al agente
+                    </div>
+                    <div class="h4 mb-0" data-kpi="t-resp-agente">hh:mm h</div>
+                  </div>
+                  <span class="badge bg-warning text-dark">Atención</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Tabs de detalle -->
+          <ul class="nav nav-tabs mb-3" id="detailTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="tab-resumen"
+                data-bs-toggle="tab"
+                data-bs-target="#resumen"
+                type="button"
+                role="tab"
+                aria-controls="resumen"
+                aria-selected="true"
+              >
+                Resumen
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="tab-flujo"
+                data-bs-toggle="tab"
+                data-bs-target="#flujo"
+                type="button"
+                role="tab"
+                aria-controls="flujo"
+                aria-selected="false"
+              >
+                Flujo
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="tab-auditoria"
+                data-bs-toggle="tab"
+                data-bs-target="#auditoria"
+                type="button"
+                role="tab"
+                aria-controls="auditoria"
+                aria-selected="false"
+              >
+                Auditoría
+              </button>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <!-- Resumen -->
+            <div
+              class="tab-pane fade show active"
+              id="resumen"
+              role="tabpanel"
+              aria-labelledby="tab-resumen"
+            >
+              <div class="row g-3">
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white fw-semibold">
+                      Datos Generales
+                    </div>
+                    <div class="card-body">
+                      <div class="row g-3">
+                        <div class="col-6">
+                          <div class="text-muted small">Colaborador</div>
+                          <div data-field="colaborador">Vladimir Turral</div>
+                        </div>
+                        <div class="col-3">
+                          <div class="text-muted small">Fecha</div>
+                          <div data-field="recepcion-fecha">dd/mm/aa</div>
+                        </div>
+                        <div class="col-3">
+                          <div class="text-muted small">Hora recepción</div>
+                          <div data-field="recepcion-hora">hh:mm</div>
+                        </div>
+                        <div class="col-4">
+                          <div class="text-muted small">Agente Clave</div>
+                          <div data-field="recepcion-agente">00000</div>
+                        </div>
+                        <div class="col-8">
+                          <div class="text-muted small">Asunto</div>
+                          <div data-field="recepcion-asunto">
+                            Renovación póliza flotilla Q3
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white fw-semibold">
+                      Solicitud
+                    </div>
+                    <div class="card-body">
+                      <div class="row g-3">
+                        <div class="col-6">
+                          <div class="text-muted small">Forma de Solicitud</div>
+                          <div data-field="forma-solicitud">E-mail</div>
+                        </div>
+                        <div class="col-6">
+                          <div class="text-muted small">Tipo de Solicitud</div>
+                          <div data-field="tipo-solicitud">Renovación</div>
+                        </div>
+                        <div class="col-6">
+                          <div class="text-muted small">Enviado al Área</div>
+                          <div data-field="area-destino">AOF</div>
+                        </div>
+                        <div class="col-6">
+                          <div class="text-muted small">Estatus</div>
+                          <div>
+                            <span
+                              class="badge bg-success"
+                              data-field="estatus-badge"
+                            >
+                              Finalizado
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white fw-semibold">
+                      Fechas / Tiempos
+                    </div>
+                    <div class="card-body">
+                      <div class="row g-3">
+                        <div class="col-6">
+                          <div class="text-muted small">Envío al Área</div>
+                          <div data-field="envio-area">dd/mm/AA — HH:mm</div>
+                        </div>
+                        <div class="col-6">
+                          <div class="text-muted small">Respuesta del Área</div>
+                          <div data-field="resp-area">dd/mm/AA — HH:mm</div>
+                        </div>
+                        <div class="col-6">
+                          <div class="text-muted small">Envío al Agente</div>
+                          <div data-field="envio-agente">dd/mm/AA — HH:mm</div>
+                        </div>
+                        <div class="col-6">
+                          <div class="text-muted small">Tiempo total</div>
+                          <div data-field="tiempo-total">HH:mm h</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white fw-semibold">
+                      Renovación
+                    </div>
+                    <div class="card-body">
+                      <div class="row g-3">
+                        <div class="col-6">
+                          <div class="text-muted small">Póliza a Renovar</div>
+                          <div data-field="poliza-renovar">0000000000</div>
+                        </div>
+                        <div class="col-6">
+                          <div class="text-muted small">Póliza Renovada</div>
+                          <div data-field="poliza-renovada">0000000000</div>
+                        </div>
+                        <div class="col-12">
+                          <div class="text-muted small">
+                            Comentarios Renovación
+                          </div>
+                          <div data-field="comentarios-renovacion">
+                            Se actualizó prima y se mantuvieron coberturas. Sin
+                            incidencias.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white fw-semibold">
+                      Comentarios
+                    </div>
+                    <div class="card-body">
+                      <p class="mb-0" data-field="comentarios">
+                        Cliente solicitó confirmación telefónica posterior al
+                        envío de documentación.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flujo -->
+            <div
+              class="tab-pane fade"
+              id="flujo"
+              role="tabpanel"
+              aria-labelledby="tab-flujo"
+            >
+              <div class="card border-0 shadow-sm">
+                <div
+                  class="card-header bg-white fw-semibold d-flex justify-content-between align-items-center"
+                >
+                  <span>Flujo de estados</span>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="meta-chip"
+                      ><i class="bi bi-clock me-1" aria-hidden="true"></i>
+                      Inicio: 10:14</span
+                    >
+                    <span class="meta-chip"
+                      ><i class="bi bi-flag me-1" aria-hidden="true"></i> Fin:
+                      15:51</span
+                    >
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div
+                    class="timeline"
+                    aria-label="Línea de tiempo de la actividad"
+                  >
+                    <div class="t-item">
+                      <div class="fw-semibold">Recepción</div>
+                      <div class="text-muted small">21/10/2025 — 10:14</div>
+                    </div>
+                    <div class="t-item">
+                      <div class="fw-semibold">Enviado al Área (AOF)</div>
+                      <div class="text-muted small">
+                        21/10/2025 — 11:46
+                        <span class="ms-2 badge bg-info text-dark"
+                          >+01:32 h</span
+                        >
+                      </div>
+                    </div>
+                    <div class="t-item">
+                      <div class="fw-semibold">Respuesta del Área</div>
+                      <div class="text-muted small">
+                        21/10/2025 — 15:04
+                        <span class="ms-2 badge bg-success">+03:18 h</span>
+                      </div>
+                    </div>
+                    <div class="t-item">
+                      <div class="fw-semibold">Envío al Agente</div>
+                      <div class="text-muted small">
+                        21/10/2025 — 15:51
+                        <span class="ms-2 badge bg-warning text-dark"
+                          >+00:47 h</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Auditoría -->
+            <div
+              class="tab-pane fade"
+              id="auditoria"
+              role="tabpanel"
+              aria-labelledby="tab-auditoria"
+            >
+              <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white fw-semibold">
+                  Registro de auditoría
+                </div>
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table table-sm align-middle mb-0">
+                      <thead class="table-light">
+                        <tr>
+                          <th scope="col">Fecha</th>
+                          <th scope="col">Actor</th>
+                          <th scope="col">Acción</th>
+                          <th scope="col">Entidad</th>
+                          <th scope="col">Detalle</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>21/10/2025 10:14</td>
+                          <td>Vladimir Turral</td>
+                          <td>create</td>
+                          <td>activity</td>
+                          <td>Registro inicial</td>
+                        </tr>
+                        <tr>
+                          <td>21/10/2025 11:46</td>
+                          <td>Vladimir Turral</td>
+                          <td>update</td>
+                          <td>activity</td>
+                          <td>Enviado al área: AOF</td>
+                        </tr>
+                        <tr>
+                          <td>21/10/2025 15:04</td>
+                          <td>AOF</td>
+                          <td>update</td>
+                          <td>activity</td>
+                          <td>Respuesta del área registrada</td>
+                        </tr>
+                        <tr>
+                          <td>21/10/2025 15:51</td>
+                          <td>Vladimir Turral</td>
+                          <td>update</td>
+                          <td>activity</td>
+                          <td>Envío al agente</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.table-responsive -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Offcanvas Edición -->
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="offEdit"
+            aria-labelledby="offEditLabel"
+          >
+            <div class="offcanvas-header">
+              <h3 class="offcanvas-title h5 mb-0" id="offEditLabel">
+                Editar actividad
+              </h3>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Cerrar"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <form id="editForm" novalidate>
+                <div class="mb-3">
+                  <label class="form-label" for="ed-status">Estatus</label>
+                  <select class="form-select" id="ed-status" name="estatus">
+                    <option>Finalizado</option>
+                    <option>En curso</option>
+                    <option>Pendiente</option>
+                    <option>Bloqueado</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="ed-coment">Comentarios</label>
+                  <textarea
+                    class="form-control"
+                    id="ed-coment"
+                    name="comentarios"
+                    rows="3"
+                  >
+Se actualizó prima y se mantuvieron coberturas.</textarea
+                  >
+                </div>
+                <div class="text-end">
+                  <button type="submit" class="btn btn-primary">
+                    Guardar cambios
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Modal Delete -->
+          <div
+            class="modal fade"
+            id="modalDelete"
+            tabindex="-1"
+            aria-labelledby="modalDeleteLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title h5" id="modalDeleteLabel">
+                    Eliminar registro
+                  </h3>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Cerrar"
+                  ></button>
+                </div>
+                <div class="modal-body" id="modalDeleteBody">
+                  ¿Seguro que deseas eliminar esta actividad? Esta acción no se
+                  puede deshacer.
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    id="btnConfirmDelete"
+                    aria-describedby="modalDeleteBody"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <!-- /.app-main -->
+    </div>
+    <!-- /.app-shell -->
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <!-- Router SPA (intacto) + micro handlers -->
+    <script defer>
+      (function () {
+        // Back button: si no hay historial previo, manda al listado
+        const back = document.getElementById("btnBack");
+        if (back && window.history.length <= 1) {
+          back.setAttribute("href", "./4_actividades_admin.html");
+          back.setAttribute("data-spa", "");
+        }
+
+        // Tabs: aria-current para accesibilidad
+        const tabs = document.querySelectorAll(
+          '#detailTabs [data-bs-toggle="tab"]'
+        );
+        tabs.forEach((btn) => {
+          btn.addEventListener("shown.bs.tab", (e) => {
+            tabs.forEach((b) => b.removeAttribute("aria-current"));
+            e.target.setAttribute("aria-current", "page");
+          });
+        });
+
+        // Offcanvas form (mock)
+        const editForm = document.getElementById("editForm");
+        if (editForm) {
+          editForm.addEventListener("submit", (ev) => {
+            ev.preventDefault();
+            // TODO: fetch PUT /activities/:id
+            const off = bootstrap.Offcanvas.getOrCreateInstance(
+              document.getElementById("offEdit")
+            );
+            off.hide();
+          });
+        }
+
+        // Delete (mock)
+        const btnDel = document.getElementById("btnConfirmDelete");
+        if (btnDel) {
+          btnDel.addEventListener("click", () => {
+            // TODO: fetch DELETE /activities/:id
+            const modal = bootstrap.Modal.getOrCreateInstance(
+              document.getElementById("modalDelete")
+            );
+            modal.hide();
+          });
+        }
+      })();
+    </script>
+
+    <!-- Router SPA original -->
+    <script defer>
+      (function () {
+        const supportsVT = "startViewTransition" in document;
+
+        async function loadPartial(url) {
+          const res = await fetch(url, { credentials: "same-origin" });
+          const html = await res.text();
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const newMain = doc.querySelector(".app-main");
+          const newTitle =
+            doc.querySelector("title")?.textContent || document.title;
+          return { newMain, newTitle, doc };
+        }
+
+        function setActiveLink(url) {
+          const links = document.querySelectorAll(".sidebar a[data-spa]");
+          links.forEach((a) => a.classList.toggle("active", a.href === url));
+        }
+
+        async function navigate(url, push = true) {
+          const currentMain = document.querySelector(".app-main");
+          const doSwap = async () => {
+            const { newMain, newTitle, doc } = await loadPartial(url);
+            if (!newMain) {
+              location.href = url;
+              return;
+            } // fallback total
+
+            currentMain.classList.add("is-leaving");
+            await new Promise((r) => setTimeout(r, 120));
+
+            currentMain.replaceWith(newMain);
+            document.title = newTitle;
+
+            newMain.classList.add("is-entering");
+            requestAnimationFrame(() =>
+              newMain.classList.add("app-main--ready")
+            );
+            setTimeout(
+              () => newMain.classList.remove("is-entering", "app-main--ready"),
+              180
+            );
+
+            if (window.bootstrap) {
+              document
+                .querySelectorAll('[data-bs-toggle="tooltip"]')
+                .forEach((el) => new bootstrap.Tooltip(el));
+            }
+
+            setActiveLink(new URL(url, location.href).href);
+
+            doc.querySelectorAll("script[data-init]").forEach((s) => {
+              try {
+                eval(s.textContent);
+              } catch (e) {
+                console.error(e);
+              }
+            });
+          };
+
+          if (supportsVT) {
+            document.startViewTransition(doSwap);
+          } else {
+            await doSwap();
+          }
+
+          if (push) history.pushState({ spa: true }, "", url);
+        }
+
+        document.addEventListener("click", (e) => {
+          const a = e.target.closest("a[data-spa]");
+          if (!a) return;
+          const url = a.getAttribute("href");
+          if (!url || url.startsWith("http") || url.startsWith("#")) return;
+          e.preventDefault();
+          navigate(url, true);
+        });
+
+        window.addEventListener("popstate", (e) => {
+          if (e.state && e.state.spa) {
+            navigate(location.href, false);
+          } else location.reload();
+        });
+      })();
+    </script>
+
+    <script data-init>
+      document.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        if (!id) return;
+
+        let actividades = [];
+        try {
+          actividades = JSON.parse(
+            localStorage.getItem("hd_actividades") || "[]"
+          );
+        } catch (e) {
+          console.error("No se pudo leer hd_actividades", e);
+          return;
+        }
+
+        const actividad = actividades.find((a) => String(a.id) === String(id));
+        if (!actividad) {
+          console.warn("Actividad no encontrada para id", id);
+          return;
+        }
+
+        // Helpers simples
+        const formatDateDMY = (ymd) => {
+          if (!ymd) return "—";
+          const [y, m, d] = ymd.split("-");
+          if (!y || !m || !d) return ymd;
+          return `${d}/${m}/${y}`;
+        };
+
+        const formatDateTime = (fecha, hora) => {
+          if (!fecha && !hora) return "—";
+          const d = fecha ? formatDateDMY(fecha) : "—";
+          const h = hora || "—";
+          return `${d} — ${h}`;
+        };
+
+        const formatTiempo = (mins) =>{
+          if (mins==null || isNaN(mins)) return "--";
+          const total = Math.max(0, Number(mins));
+          const h = Math.floor(total/60);
+          const m = total % 60;
+          const hh = String(h).padStart(2,"0");
+          const mm = String(m).padStart(2,"0");
+          return `${hh}:${mm} h`;
+        };
+
+        const parseDT = (fecha, hora) => {
+          if (!fecha || !hora) return null;
+          // El formato esperado es "2025-10-21T15:05"
+          return new Date(`${fecha}T${hora}`); // Usa backticks (``)
+        };
+
+        const buildStatusBadge = (estatus) => {
+          const s = (estatus || "").toLowerCase();
+          if (s.includes("final")) {
+            return '<span class="badge bg-success">Finalizado</span>';
+          }
+          if (s.includes("curso")) {
+            return '<span class="badge bg-warning text-dark">En curso</span>';
+          }
+          if (s.includes("área") || s.includes("area")) {
+            return '<span class="badge bg-secondary">Enviado a área</span>';
+          }
+          if (s.includes("pend")) {
+            return '<span class="badge bg-secondary">Pendiente</span>';
+          }
+          return `<span class="badge bg-secondary">${estatus || "—"}</span>`;
+        };
+
+        const colaborador =
+          actividad.colaborador ||
+          actividad.usuarioNombre ||
+          actividad.usuarioRegistro ||
+          "—";
+
+        const fechaRecep =
+          actividad.fechaRecepcion || actividad.fechaRegistro || null;
+        const horaRecep = actividad.horaRecepcion || null;
+        const area = actividad.areaDestino || "—";
+        const formaSolicitud = actividad.formaSolicitud || "—";
+        const tipoSolicitud =
+          actividad.tipoSolicitud || actividad.tipoActividad || "—";
+        const estatus = actividad.estatus || "—";
+
+        // ===== Encabezado principal =====
+        const hdrId = document.getElementById("activity-id");
+        if (hdrId) {
+          const folio = actividad.folio || actividad.id;
+          hdrId.textContent = `Actividad ${actividad.id}`;
+        }
+
+        const headerSection = document.querySelector(
+          'section[aria-labelledby="activity-id"]'
+        );
+        if (headerSection) {
+          const chips = headerSection.querySelectorAll(".meta-chip");
+          const [chipColab, chipFecha, chipArea] = chips;
+
+          if (chipColab) {
+            chipColab.innerHTML = `
+          <i class="bi bi-person me-1" aria-hidden="true"></i>
+          Colaborador: ${colaborador}
+        `;
+          }
+
+          if (chipFecha) {
+            chipFecha.innerHTML = `
+          <i class="bi bi-calendar-event me-1" aria-hidden="true"></i>
+          ${formatDateDMY(fechaRecep)}
+        `;
+          }
+
+          if (chipArea) {
+            chipArea.innerHTML = `
+          <i class="bi bi-geo-alt me-1" aria-hidden="true"></i>
+          Área destino: ${area}
+        `;
+          }
+
+          const badgeContainer = headerSection.querySelector(".badge");
+          if (badgeContainer) {
+            badgeContainer.outerHTML = buildStatusBadge(estatus);
+          }
+        }
+
+        // ===== Tab Resumen =====
+        const resumenRoot = document.getElementById("resumen");
+        if (resumenRoot) {
+          // Datos Generales
+          const colabEl = resumenRoot.querySelector(
+            "[data-field='colaborador']"
+          );
+          const recFecha = resumenRoot.querySelector(
+            "[data-field='recepcion-fecha']"
+          );
+          const recHora = resumenRoot.querySelector(
+            "[data-field='recepcion-hora']"
+          );
+          const recAgente = resumenRoot.querySelector(
+            "[data-field='recepcion-agente']"
+          );
+          const recAsunto = resumenRoot.querySelector(
+            "[data-field='recepcion-asunto']"
+          );
+
+          if (colabEl) colabEl.textContent = colaborador;
+          if (recFecha) recFecha.textContent = formatDateDMY(fechaRecep);
+          if (recHora) recHora.textContent = horaRecep || "—";
+          if (recAgente) recAgente.textContent = actividad.agenteClave || "—";
+          if (recAsunto) recAsunto.textContent = tipoSolicitud;
+
+          // Solicitud
+          const formaEl = resumenRoot.querySelector(
+            "[data-field='forma-solicitud']"
+          );
+          const tipoEl = resumenRoot.querySelector(
+            "[data-field='tipo-solicitud']"
+          );
+          const areaDestEl = resumenRoot.querySelector(
+            "[data-field='area-destino']"
+          );
+          const estatusBadgeEl = resumenRoot.querySelector(
+            "[data-field='estatus-badge']"
+          );
+
+          if (formaEl) formaEl.textContent = formaSolicitud;
+          if (tipoEl) tipoEl.textContent = tipoSolicitud;
+          if (areaDestEl) areaDestEl.textContent = area;
+          if (estatusBadgeEl) {
+            estatusBadgeEl.outerHTML = buildStatusBadge(estatus);
+          }
+
+          // Fechas / tiempos
+          const envioAreaEl = resumenRoot.querySelector(
+            "[data-field='envio-area']"
+          );
+          const respAreaEl = resumenRoot.querySelector(
+            "[data-field='resp-area']"
+          );
+          const envioAgenteEl = resumenRoot.querySelector(
+            "[data-field='envio-agente']"
+          );
+          const tiempoTotalEl = resumenRoot.querySelector(
+            "[data-field='tiempo-total']"
+          );
+
+          if (envioAreaEl) {
+            envioAreaEl.textContent = formatDateTime(
+              actividad.fechaEnvioArea,
+              actividad.horaEnvioArea
+            );
+          }
+          if (respAreaEl) {
+            respAreaEl.textContent = formatDateTime(
+              actividad.fechaRespArea,
+              actividad.horaRespArea
+            );
+          }
+          if (envioAgenteEl) {
+            envioAgenteEl.textContent = formatDateTime(
+              actividad.fechaEnvioAgente,
+              actividad.horaEnvioAgente
+            );
+          }
+          if (tiempoTotalEl) {
+            tiempoTotalEl.textContent = formatTiempo(actividad.tiempoTotalMin);
+          }
+
+          // Renovación (por ahora usamos los campos que tengas; si luego agregas más, solo los mapearíamos)
+          const polRenEl = resumenRoot.querySelector(
+            "[data-field='poliza-renovar']"
+          );
+          const polRen2El = resumenRoot.querySelector(
+            "[data-field='poliza-renovada']"
+          );
+          const comentRenEl = resumenRoot.querySelector(
+            "[data-field='comentarios-renovacion']"
+          );
+
+          if (polRenEl) polRenEl.textContent = actividad.polizaOriginal || "—";
+          if (polRen2El)
+            polRen2El.textContent = actividad.polizaRenovada || "—";
+          if (comentRenEl)
+            comentRenEl.textContent = actividad.comentariosRenovacion || "—";
+
+          // Comentarios generales
+          const comentariosEl = resumenRoot.querySelector(
+            "[data-field='comentarios']"
+          );
+          if (comentariosEl) {
+            comentariosEl.textContent = actividad.comentarios || "—";
+          }
+        }
+
+        // ========= KPIs rapidos de tiempos
+
+        // ===== KPIs rápidos de tiempos =====
+        const kpiEnvAreaEl = document.querySelector("[data-kpi='t-env-area']");
+        const kpiRespAreaEl = document.querySelector(
+          "[data-kpi='t-resp-area']"
+        );
+        const kpiRespAgenteEl = document.querySelector(
+          "[data-kpi='t-resp-agente']"
+        );
+
+        const dtRec = parseDT(
+          actividad.fechaRecepcion || actividad.fechaRegistro,
+          actividad.horaRecepcion || actividad.horaRegistro
+        );
+        const dtEnvArea = parseDT(
+          actividad.fechaEnvioArea,
+          actividad.horaEnvioArea
+        );
+        const dtRespArea = parseDT(
+          actividad.fechaRespArea,
+          actividad.horaRespArea
+        );
+        const dtEnvAgente = parseDT(
+          actividad.fechaEnvioAgente,
+          actividad.horaEnvioAgente
+        );
+
+        // Tiempo a enviar al área = recepción → envío área
+        if (kpiEnvAreaEl && dtRec && dtEnvArea && dtEnvArea > dtRec) {
+          const mins = Math.round((dtEnvArea - dtRec) / 60000);
+          kpiEnvAreaEl.textContent = formatTiempo(mins);
+        } else if (kpiEnvAreaEl) {
+          kpiEnvAreaEl.textContent = "—";
+        }
+
+        // Tiempo respuesta del área = envío área → respuesta área
+        if (
+          kpiRespAreaEl &&
+          dtEnvArea &&
+          dtRespArea &&
+          dtRespArea > dtEnvArea
+        ) {
+          const mins = Math.round((dtRespArea - dtEnvArea) / 60000);
+          kpiRespAreaEl.textContent = formatTiempo(mins);
+        } else if (kpiRespAreaEl) {
+          kpiRespAreaEl.textContent = "—";
+        }
+
+        // Tiempo respuesta al agente = recepción → envío al agente
+        if (kpiRespAgenteEl && dtRec && dtEnvAgente && dtEnvAgente > dtRec) {
+          const mins = Math.round((dtEnvAgente - dtRec) / 60000);
+          kpiRespAgenteEl.textContent = formatTiempo(mins);
+        } else if (kpiRespAgenteEl) {
+          kpiRespAgenteEl.textContent = "—";
+        }
+        // TODO: futuro → llenar también el tab de Flujo y la tabla de Auditoría desde el mismo objeto
+      });
+    </script>
+  </body>
+</html>
+

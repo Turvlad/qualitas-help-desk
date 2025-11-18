@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Help Desk — Inicio de sesión" />
+    <title>Help Desk | Inicio de sesión</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="css/theme.css" rel="stylesheet" />
+  </head>
+  <body>
+    <main class="auth-wrapper">
+      <!-- Panel izquierdo: branding -->
+      <section
+        class="brand-panel d-none d-lg-flex flex-column justify-content-between p-5"
+        aria-label="Información de la plataforma"
+      >
+        <div>
+          <div class="brand-badge mb-4">
+            <i class="bi bi-life-preserver" aria-hidden="true"></i> Help Desk —
+            Registro de Actividades
+          </div>
+          <h1 class="display-5 fw-bold">Centraliza, mide y mejora</h1>
+          <p class="fs-5 text-white-50 mb-4">
+            Carga actividades en segundos, consulta KPIs y obtén visibilidad
+            total del flujo hacia las áreas.
+          </p>
+          <ul class="list-unstyled small mb-0">
+            <li class="mb-2">
+              <i class="bi bi-check2-circle me-2" aria-hidden="true"></i
+              >Registro rápido y validado
+            </li>
+            <li class="mb-2">
+              <i class="bi bi-check2-circle me-2" aria-hidden="true"></i
+              >Exportación a CSV/Excel
+            </li>
+            <li class="mb-2">
+              <i class="bi bi-check2-circle me-2" aria-hidden="true"></i
+              >Dashboards en tiempo real
+            </li>
+          </ul>
+        </div>
+        <div class="text-white-50 small">
+          <i class="bi bi-shield-lock me-1" aria-hidden="true"></i> Acceso
+          protegido. Solo usuarios autorizados.
+        </div>
+        <div class="watermark" aria-hidden="true"></div>
+      </section>
+
+      <!-- Panel derecho: login -->
+      <section
+        class="d-flex align-items-center justify-content-center p-4 p-md-5"
+        aria-label="Formulario de inicio de sesión"
+      >
+        <div class="login-card w-100">
+          <div class="text-center mb-4">
+            <img
+              src="https://www.qualitas.com.mx/documents/19189400/19781967/Imagotipo_Banner_SitioWebQu%C3%A1litas.svg/8808044e-a178-52e4-7d05-a61decb63f4c?t=1675801980366"
+              alt="Quálitas"
+              width="120"
+              height="120"
+              decoding="async"
+              loading="eager"
+            />
+            <h2 class="fw-semibold mb-1 mt-3">Inicia sesión</h2>
+            <p class="text-secondary mb-0">
+              Escribe tu usuario y contraseña para continuar
+            </p>
+          </div>
+
+          <div class="card shadow-sm border-0">
+            <div class="card-body p-4 p-md-5">
+              <form id="loginForm" method="post" action="#" novalidate>
+                <div class="mb-3">
+                  <label for="username" class="form-label"
+                    >Usuario o correo</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    placeholder="Usuario SISE"
+                    autocomplete="username"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Ingresa tu usuario o correo.
+                  </div>
+                </div>
+
+                <div class="mb-2">
+                  <label for="password" class="form-label">Contraseña</label>
+                  <div class="input-group">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      name="password"
+                      placeholder="••••••••"
+                      autocomplete="current-password"
+                      required
+                    />
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      id="togglePwd"
+                      aria-label="Mostrar contraseña"
+                      aria-pressed="false"
+                    >
+                      <i class="bi bi-eye" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                  <div class="invalid-feedback">Ingresa tu contraseña.</div>
+                </div>
+
+                <!-- mensaje de error global -->
+                <div
+                  id="loginErrorMsg"
+                  class="text-danger small mb-3 d-none"
+                ></div>
+
+                <div
+                  class="d-flex justify-content-between align-items-center mb-4"
+                >
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="1"
+                      id="remember"
+                      name="remember"
+                      autocomplete="on"
+                    />
+                    <label class="form-check-label" for="remember"
+                      >Recordarme</label
+                    >
+                  </div>
+                  <a href="#" class="link-brand small"
+                    >¿Olvidaste tu contraseña?</a
+                  >
+                </div>
+
+                <div class="d-grid gap-2">
+                  <button class="btn btn-brand btn-lg" type="submit">
+                    <i
+                      class="bi bi-box-arrow-in-right me-2"
+                      aria-hidden="true"
+                    ></i>
+                    Ingresar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="text-center text-muted small mt-3">
+            Al continuar aceptas las
+            <a
+              class="link-brand"
+              href="https://www.qualitas.com.mx/web/qmx/aviso-de-privacidad-1"
+              >políticas de privacidad</a
+            >.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+  </body>
+</html>
+

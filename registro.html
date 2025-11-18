@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Help Desk | Actividades</title>
+
+    <!-- CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="css/theme.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="app-shell d-flex">
+      <!-- Sidebar -->
+      <aside class="sidebar d-flex flex-column p-3" aria-label="Barra lateral">
+        <h1 class="h5 fw-bold mb-4">Help Desk</h1>
+
+        <nav class="nav flex-column" aria-label="Navegación principal">
+          <a class="nav-link" href="registro.html">
+            <i class="bi bi-plus-circle" aria-hidden="true"></i>
+            <span class="nav-label"> Registrar actividad</span>
+          </a>
+
+          <a class="nav-link active" href="actividades.html">
+            <i class="bi bi-list-task" aria-hidden="true"></i>
+            <span class="nav-label"> Actividades colaboradores</span>
+          </a>
+
+          <a class="nav-link" href="kpis.html">
+            <i class="bi bi-activity" aria-hidden="true"></i>
+            <span class="nav-label"> Mis KPIs</span>
+          </a>
+
+          <a class="nav-link" href="kpis_admin.html">
+            <i class="bi bi-bar-chart-steps" aria-hidden="true"></i>
+            <span class="nav-label"> KPIs Admin</span>
+          </a>
+
+          <hr class="border-light my-3" />
+
+          <div class="nav-item">
+            <button
+              class="nav-link d-flex align-items-center w-100 text-start bg-transparent border-0 px-0"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#perfilMenu"
+              aria-expanded="false"
+              aria-controls="perfilMenu"
+            >
+              <i class="bi bi-person-circle me-1" aria-hidden="true"></i>
+              <span class="nav-label"> Mi Perfil</span>
+              <i class="bi bi-caret-down ms-auto" aria-hidden="true"></i>
+            </button>
+            <div id="perfilMenu" class="collapse ps-3 mt-1">
+              <a class="d-block small text-light" href="perfil.html">
+                <i class="bi bi-person" aria-hidden="true"></i>
+                <span class="nav-label"> Datos personales</span>
+              </a>
+              <a
+                class="d-block small text-light mt-1"
+                href="configuraciones.html"
+              >
+                <i class="bi bi-gear" aria-hidden="true"></i>
+                <span class="nav-label"> Preferencias</span>
+              </a>
+            </div>
+          </div>
+
+          <hr class="border-light my-3" />
+
+          <a class="nav-link" href="index.html">
+            <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+            <span class="nav-label"> Cerrar sesión</span>
+          </a>
+        </nav>
+      </aside>
+
+      <div class="app-main flex-grow-1 d-flex flex-column min-vh-100">
+        <nav class="navbar bg-white px-4" aria-label="Barra superior">
+          <span class="navbar-brand h1 mb-0">Registrar Actividad</span>
+          <div class="ms-auto small text-muted">
+            Guardado automático
+            <span id="autosaveState" class="text-success" aria-live="polite"
+              >●</span
+            >
+          </div>
+        </nav>
+
+        <!-- Tabs: Registro general vs Renovaciones -->
+        <div class="bg-white border-bottom">
+          <div class="container-fluid px-4 py-3">
+            <ul class="nav nav-pills gap-2" id="modeTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link active"
+                  id="tab-general"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pane-general"
+                  type="button"
+                  role="tab"
+                  aria-controls="pane-general"
+                  aria-selected="true"
+                >
+                  <i class="bi bi-list-task me-1" aria-hidden="true"></i>
+                  Registro general
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="tab-renov"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pane-renov"
+                  type="button"
+                  role="tab"
+                  aria-controls="pane-renov"
+                  aria-selected="false"
+                >
+                  <i class="bi bi-shield-check me-1" aria-hidden="true"></i>
+                  Renovaciones
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <main class="container-fluid py-4 tab-content" id="wizardModes">
+          <!-- ===================== REGISTRO GENERAL (wizard existente) ===================== -->
+          <div
+            class="tab-pane fade show active"
+            id="pane-general"
+            role="tabpanel"
+            aria-labelledby="tab-general"
+          >
+            <!-- STEPPER -->
+            <div class="card border-0 shadow-sm mb-3">
+              <div class="card-body">
+                <div
+                  class="stepper"
+                  id="stepper"
+                  aria-label="Pasos del registro"
+                >
+                  <div class="step active" data-step="1">
+                    <div class="dot">1</div>
+                    <div class="label">
+                      Recepción, Solicitud y Envío al área
+                    </div>
+                  </div>
+                  <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  <div class="step" data-step="2">
+                    <div class="dot">2</div>
+                    <div class="label">Seguimiento</div>
+                  </div>
+                  <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  <div class="step" data-step="3">
+                    <div class="dot">3</div>
+                    <div class="label">Envío a Agente</div>
+                  </div>
+                  <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  <div class="step" data-step="4">
+                    <div class="dot">4</div>
+                    <div class="label">Resumen</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- FORM SECTIONS (wizard) -->
+            <form id="wizardForm" novalidate>
+              <!-- header de navegación -->
+              <div
+                class="sticky-footer d-flex justify-content-between align-items-center"
+              >
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  id="btnPrev"
+                  aria-label="Ir al paso anterior"
+                >
+                  <i class="bi bi-arrow-left-short me-1" aria-hidden="true"></i
+                  >Atrás
+                </button>
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    id="btnSave"
+                  >
+                    <i class="bi bi-cloud-arrow-up me-1" aria-hidden="true"></i
+                    >Guardar borrador
+                  </button>
+                  <button type="button" class="btn btn-brand" id="btnNext">
+                    Siguiente
+                    <i
+                      class="bi bi-arrow-right-short ms-1"
+                      aria-hidden="true"
+                    ></i>
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-success d-none"
+                    id="btnSubmit"
+                  >
+                    <i class="bi bi-send-check me-1" aria-hidden="true"></i
+                    >Enviar
+                  </button>
+                </div>
+              </div>
+
+              <!-- Paso 1: Recepción -->
+              <section
+                class="card border-0 shadow-sm card-section mb-3"
+                data-step="1"
+              >
+                <div class="card-body">
+                  <h2 class="h6 text-secondary fw-semibold mb-3">
+                    <i class="bi bi-inbox me-2" aria-hidden="true"></i>Recepción
+                  </h2>
+                  <div class="row g-3">
+                    <div class="col-md-4">
+                      <label class="form-label" for="f-colaborador"
+                        >Colaborador</label
+                      >
+                      <input
+                        id="f-colaborador"
+                        class="form-control"
+                        name="colaborador"
+                        placeholder="Tu nombre"
+                        required
+                        autocomplete="name"
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label" for="f-fecha">Fecha</label>
+                      <input
+                        id="f-fecha"
+                        type="date"
+                        class="form-control"
+                        name="fecha"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label" for="f-hrec"
+                        >Hora de Recepción</label
+                      >
+                      <input
+                        id="f-hrec"
+                        type="time"
+                        class="form-control"
+                        name="hora_recepcion"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <h2 class="h6 text-secondary fw-semibold mb-3">
+                    <i class="bi bi-journal-text me-2" aria-hidden="true"></i
+                    >Solicitud
+                  </h2>
+                  <div class="row g-3">
+                    <div class="col-md-4">
+                      <label class="form-label" for="f-agente"
+                        >Agente Clave</label
+                      >
+                      <input
+                        id="f-agente"
+                        class="form-control"
+                        name="agente_clave"
+                        inputmode="numeric"
+                        autocomplete="on"
+                        required
+                        minlength="5"
+                        maxlength="5"
+                        pattern="\d{5}"
+                      />
+                      <div class="invalid-feedback" id="agente-error">
+                        La clave debe tener 5 dígitos.
+                      </div>
+                      <div
+                        id="agente-info"
+                        class="form-text text-muted small"
+                      ></div>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label" for="f-forma"
+                        >Forma de Solicitud</label
+                      >
+                      <select
+                        id="f-forma"
+                        class="form-select"
+                        name="forma_solicitud"
+                        required
+                      >
+                        <option value="" selected disabled>Selecciona</option>
+                        <option value="Email">Email</option>
+                        <option value="Teléfono">Teléfono</option>
+                        <option value="WhatsApp">WhatsApp</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label" for="f-tipo"
+                        >Tipo de Solicitud</label
+                      >
+                      <select
+                        id="f-tipo"
+                        class="form-select"
+                        name="tipo_solicitud"
+                        required
+                      >
+                        <option value="" selected disabled>Selecciona</option>
+                        <option value="Renovación">Renovación</option>
+                        <option value="Cancelación">Cancelación</option>
+                        <option value="Aplicación de Primas">
+                          Aplicación de Primas
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Paso 3: Área y tiempos de envío/respuesta -->
+                <div class="card-body">
+                  <h2 class="h6 text-secondary fw-semibold mb-3">
+                    <i class="bi bi-send-check me-2" aria-hidden="true"></i>Área
+                    & Respuesta
+                  </h2>
+                  <div class="row g-3">
+                    <div class="col-md-4">
+                      <label class="form-label" for="f-area-env"
+                        >Enviado al Área</label
+                      >
+                      <select
+                        id="f-area-env"
+                        class="form-select"
+                        name="enviado_area"
+                      >
+                        <option value="" selected disabled>Selecciona</option>
+                        <option value="AOF">AOF</option>		
+                        <option value="Caja Metepec">Caja Metepec	</option>	
+                        <option value="Caja San Jerónimo">Caja San Jerónimo	</option>	
+                        <option value="OTRS Suscripción Individual">OTRS Suscripción Individual	</option>	
+                        <option value="OTRS Valores Convenidos">OTRS Valores Convenidos</option>		
+                        <option value="Plataforma CRM"	>Plataforma CRM</option>	
+                        <option value="Devoluciones (Milka)">	Devoluciones (Milka)</option>	
+                        <option value="Control de agentes">Control de agentes</option>
+                        <option value="Devoluciones OPL">Devoluciones OPL</option>
+                        <option value="OTR tarifas">OTR tarifas</option>
+                        <option value="Claudia Vázquez (BP)">Claudia Vázquez (BP)</option>	
+                        <option value="Cuentas Coorporativas (multianuales)">Cuentas Coorporativas (multianuales)</option>
+                        <option value="Suscripción flotillas"	>Suscripción flotillas</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="form-label">Fecha/Hora envío al Área</label>
+                      <div class="input-group">
+                        <input
+                          type="date"
+                          class="form-control"
+                          name="fecha_envio_area"
+                        />
+                        <input
+                          type="time"
+                          class="form-control"
+                          name="hora_envio_area"
+                        />
+                      </div>
+                      <div
+                        id="error-hora-envio-area"
+                        class="form-text text-danger small"
+                      ></div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="form-label"
+                        >Fecha/Hora respuesta del Área</label
+                      >
+                      <div class="input-group">
+                        <input
+                          type="date"
+                          class="form-control"
+                          name="fecha_resp_area"
+                        />
+                        <input
+                          type="time"
+                          class="form-control"
+                          name="hora_resp_area"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12 mt-2">
+                      <div class="d-flex flex-wrap gap-2">
+                        <span
+                          id="chip_t_envio_area"
+                          class="badge text-bg-light border"
+                          hidden
+                        >
+                          ⏱️ Tiempo para enviar al Área:
+                          <strong><span data-val="t_envio">—</span></strong>
+                        </span>
+                        <span
+                          id="chip_t_resp_area"
+                          class="badge text-bg-light border"
+                          hidden
+                        >
+                          📨 Tiempo de respuesta del Área:
+                          <strong><span data-val="t_resp">—</span></strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Paso 3: Seguimiento -->
+              <section
+                class="card border-0 shadow-sm card-section mb-3 d-none"
+                data-step="2"
+              >
+                <div class="card-body">
+                  <h2 class="h6 text-secondary fw-semibold mb-3">
+                    <i class="bi bi-flag me-2" aria-hidden="true"></i
+                    >Seguimiento
+                  </h2>
+                  <div class="row g-3">
+                    <div class="col-md-4">
+                      <label class="form-label" for="f-estatus">Estatus</label>
+                      <select id="f-estatus" class="form-select" name="estatus">
+                        <option value="En curso">En curso</option>
+                        <option value="Finalizado">Finalizado</option>
+                        <option value="Enviado a área">Enviado a área</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="form-label" for="f-fseg"
+                        >Fecha de Seguimiento</label
+                      >
+                      <input
+                        id="f-fseg"
+                        type="date"
+                        class="form-control"
+                        name="fecha_seguimiento"
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label" for="f-com">Comentarios</label>
+                      <input
+                        id="f-com"
+                        class="form-control"
+                        name="comentarios"
+                        placeholder="Notas adicionales..."
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Paso 2: Envío al agente -->
+              <section
+                class="card border-0 shadow-sm card-section mb-3 d-none"
+                data-step="3"
+              >
+                <div class="card-body">
+                  <h2 class="h6 text-secondary fw-semibold mb-3">
+                    <i class="bi bi-share me-2" aria-hidden="true"></i>Envío al
+                    Agente
+                  </h2>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label"
+                        >Fecha/Hora envío al Agente</label
+                      >
+                      <div class="input-group">
+                        <input
+                          type="date"
+                          class="form-control"
+                          name="fecha_envio_agente"
+                        />
+                        <input
+                          type="time"
+                          class="form-control"
+                          name="hora_envio_agente"
+                          min="08:30"
+                          max="18:30"
+                          step="60"
+                        />
+                      </div>
+                      <div
+                        id="error-hora-envio-agente"
+                        class="form-text text-danger small"
+                      ></div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="f-asunto"
+                        >Asunto en el correo</label
+                      >
+                      <input
+                        id="f-asunto"
+                        class="form-control"
+                        name="asunto_correo"
+                        placeholder="Ej. Renovación póliza flotilla Q3"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Paso 4: Resumen -->
+              <section
+                class="card border-0 shadow-sm card-section mb-3 d-none"
+                data-step="4"
+              >
+                <div class="card-body">
+                  <h2 class="h6 text-secondary fw-semibold mb-3">
+                    <i class="bi bi-clipboard-check me-2" aria-hidden="true"></i
+                    >Revisión final
+                  </h2>
+                  <div id="resume" class="row g-3 small"><!-- JS --></div>
+                </div>
+              </section>
+
+            </form>
+          </div>
+
+          <!-- ===================== RENOVACIONES (formulario específico) ===================== -->
+          <div
+            class="tab-pane fade"
+            id="pane-renov"
+            role="tabpanel"
+            aria-labelledby="tab-renov"
+          >
+            <form id="renewForm" class="card border-0 shadow-sm p-4" novalidate>
+              <h2 class="h6 text-secondary fw-semibold mb-3">
+                <i class="bi bi-shield-check me-2" aria-hidden="true"></i
+                >Registro de Renovación
+              </h2>
+              <div class="row g-3 mb-3">
+                <div class="mb-3">
+                  <label class="form-label" for="f-colaborador"
+                    >Colaborador</label
+                  >
+                  <input
+                    id="f-colaborador"
+                    class="form-control"
+                    name="colaborador"
+                    placeholder="Tu nombre"
+                    required
+                    autocomplete="name"
+                  />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label" for="ren_fecha"
+                    >Fecha de Renovación</label
+                  >
+                  <input
+                    type="datetime-local"
+                    class="form-control"
+                    id="ren_fecha"
+                    name="ren_fecha"
+                    readonly
+                  />
+                  <div class="form-text">
+                    Se establece automáticamente al capturar póliza.
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label" for="ren_poliza_anterior"
+                    >Póliza anterior</label
+                  >
+                  <input
+                    class="form-control"
+                    id="ren_poliza_anterior"
+                    name="ren_poliza_anterior"
+                    placeholder="0000000000"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label" for="ren_poliza_nueva"
+                    >Póliza renovada</label
+                  >
+                  <input
+                    class="form-control"
+                    id="ren_poliza_nueva"
+                    name="ren_poliza_nueva"
+                    placeholder="0000000000"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="ren_coment">Comentarios</label>
+                <textarea
+                  class="form-control"
+                  id="ren_coment"
+                  name="ren_coment"
+                  rows="2"
+                  placeholder="Notas de renovación..."
+                ></textarea>
+              </div>
+              <div class="text-end">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  id="renSave"
+                >
+                  <i class="bi bi-cloud-arrow-up me-1" aria-hidden="true"></i
+                  >Guardar borrador
+                </button>
+                <button type="submit" class="btn btn-success">
+                  <i class="bi bi-check2-circle me-1" aria-hidden="true"></i
+                  >Registrar renovación
+                </button>
+              </div>
+            </form>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script src="js/app.js"></script>
+
+    <!-- Wizard + lógica de página -->
+
+    <script data-init>
+      document.addEventListener("DOMContentLoaded", () => {
+        // ====== WIZARD (Registro general) ======
+        const form = document.getElementById("wizardForm");
+        const sections = form
+          ? [...document.querySelectorAll("#pane-general section[data-step]")]
+          : [];
+        const steps = form
+          ? [...document.querySelectorAll("#pane-general .stepper .step")]
+          : [];
+        const urlParams = new URLSearchParams(window.location.search);
+        const editIdParam = urlParams.get("id");
+        const usuarioStrGlobal = localStorage.getItem("hd_usuario");
+        const esAdmin = window.hdIsAdmin === true;
+
+
+
+        const agenteInput = document.getElementById("f-agente");
+        const agenteInfo = document.getElementById("agente-info");
+        const agenteError = document.getElementById("agente-error");
+
+        const btnPrev = document.getElementById("btnPrev");
+        const btnNext = document.getElementById("btnNext");
+        const btnSubmit = document.getElementById("btnSubmit");
+        const btnSave = document.getElementById("btnSave");
+        const resume = document.getElementById("resume");
+        let current = 1;
+
+        // 🔹 Catálogo temporal de agentes (mock)
+        const CATALOGO_AGENTES = [
+          { clave: "88200", nombre: "Agente 88200 Hylant" },
+          { clave: "88201", nombre: "Agente 88201 Hylant 2" },
+          { clave: "09005", nombre: "09005 Ventas Mostrador" },
+        ];
+
+        function buscarAgentePorClave(clave) {
+          if (!clave) return null;
+          return CATALOGO_AGENTES.find((a) => a.clave === clave) || null;
+        }
+
+        function limpiarErroresAgente() {
+          if (agenteInput) agenteInput.classList.remove("is-invalid");
+          if (agenteError) agenteError.textContent = "";
+        }
+
+        // ===== Autollenar colaborador + fecha/hora en NUEVOS registros =====
+
+        if (!editIdParam && form) {
+          const colabInput = document.getElementById("f-colaborador");
+          const fechaInput = document.getElementById("f-fecha");
+          const horaRecInput = document.getElementById("f-hrec");
+
+          const fechaEnvAgenteInput = document.querySelector(
+            'input[name="fecha_envio_agente"]'
+          );
+          const horaEnvAgenteInput = document.querySelector(
+            'input[name="hora_envio_agente"]'
+          );
+
+          // Colaborador desde el login
+          if (usuarioStrGlobal && colabInput) {
+            try {
+              const u = JSON.parse(usuarioStrGlobal);
+              const nombre = u.nombre || u.username || "";
+              if (!colabInput.value && nombre) {
+                colabInput.value = nombre;
+              }
+              colabInput.readOnly = true;
+              colabInput.classList.add("bg-light", "text-muted");
+            } catch (e) {
+              console.error("No se pudo parsear hd_usuario", e);
+            }
+          }
+
+          // Fecha y hora de recepción por defecto = ahora
+          const now = new Date();
+          const pad = (n) => String(n).padStart(2, "0");
+          const yyyy = now.getFullYear();
+          const mm = pad(now.getMonth() + 1);
+          const dd = pad(now.getDate());
+          const hh = pad(now.getHours());
+          const mi = pad(now.getMinutes());
+
+          const fechaHoy = `${yyyy}-${mm}-${dd}`;
+          const horaAhora = `${hh}:${mi}`;
+
+          if (fechaInput && !fechaInput.value) fechaInput.value = fechaHoy;
+          if (horaRecInput && !horaRecInput.value)
+            horaRecInput.value = horaAhora;
+
+          if (fechaEnvAgenteInput && !fechaEnvAgenteInput.value) {
+            fechaEnvAgenteInput.value = fechaInput?.value || fechaHoy;
+          }
+          if (horaEnvAgenteInput && !horaEnvAgenteInput.value) {
+            horaEnvAgenteInput.value = horaRecInput?.value || horaAhora;
+          }
+
+          // En NUEVOS registros no se captura fecha de seguimiento
+          const fsegNuevo = form.elements["fecha_seguimiento"];
+          if (fsegNuevo) {
+            fsegNuevo.value = ""; // sin valor
+            fsegNuevo.readOnly = true;
+            fsegNuevo.disabled = true;
+            fsegNuevo.classList.add("bg-light", "text-muted");
+          }
+        }
+
+        // ===== Eventos de agente clave =====
+        if (agenteInput) {
+          agenteInput.addEventListener("input", (e) => {
+            let v = e.target.value || "";
+            v = v.replace(/\D/g, "");
+            if (v.length > 5) v = v.slice(0, 5);
+            e.target.value = v;
+
+            limpiarErroresAgente();
+            if (v.length < 5 && agenteInfo) {
+              agenteInfo.textContent = "";
+            }
+          });
+
+          agenteInput.addEventListener("blur", () => {
+            const v = agenteInput.value.trim();
+            if (!v) return;
+
+            if (!/^\d{5}$/.test(v)) {
+              agenteInput.classList.add("is-invalid");
+              if (agenteError) {
+                agenteError.textContent =
+                  "La clave debe tener exactamente 5 dígitos.";
+              }
+              if (agenteInfo) agenteInfo.textContent = "";
+              return;
+            }
+
+            const agente = buscarAgentePorClave(v);
+            if (!agente) {
+              agenteInput.classList.add("is-invalid");
+              if (agenteError) {
+                agenteError.textContent =
+                  "No se encontró un agente con esa clave.";
+              }
+              if (agenteInfo) agenteInfo.textContent = "";
+              return;
+            }
+
+            limpiarErroresAgente();
+            if (agenteInfo) {
+              agenteInfo.textContent = `Agente: ${agente.nombre}`;
+            }
+          });
+        }
+
+        // ===== Helpers de wizard =====
+        function lastStep() {
+          return sections.length ? +sections.at(-1).dataset.step : 1;
+        }
+
+        function isStepVisible(n) {
+          if (!form) return false;
+          // Por ahora TODOS los pasos del 1 al último son visibles
+          return true;
+        }
+
+        function nextVisibleStep(n) {
+          let t = n + 1;
+          const last = lastStep();
+          while (t <= last && !isStepVisible(t)) t++;
+          return Math.min(t, last);
+        }
+
+        function prevVisibleStep(n) {
+          let t = n - 1;
+          while (t >= 1 && !isStepVisible(t)) t--;
+          return Math.max(t, 1);
+        }
+
+        function focusFirstInput(stepEl) {
+          const el =
+            stepEl && stepEl.querySelector("input, select, textarea, button");
+          if (el) el.focus({ preventScroll: true });
+        }
+
+        function showStep(n) {
+          if (!form) return;
+          const last = lastStep();
+          current = Math.max(1, Math.min(n, last));
+          sections.forEach((s) =>
+            s.classList.toggle("d-none", +s.dataset.step !== current)
+          );
+          steps.forEach((s) => {
+            s.classList.toggle("active", +s.dataset.step === current);
+            s.classList.toggle("done", +s.dataset.step < current);
+          });
+          if (btnPrev) btnPrev.disabled = current === 1;
+          if (btnNext) btnNext.classList.toggle("d-none", current === last);
+          if (btnSubmit) btnSubmit.classList.toggle("d-none", current !== last);
+          if (current === last) buildResume();
+          focusFirstInput(sections.find((s) => +s.dataset.step === current));
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function buildResume() {
+          if (!form || !resume) return;
+          const data = Object.fromEntries(new FormData(form));
+          const pretty = {
+            colaborador: "Colaborador",
+            fecha: "Fecha",
+            hora_recepcion: "Hora de recepción",
+            agente_clave: "Agente clave",
+            forma_solicitud: "Forma de solicitud",
+            tipo_solicitud: "Tipo de solicitud",
+            enviado_area: "Enviado al área",
+            fecha_envio_area: "Fecha envío área",
+            hora_envio_area: "Hora envío área",
+            fecha_resp_area: "Fecha respuesta área",
+            hora_resp_area: "Hora respuesta área",
+            fecha_envio_agente: "Fecha envío agente",
+            hora_envio_agente: "Hora envío agente",
+            estatus: "Estatus",
+            fecha_seguimiento: "Fecha seguimiento",
+            comentarios: "Comentarios",
+          };
+          resume.innerHTML = Object.entries(pretty)
+            .map(([key, label]) => {
+              const val = (data[key] ?? "") || "—";
+              return `<div class="col-md-4"><div class="border rounded-3 p-3 bg-light mb-2"><div class="text-muted">${label}</div><div class="fw-semibold">${val}</div></div></div>`;
+            })
+            .join("");
+        }
+
+        function validateStep() {
+          if (!form) return false;
+          let ok = true;
+          const visible = sections.find((s) => +s.dataset.step === current);
+          visible &&
+            [...visible.querySelectorAll("[required]")].forEach((inp) => {
+              if (inp.disabled) return; // no validar deshabilitados
+              const name = inp.name;
+
+              if (!inp.value) {
+                inp.classList.add("is-invalid");
+                ok = false;
+              } else {
+                inp.classList.remove("is-invalid");
+              }
+
+              if (name === "agente_clave" && inp.value) {
+                const v = inp.value.trim();
+                if (!/^\d{5}$/.test(v)) {
+                  inp.classList.add("is-invalid");
+                  ok = false;
+                  if (agenteInfo) {
+                    agenteInfo.textContent =
+                      "La clave del agente debe tener exactamente 5 dígitos.";
+                  }
+                }
+              }
+
+              inp.addEventListener(
+                "input",
+                () => inp.classList.remove("is-invalid"),
+                { once: true }
+              );
+            });
+          return ok;
+        }
+
+        // Debounce
+        function debounce(fn, ms = 400) {
+          let t;
+          return (...args) => {
+            clearTimeout(t);
+            t = setTimeout(() => fn(...args), ms);
+          };
+        }
+
+        function saveDraft(showToast) {
+          if (!form) return;
+          const data = Object.fromEntries(new FormData(form));
+          localStorage.setItem(
+            "helpdesk_draft",
+            JSON.stringify({ current, data, when: Date.now() })
+          );
+          if (showToast && window.bootstrap) {
+            const t = document.createElement("div");
+            t.className =
+              "toast align-items-center text-bg-success border-0 position-fixed bottom-0 end-0 m-3";
+            t.role = "alert";
+            t.innerHTML = `<div class="d-flex"><div class="toast-body">Borrador guardado</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div>`;
+            document.body.appendChild(t);
+            const toast = new bootstrap.Toast(t);
+            toast.show();
+            t.addEventListener("hidden.bs.toast", () => t.remove());
+          }
+        }
+        const saveDraftDebounced = debounce(() => saveDraft(false), 500);
+
+        // ====== Cálculo de tiempos ======
+        function parseDT(d, t) {
+          if (!d || !t) return null;
+          return new Date(`${d}T${t}`);
+        }
+
+        function humanDiff(ms) {
+          if (!Number.isFinite(ms)) return "—";
+          const min = Math.round(ms / 60000);
+          const h = Math.floor(min / 60),
+            m = min % 60;
+          if (h <= 0) return `${m} min`;
+          if (m === 0) return `${h} h`;
+          return `${h} h ${m} min`;
+        }
+
+        function computeDurations() {
+          if (!form) return;
+          const dRec = form.fecha?.value,
+            tRec = form.hora_recepcion?.value;
+          const dEnvA = form.fecha_envio_area?.value,
+            tEnvA = form.hora_envio_area?.value;
+          const dResp = form.fecha_resp_area?.value,
+            tResp = form.hora_resp_area?.value;
+
+          const dtRec = parseDT(dRec, tRec);
+          const dtEnvA = parseDT(dEnvA, tEnvA);
+          const dtResp = parseDT(dResp, tResp);
+
+          const chipEnv = document.getElementById("chip_t_envio_area");
+          const chipEnvVal = chipEnv?.querySelector('[data-val="t_envio"]');
+          if (dtRec && dtEnvA && chipEnv && chipEnvVal) {
+            chipEnv.hidden = false;
+            chipEnvVal.textContent = humanDiff(dtEnvA - dtRec);
+          } else if (chipEnv) {
+            chipEnv.hidden = true;
+          }
+
+          const chipResp = document.getElementById("chip_t_resp_area");
+          const chipRespVal = chipResp?.querySelector('[data-val="t_resp"]');
+          if (dtEnvA && dtResp && chipResp && chipRespVal) {
+            chipResp.hidden = false;
+            chipRespVal.textContent = humanDiff(dtResp - dtEnvA);
+          } else if (chipResp) {
+            chipResp.hidden = true;
+          }
+        }
+
+        // ====== MOCK "BASE DE DATOS" DE ACTIVIDADES ======
+        const STORAGE_KEY_ACTIVIDADES = "hd_actividades";
+
+        function loadStoredActivities() {
+          try {
+            return JSON.parse(
+              localStorage.getItem(STORAGE_KEY_ACTIVIDADES) || "[]"
+            );
+          } catch (e) {
+            console.error("No se pudo leer hd_actividades", e);
+            return [];
+          }
+        }
+
+        function saveStoredActivities(lista) {
+          try {
+            localStorage.setItem(
+              STORAGE_KEY_ACTIVIDADES,
+              JSON.stringify(lista)
+            );
+          } catch (e) {
+            console.error("No se pudo guardar hd_actividades", e);
+          }
+        }
+
+        function getNextActivityId(lista) {
+          if (!Array.isArray(lista) || !lista.length) return 1;
+          const maxId = lista.reduce((max, a) => {
+            const idNum =
+              typeof a.id === "number" ? a.id : parseInt(a.id, 10) || 0;
+            return Math.max(max, idNum);
+          }, 0);
+          return maxId + 1;
+        }
+
+        function slugifyColaborador(str) {
+          return (str || "")
+            .toUpperCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^A-Z0-9]/g, "")
+            .slice(1, 5);
+        }
+
+        function buildActividadFromForm(data) {
+          // ===== Usuario logueado =====
+          let usuarioLogin = null;
+          let usuarioNombre = null;
+          let usuarioRol = null;
+
+          if (usuarioStrGlobal) {
+            try {
+              const u = JSON.parse(usuarioStrGlobal);
+              usuarioLogin = u.username || null;
+              usuarioNombre = u.nombre || null;
+              usuarioRol = u.rol || null;
+            } catch (e) {
+              console.error("No se pudo leer hd_usuario", e);
+            }
+          }
+
+          // ===== Historial de seguimientos =====
+          let seguimientos = Array.isArray(editingActividad?.seguimientos)
+            ? [...editingActividad.seguimientos]
+            : [];
+
+          // Si hay comentario nuevo, lo agregamos al historial
+          if ((data.comentarios || "").trim()) {
+            seguimientos.push({
+              fechaISO: new Date().toISOString(),
+              comentario: data.comentarios.trim(),
+              usuario: usuarioLogin || usuarioNombre || null,
+            });
+          }
+
+          // ===== Merge de datos cuando estamos editando =====
+          // Campos que se “pierden” porque están disabled en el form
+          if (editingActividad) {
+            // Recepción
+            data.fecha =
+              data.fecha ||
+              editingActividad.fechaRecepcion ||
+              (editingActividad.fechaRegistro || "").slice(0, 10);
+            data.hora_recepcion =
+              data.hora_recepcion || editingActividad.horaRecepcion || editingActividad.horaRegistro;
+
+            // Envío al área
+            data.enviado_area = data.enviado_area || editingActividad.areaDestino;
+            data.fecha_envio_area =
+              data.fecha_envio_area || editingActividad.fechaEnvioArea;
+            data.hora_envio_area =
+              data.hora_envio_area || editingActividad.horaEnvioArea;
+
+            // Respuesta del área
+            data.fecha_resp_area =
+              data.fecha_resp_area || editingActividad.fechaRespArea;
+            data.hora_resp_area =
+              data.hora_resp_area || editingActividad.horaRespArea;
+
+            // Envío al agente
+            data.fecha_envio_agente =
+              data.fecha_envio_agente || editingActividad.fechaEnvioAgente;
+            data.hora_envio_agente =
+              data.hora_envio_agente || editingActividad.horaEnvioAgente;
+
+            // Seguimiento
+            data.fecha_seguimiento =
+              data.fecha_seguimiento || editingActividad.fechaSeguimiento;
+          }
+
+          // ===== Cálculo de tiempos =====
+
+          // Inicio del proceso = recepción
+          const fechaRegistro =
+            data.fecha || new Date().toISOString().slice(0, 10);
+          const horaRegistro = data.hora_recepcion || null;
+          const dtInicio = parseDT(fechaRegistro, horaRegistro);
+
+          // Fin del proceso = preferimos envío al agente
+          let dtFinProceso = null;
+          if (data.fecha_envio_agente && data.hora_envio_agente) {
+            dtFinProceso = parseDT(
+              data.fecha_envio_agente,
+              data.hora_envio_agente
+            );
+          } else if (data.fecha_resp_area && data.hora_resp_area) {
+            dtFinProceso = parseDT(data.fecha_resp_area, data.hora_resp_area);
+          } else if (data.fecha_envio_area && data.hora_envio_area) {
+            dtFinProceso = parseDT(
+              data.fecha_envio_area,
+              data.hora_envio_area
+            );
+          }
+
+          // Tiempo total del proceso
+          let tiempoTotalMin = null;
+          if (dtInicio && dtFinProceso && dtFinProceso > dtInicio) {
+            tiempoTotalMin = Math.round((dtFinProceso - dtInicio) / 60000);
+          }
+
+          // Tiempo que se tardó el área (envío área -> respuesta área)
+          let tiempoAreaMin = null;
+          if (
+            data.fecha_envio_area &&
+            data.hora_envio_area &&
+            data.fecha_resp_area &&
+            data.hora_resp_area
+          ) {
+            const dtEnvioArea = parseDT(
+              data.fecha_envio_area,
+              data.hora_envio_area
+            );
+            const dtRespArea = parseDT(
+              data.fecha_resp_area,
+              data.hora_resp_area
+            );
+            if (dtEnvioArea && dtRespArea && dtRespArea > dtEnvioArea) {
+              tiempoAreaMin = Math.round((dtRespArea - dtEnvioArea) / 60000);
+            }
+          }
+
+          // ===== Estatus =====
+          let estatus;
+          if (data.estatus) {
+            // Si viene del form (cuando no está disabled)
+            estatus = data.estatus;
+          } else if (editingActividad && editingActividad.estatus) {
+            // En edición, respetamos el estatus que ya tenía
+            estatus = editingActividad.estatus;
+          } else if (data.fecha_envio_agente) {
+            estatus = "Finalizado";
+          } else if (data.enviado_area) {
+            estatus = "Enviado a área";
+          } else {
+            estatus = "En curso";
+          }
+
+          // ===== Colaborador / folio =====
+          const colaboradorForm = data.colaborador || null;
+          const colaboradorFinal =
+            colaboradorForm || usuarioNombre || usuarioLogin || null;
+
+          const fechaKey = (fechaRegistro || "").replace(/-/g, "");
+          const horaKey = (horaRegistro || "").replace(":", "");
+          const colKey = slugifyColaborador(colaboradorFinal || usuarioLogin);
+
+          const folio =
+            editingActividad?.folio ||
+            `${fechaKey}-${horaKey}-${colKey || "SINCOLAB"}`;
+
+          // ===== Construimos el objeto actividad =====
+          const actividad = {
+            id: editingActividad?.id ?? 0,
+            folio,
+
+            fechaRegistro,
+            horaRegistro,
+            tipoActividad: data.tipo_solicitud || null,
+            areaDestino: data.enviado_area || null,
+            tiempoTotalMin,
+            tiempoAreaMin,
+            prioridad: "Normal",
+
+            colaborador: colaboradorFinal,
+            usuarioRegistro: editingActividad?.usuarioRegistro || usuarioLogin,
+            usuarioNombre,
+            usuarioRol,
+
+            agenteClave: data.agente_clave || editingActividad?.agenteClave || null,
+            formaSolicitud:
+              data.forma_solicitud || editingActividad?.formaSolicitud || null,
+            tipoSolicitud:
+              data.tipo_solicitud || editingActividad?.tipoSolicitud || null,
+            estatus,
+
+            fechaRecepcion: data.fecha || null,
+            horaRecepcion: data.hora_recepcion || null,
+
+            fechaEnvioArea: data.fecha_envio_area || null,
+            horaEnvioArea: data.hora_envio_area || null,
+            fechaRespArea: data.fecha_resp_area || null,
+            horaRespArea: data.hora_resp_area || null,
+
+            fechaEnvioAgente: data.fecha_envio_agente || null,
+            horaEnvioAgente: data.hora_envio_agente || null,
+            asuntoCorreo: data.asunto_correo || editingActividad?.asuntoCorreo || null,
+
+            fechaSeguimiento: data.fecha_seguimiento || null,
+            comentarios: data.comentarios || null,
+
+            updatedAt: new Date().toISOString(),
+            seguimientos,
+          };
+
+          return actividad;
+        }
+
+        // ====== MODO EDICIÓN (?id=...) ======
+        let editingId = editIdParam ? parseInt(editIdParam, 10) : null;
+        let editingActividad = null;
+
+        if (form && editingId != null && !isNaN(editingId)) {
+          const lista = loadStoredActivities();
+          editingActividad = lista.find(
+            (a) => String(a.id) === String(editingId)
+          );
+
+          if (editingActividad) {
+            const mapping = {
+              colaborador: "colaborador",
+              fecha: "fechaRecepcion",
+              hora_recepcion: "horaRecepcion",
+              agente_clave: "agenteClave",
+              forma_solicitud: "formaSolicitud",
+              tipo_solicitud: "tipoSolicitud",
+              enviado_area: "areaDestino",
+              fecha_envio_area: "fechaEnvioArea",
+              hora_envio_area: "horaEnvioArea",
+              fecha_resp_area: "fechaRespArea",
+              hora_resp_area: "horaRespArea",
+              fecha_envio_agente: "fechaEnvioAgente",
+              hora_envio_agente: "horaEnvioAgente",
+              estatus: "estatus",
+              fecha_seguimiento: "fechaSeguimiento",
+              comentarios: "comentarios",
+              asunto_correo: "asuntoCorreo",
+            };
+
+            Object.entries(mapping).forEach(([fieldName, prop]) => {
+              const field = form.elements[fieldName];
+              if (field && editingActividad[prop] != null) {
+                field.value = editingActividad[prop];
+              }
+            });
+
+            const esFinalizada = (editingActividad.estatus || "")
+              .toLowerCase()
+              .includes("final");
+
+            // ===== Paso 1 =====
+            const paso1 = document.querySelector('#pane-general section[data-step="1"]');
+
+            if (paso1) {
+              if (!esAdmin) {
+                // Colaborador: paso 1 solo lectura,
+                // pero SÍ puede editar fecha/hora respuesta del área
+                paso1
+                  .querySelectorAll("input, select, textarea, button")
+                  .forEach((el) => {
+                    if (el && el.name) el.disabled = true;
+                  });
+
+                ["fecha_resp_area", "hora_resp_area"].forEach((n) => {
+                  const el = form.elements[n];
+                  if (el) el.disabled = false;
+                });
+              } else {
+                // Admin: puede editar todo el paso 1
+                paso1
+                  .querySelectorAll("input, select, textarea, button")
+                  .forEach((el) => {
+                    if (el && el.name) el.disabled = false;
+                  });
+              }
+            }
+
+            // ===== Paso 2 (Seguimiento) visible siempre en edición =====
+            const step2Pill = steps.find((s) => s.dataset.step === "2");
+            if (step2Pill) step2Pill.classList.remove("d-none");
+            const sec2 = document.querySelector(
+              '#pane-general section[data-step="2"]'
+            );
+            if (sec2) {
+              sec2.classList.remove("d-none");
+
+              // Fecha seguimiento: autollenada pero solo lectura
+              const fseg = form.elements["fecha_seguimiento"];
+              if (fseg) {
+                fseg.value =
+                  editingActividad.fechaSeguimiento ||
+                  new Date().toISOString().slice(0, 10);
+                fseg.readOnly = true;
+                fseg.disabled = true;
+                fseg.classList.add("bg-light", "text-muted");
+              }
+
+              // Estatus:
+              // - Admin: siempre puede cambiarlo
+              // - Colaborador: solo si no está finalizada
+              const est = form.elements["estatus"];
+              if (est) {
+                if (!esAdmin && esFinalizada) {
+                  est.disabled = true;
+                  est.classList.add("bg-light", "text-muted");
+                } else {
+                  est.disabled = false;
+                  est.classList.remove("bg-light", "text-muted");
+                }
+              }
+            }
+
+            // Paso inicial en edición → nos vamos directo al Seguimiento si está visible
+            const targetStep = isStepVisible(2) ? 2 : 1;
+            current = targetStep;
+            showStep(current);
+            computeDurations();
+          }
+        }
+        if (form) {
+          // Botones de navegación
+          btnNext.addEventListener("click", () => {
+            if (validateStep()) {
+              current = nextVisibleStep(current);
+              showStep(current);
+              saveDraft();
+            }
+          });
+
+          if (btnPrev) {
+            btnPrev.addEventListener("click", () => {
+              current = prevVisibleStep(current);
+              showStep(current);
+            });
+          }
+
+          if (btnSave) {
+            btnSave.addEventListener("click", () => saveDraft(true));
+          }
+
+          // Submit
+          form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            if (!validateStep()) return;
+
+            // Regla de horario envío al agente
+            const fechaEnv = form.elements["fecha_envio_agente"]?.value;
+            const horaEnv = form.elements["hora_envio_agente"]?.value;
+
+            if (fechaEnv && horaEnv) {
+              const dtEnv = new Date(`${fechaEnv}T${horaEnv}`);
+              const day = dtEnv.getDay(); // 0 dom, 6 sáb
+              const minutes = dtEnv.getHours() * 60 + dtEnv.getMinutes();
+
+              const start = 8 * 60 + 30;
+              const end = 18 * 60 + 30;
+
+              if (day === 0 || day === 6 || minutes < start || minutes > end) {
+                alert(
+                  "La fecha/hora de envío al agente debe estar entre lunes y viernes, de 08:30 a 18:30.\n\nPor favor ajusta el campo 'Fecha/Hora envío al Agente'."
+                );
+                if (form.elements["hora_envio_agente"]) {
+                  form.elements["hora_envio_agente"].focus();
+                }
+                return;
+              }
+            }
+
+            const fd = new FormData(form);
+            
+            if (editingId != null) {
+              const hoy = new Date().toISOString().slice(0, 10);
+              fd.set("fecha_seguimiento", hoy);
+            }
+
+            const raw = Object.fromEntries(fd.entries());
+            const actividad = buildActividadFromForm(raw);
+
+            const lista = loadStoredActivities();
+
+            if (editingId != null && editingActividad) {
+              const idx = lista.findIndex(
+                (a) => String(a.id) === String(editingId)
+              );
+              actividad.id = editingActividad.id;
+              actividad.createdAt =
+                editingActividad.createdAt || actividad.createdAt;
+              actividad.folio = editingActividad.folio || actividad.folio;
+
+              if (idx >= 0) {
+                lista[idx] = actividad;
+              } else {
+                lista.push(actividad);
+              }
+
+              alert("Actividad actualizada (mock).");
+            } else {
+              actividad.id = getNextActivityId(lista);
+              lista.push(actividad);
+              alert("Actividad registrada (mock).");
+            }
+
+            saveStoredActivities(lista);
+            localStorage.removeItem("helpdesk_draft");
+            window.location.href = "actividades.html";
+          });
+
+          // Enter para navegar / validar
+          form.addEventListener("keydown", (e) => {
+            if (e.key !== "Enter") return;
+            const target = e.target;
+            if (!target || !(target instanceof HTMLElement)) return;
+
+            const isTextArea = target.tagName === "TEXTAREA";
+            if (isTextArea && !e.shiftKey) {
+              return;
+            }
+
+            e.preventDefault();
+
+            const currentSection = sections.find(
+              (s) => +s.dataset.step === current
+            );
+            if (!currentSection) return;
+
+            const focusables = Array.from(
+              currentSection.querySelectorAll("input, select, textarea, button")
+            ).filter((el) => {
+              if (!(el instanceof HTMLElement)) return false;
+              if (el.disabled) return false;
+              if (el.type === "hidden") return false;
+              return el.offsetParent !== null;
+            });
+
+            const idx = focusables.indexOf(target);
+
+            if (target === agenteInput && !e.shiftKey) {
+              const clave = agenteInput.value.trim();
+
+              if (!/^\d{5}$/.test(clave)) {
+                agenteInput.classList.add("is-invalid");
+                if (agenteInfo) {
+                  agenteInfo.textContent =
+                    "La clave del agente debe tener exactamente 5 dígitos.";
+                }
+                return;
+              }
+
+              const agente = buscarAgentePorClave(clave);
+              if (!agente) {
+                agenteInput.classList.add("is-invalid");
+                if (agenteInfo) {
+                  agenteInfo.textContent =
+                    "No se encontró un agente con esa clave.";
+                }
+                return;
+              }
+
+              agenteInput.classList.remove("is-invalid");
+              if (agenteInfo) {
+                agenteInfo.textContent = `Agente: ${agente.nombre}`;
+              }
+
+              if (idx > -1 && idx < focusables.length - 1) {
+                focusables[idx + 1].focus();
+              }
+              return;
+            }
+
+            if (e.shiftKey) {
+              if (idx > 0) {
+                focusables[idx - 1].focus();
+              } else {
+                if (current > 1) {
+                  current = current - 1;
+                  showStep(current);
+                }
+              }
+              return;
+            }
+
+            if (idx > -1 && idx < focusables.length - 1) {
+              focusables[idx + 1].focus();
+            } else {
+              if (validateStep()) {
+                current = nextVisibleStep(current);
+                showStep(current);
+              }
+            }
+          });
+
+          // Recalcular tiempos cuando cambian fechas/horas
+          [
+            "fecha",
+            "hora_recepcion",
+            "fecha_envio_area",
+            "hora_envio_area",
+            "fecha_resp_area",
+            "hora_resp_area",
+          ].forEach((name) => {
+            if (form.elements[name])
+              form.elements[name].addEventListener("input", computeDurations);
+          });
+
+          // Cargar borrador (solo si NO es edición) 
+          (function () {
+            const draft = JSON.parse(
+              localStorage.getItem("helpdesk_draft") || "null"
+            );
+            if (draft && !editIdParam) {
+              current = draft.current || 1;
+              for (const [k, v] of Object.entries(draft.data || {})) {
+                const el = form.elements[k];
+                if (el && !el.value) el.value = v;
+              }
+            }
+            showStep(current);
+            computeDurations();
+          })();
+        }
+
+        // ====== RENOVACIONES (sección aparte, mock) ======
+        const renForm = document.getElementById("renewForm");
+        const renFecha = document.getElementById("ren_fecha");
+        const renPolizaNueva = document.getElementById("ren_poliza_nueva");
+        const renPolizaAnterior = document.getElementById(
+          "ren_poliza_anterior"
+        );
+        const renSaveBtn = document.getElementById("renSave");
+
+        if (renForm) {
+          function maybeSetNow() {
+            if (!renFecha.value) {
+              const now = new Date();
+              const pad = (n) => String(n).padStart(2, "0");
+              renFecha.value = `${now.getFullYear()}-${pad(
+                now.getMonth() + 1
+              )}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(
+                now.getMinutes()
+              )}`;
+            }
+          }
+          renPolizaNueva.addEventListener("input", maybeSetNow);
+          renPolizaAnterior.addEventListener("input", maybeSetNow);
+
+          renSaveBtn.addEventListener("click", () => {
+            const data = Object.fromEntries(new FormData(renForm));
+            localStorage.setItem("helpdesk_renov_draft", JSON.stringify(data));
+            if (window.bootstrap) {
+              const t = document.createElement("div");
+              t.className =
+                "toast align-items-center text-bg-success border-0 position-fixed bottom-0 end-0 m-3";
+              t.role = "alert";
+              t.innerHTML = `<div class="d-flex"><div class="toast-body">Borrador de renovación guardado</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div>`;
+              document.body.appendChild(t);
+              const toast = new bootstrap.Toast(t);
+              toast.show();
+              t.addEventListener("hidden.bs.toast", () => t.remove());
+            }
+          });
+
+          renForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            alert(
+              "Renovación registrada (mock). Aquí haríamos POST a /renewals"
+            );
+            localStorage.removeItem("helpdesk_renov_draft");
+            renForm.reset();
+            if (renFecha) renFecha.value = "";
+          });
+
+          (function () {
+            const d = JSON.parse(
+              localStorage.getItem("helpdesk_renov_draft") || "null"
+            );
+            if (d) {
+              Object.entries(d).forEach(([k, v]) => {
+                const el = renForm.elements[k];
+                if (el) el.value = v;
+              });
+            }
+          })();
+        }
+      });
+    </script>
+
+    <!-- Router SPA -->
+    <script>
+      (function () {
+        const supportsVT = "startViewTransition" in document;
+        async function loadPartial(url) {
+          const res = await fetch(url, { credentials: "same-origin" });
+          const html = await res.text();
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const newMain = doc.querySelector(".app-main");
+          const newTitle =
+            doc.querySelector("title")?.textContent || document.title;
+          return { newMain, newTitle, doc };
+        }
+        function setActiveLink(url) {
+          const links = document.querySelectorAll(".sidebar a[data-spa]");
+          links.forEach((a) => a.classList.toggle("active", a.href === url));
+        }
+        async function navigate(url, push = true) {
+          const currentMain = document.querySelector(".app-main");
+          const doSwap = async () => {
+            const { newMain, newTitle, doc } = await loadPartial(url);
+            if (!newMain) {
+              location.href = url;
+              return;
+            } // fallback total
+            currentMain.classList.add("is-leaving");
+            await new Promise((r) => setTimeout(r, 120));
+            currentMain.replaceWith(newMain);
+            document.title = newTitle;
+            newMain.classList.add("is-entering");
+            requestAnimationFrame(() =>
+              newMain.classList.add("app-main--ready")
+            );
+            setTimeout(
+              () => newMain.classList.remove("is-entering", "app-main--ready"),
+              180
+            );
+            if (window.bootstrap) {
+              document
+                .querySelectorAll('[data-bs-toggle="tooltip"]')
+                .forEach((el) => new bootstrap.Tooltip(el));
+            }
+            setActiveLink(new URL(url, location.href).href);
+            doc.querySelectorAll("script[data-init]").forEach((s) => {
+              try {
+                eval(s.textContent);
+              } catch (e) {
+                console.error(e);
+              }
+            });
+          };
+          if (supportsVT) {
+            document.startViewTransition(doSwap);
+          } else {
+            await doSwap();
+          }
+          if (push) history.pushState({ spa: true }, "", url);
+        }
+        document.addEventListener("click", (e) => {
+          const a = e.target.closest("a[data-spa]");
+          if (!a) return;
+          const url = a.getAttribute("href");
+          if (!url || url.startsWith("http") || url.startsWith("#")) return;
+          e.preventDefault();
+          navigate(url, true);
+        });
+        window.addEventListener("popstate", (e) => {
+          if (e.state && e.state.spa) {
+            navigate(location.href, false);
+          } else location.reload();
+        });
+      })();
+    </script>
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
+
+
+

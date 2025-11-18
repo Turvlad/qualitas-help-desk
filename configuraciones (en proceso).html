@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Help Desk | Configuración</title>
+
+    <!-- CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="../assets/css/theme.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="app-shell d-flex">
+      <!-- Sidebar -->
+      <aside class="sidebar d-flex flex-column p-3" aria-label="Barra lateral">
+        <h1 class="h5 fw-bold mb-4">Help Desk</h1>
+
+        <nav class="nav flex-column" aria-label="Navegación principal">
+          <a class="nav-link" href="registro.html">
+            <i class="bi bi-plus-circle" aria-hidden="true"></i>
+            <span class="nav-label"> Registrar actividad</span>
+          </a>
+
+          <a class="nav-link" href="actividades.html">
+            <i class="bi bi-list-task" aria-hidden="true"></i>
+            <span class="nav-label"> Actividades colaboradores</span>
+          </a>
+
+          <a class="nav-link" href="kpis.html">
+            <i class="bi bi-activity" aria-hidden="true"></i>
+            <span class="nav-label"> Mis KPIs</span>
+          </a>
+
+          <a class="nav-link" href="kpis_admin.html">
+            <i class="bi bi-bar-chart-steps" aria-hidden="true"></i>
+            <span class="nav-label"> KPIs Admin</span>
+          </a>
+
+          <hr class="border-light my-3" />
+
+          <div class="nav-item">
+            <button
+              class="nav-link d-flex align-items-center w-100 text-start bg-transparent border-0 px-0"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#perfilMenu"
+              aria-expanded="false"
+              aria-controls="perfilMenu"
+            >
+              <i class="bi bi-person-circle me-1" aria-hidden="true"></i>
+              <span class="nav-label"> Mi Perfil</span>
+              <i class="bi bi-caret-down ms-auto" aria-hidden="true"></i>
+            </button>
+            <div id="perfilMenu" class="collapse ps-3 mt-1">
+              <a class="d-block small text-light" href="perfil.html">
+                <i class="bi bi-person" aria-hidden="true"></i>
+                <span class="nav-label"> Datos personales</span>
+              </a>
+              <a
+                class="d-block small text-light mt-1"
+                href="configuraciones.html"
+              >
+                <i class="bi bi-gear" aria-hidden="true"></i>
+                <span class="nav-label"> Preferencias</span>
+              </a>
+            </div>
+          </div>
+
+          <hr class="border-light my-3" />
+
+          <a class="nav-link" href="index.html">
+            <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+            <span class="nav-label"> Cerrar sesión</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="app-main flex-grow-1 d-flex flex-column min-vh-100">
+        <header>
+          <nav
+            class="navbar bg-white shadow-sm px-4"
+            aria-label="Barra superior"
+          >
+            <h1 class="navbar-brand mb-0 h1">Panel de Configuración</h1>
+            <div class="d-flex align-items-center gap-3 ms-auto">
+              <span class="text-secondary small" data-usuario-nombre
+                >Administrador</span
+              >
+              <span class="text-muted small" data-usuario-rol>Rol</span>
+
+              <img
+                src="https://via.placeholder.com/36"
+                class="rounded-circle"
+                alt="Avatar de Administrador"
+                width="36"
+                height="36"
+                loading="lazy"
+              />
+            </div>
+          </nav>
+        </header>
+
+        <main class="container-fluid py-4">
+          <!-- Configuración general -->
+          <section
+            class="card border-0 shadow-sm mb-4"
+            aria-labelledby="prefs-heading"
+          >
+            <div class="card-body">
+              <h2 id="prefs-heading" class="section-title mb-3 h5">
+                Preferencias Generales
+              </h2>
+              <form
+                class="row g-3"
+                id="prefsForm"
+                method="post"
+                action="#"
+                novalidate
+              >
+                <div class="col-md-6">
+                  <label class="form-label" for="tz">Zona horaria</label>
+                  <select
+                    class="form-select"
+                    id="tz"
+                    name="timezone"
+                    autocomplete="off"
+                  >
+                    <option value="America/Mexico_City" selected>
+                      America/Mexico_City
+                    </option>
+                    <option value="America/Monterrey">America/Monterrey</option>
+                    <option value="America/Tijuana">America/Tijuana</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="lang"
+                    >Idioma del sistema</label
+                  >
+                  <select
+                    class="form-select"
+                    id="lang"
+                    name="locale"
+                    autocomplete="off"
+                  >
+                    <option value="es" selected>Español</option>
+                    <option value="en">Inglés</option>
+                  </select>
+                </div>
+                <div class="col-md-12">
+                  <span class="form-label d-block">Tema visual</span>
+                  <div class="d-flex gap-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="tema"
+                        id="claro"
+                        value="light"
+                        checked
+                      />
+                      <label class="form-check-label" for="claro">Claro</label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="tema"
+                        id="oscuro"
+                        value="dark"
+                      />
+                      <label class="form-check-label" for="oscuro"
+                        >Oscuro</label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <button type="submit" class="btn btn-brand">
+                    <i class="bi bi-save me-2" aria-hidden="true"></i>Guardar
+                    cambios
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <!-- Gestión de usuarios -->
+          <section
+            class="card border-0 shadow-sm mb-4"
+            aria-labelledby="users-heading"
+          >
+            <div class="card-body">
+              <h2 id="users-heading" class="section-title mb-3 h5">
+                Gestión de Usuarios
+              </h2>
+              <div
+                class="d-flex justify-content-between align-items-center mb-3"
+              >
+                <h3 class="mb-0 text-secondary h6">
+                  Usuarios registrados (12)
+                </h3>
+                <button type="button" class="btn btn-sm btn-brand">
+                  <i class="bi bi-person-plus me-2" aria-hidden="true"></i
+                  >Agregar usuario
+                </button>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-middle mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Correo</th>
+                      <th scope="col">Rol</th>
+                      <th scope="col">Área</th>
+                      <th scope="col">Estatus</th>
+                      <th scope="col" class="text-end">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Vladimir Turral</td>
+                      <td>
+                        <a href="mailto:vladimir@qualitas.com"
+                          >vladimir@qualitas.com</a
+                        >
+                      </td>
+                      <td>Administrador</td>
+                      <td>AOF</td>
+                      <td><span class="badge bg-success">Activo</span></td>
+                      <td class="text-end">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary"
+                          aria-label="Editar usuario Vladimir Turral"
+                        >
+                          <i class="bi bi-pencil" aria-hidden="true"></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-danger"
+                          aria-label="Desactivar usuario Vladimir Turral"
+                        >
+                          <i class="bi bi-x" aria-hidden="true"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Samuel Díaz</td>
+                      <td>
+                        <a href="mailto:samuel@qualitas.com"
+                          >samuel@qualitas.com</a
+                        >
+                      </td>
+                      <td>Supervisor</td>
+                      <td>Caja Metepec</td>
+                      <td><span class="badge bg-success">Activo</span></td>
+                      <td class="text-end">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary"
+                          aria-label="Editar usuario Samuel Díaz"
+                        >
+                          <i class="bi bi-pencil" aria-hidden="true"></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-danger"
+                          aria-label="Desactivar usuario Samuel Díaz"
+                        >
+                          <i class="bi bi-x" aria-hidden="true"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Itzel Martínez</td>
+                      <td>
+                        <a href="mailto:itzel@qualitas.com"
+                          >itzel@qualitas.com</a
+                        >
+                      </td>
+                      <td>Colaborador</td>
+                      <td>Control Calidad</td>
+                      <td><span class="badge bg-secondary">Inactivo</span></td>
+                      <td class="text-end">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary"
+                          aria-label="Editar usuario Itzel Martínez"
+                        >
+                          <i class="bi bi-pencil" aria-hidden="true"></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-danger"
+                          aria-label="Activar/Desactivar usuario Itzel Martínez"
+                        >
+                          <i class="bi bi-x" aria-hidden="true"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+          </section>
+
+          <!-- Roles y permisos -->
+          <section
+            class="card border-0 shadow-sm"
+            aria-labelledby="roles-heading"
+          >
+            <div class="card-body">
+              <h2 id="roles-heading" class="section-title mb-3 h5">
+                Roles y Permisos
+              </h2>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 card-hover h-100">
+                    <div class="card-body">
+                      <h3 class="fw-semibold mb-2 h6">
+                        <i class="bi bi-person-gear me-2" aria-hidden="true"></i
+                        >Administrador
+                      </h3>
+                      <ul class="small mb-0 text-muted">
+                        <li>Acceso total al sistema</li>
+                        <li>Gestión de usuarios y roles</li>
+                        <li>Visualización de todos los dashboards</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 card-hover h-100">
+                    <div class="card-body">
+                      <h3 class="fw-semibold mb-2 h6">
+                        <i
+                          class="bi bi-person-check me-2"
+                          aria-hidden="true"
+                        ></i
+                        >Supervisor
+                      </h3>
+                      <ul class="small mb-0 text-muted">
+                        <li>Visualización de su área</li>
+                        <li>Aprobación y seguimiento de actividades</li>
+                        <li>Reportes limitados</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 card-hover h-100">
+                    <div class="card-body">
+                      <h3 class="fw-semibold mb-2 h6">
+                        <i class="bi bi-person me-2" aria-hidden="true"></i
+                        >Colaborador
+                      </h3>
+                      <ul class="small mb-0 text-muted">
+                        <li>Registro de actividades</li>
+                        <li>Consulta de sus propios reportes</li>
+                        <li>Edición de datos personales</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.row -->
+            </div>
+          </section>
+        </main>
+      </div>
+      <!-- /.app-main -->
+    </div>
+    <!-- /.app-shell -->
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <!-- Preferencias: toggle de tema (mock) -->
+    <script defer>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Toggle de tema visual (ligero; opcional)
+        const radios = document.querySelectorAll('input[name="tema"]');
+        radios.forEach((r) =>
+          r.addEventListener("change", () => {
+            document.documentElement.setAttribute("data-bs-theme", r.value);
+          })
+        );
+      });
+    </script>
+
+    <!-- Router SPA (intacto) -->
+    <script defer>
+      (function () {
+        const supportsVT = "startViewTransition" in document;
+
+        async function loadPartial(url) {
+          const res = await fetch(url, { credentials: "same-origin" });
+          const html = await res.text();
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const newMain = doc.querySelector(".app-main");
+          const newTitle =
+            doc.querySelector("title")?.textContent || document.title;
+          return { newMain, newTitle, doc };
+        }
+
+        function setActiveLink(url) {
+          const links = document.querySelectorAll(".sidebar a[data-spa]");
+          links.forEach((a) => a.classList.toggle("active", a.href === url));
+        }
+
+        async function navigate(url, push = true) {
+          const currentMain = document.querySelector(".app-main");
+          const doSwap = async () => {
+            const { newMain, newTitle, doc } = await loadPartial(url);
+            if (!newMain) {
+              location.href = url;
+              return;
+            } // fallback total
+
+            currentMain.classList.add("is-leaving");
+            await new Promise((r) => setTimeout(r, 120));
+
+            currentMain.replaceWith(newMain);
+            document.title = newTitle;
+
+            newMain.classList.add("is-entering");
+            requestAnimationFrame(() =>
+              newMain.classList.add("app-main--ready")
+            );
+            setTimeout(
+              () => newMain.classList.remove("is-entering", "app-main--ready"),
+              180
+            );
+
+            if (window.bootstrap) {
+              document
+                .querySelectorAll('[data-bs-toggle="tooltip"]')
+                .forEach((el) => new bootstrap.Tooltip(el));
+            }
+
+            setActiveLink(new URL(url, location.href).href);
+
+            doc.querySelectorAll("script[data-init]").forEach((s) => {
+              try {
+                eval(s.textContent);
+              } catch (e) {
+                console.error(e);
+              }
+            });
+          };
+
+          if (supportsVT) {
+            document.startViewTransition(doSwap);
+          } else {
+            await doSwap();
+          }
+
+          if (push) history.pushState({ spa: true }, "", url);
+        }
+
+        document.addEventListener("click", (e) => {
+          const a = e.target.closest("a[data-spa]");
+          if (!a) return;
+          const url = a.getAttribute("href");
+          if (!url || url.startsWith("http") || url.startsWith("#")) return;
+          e.preventDefault();
+          navigate(url, true);
+        });
+
+        window.addEventListener("popstate", (e) => {
+          if (e.state && e.state.spa) {
+            navigate(location.href, false);
+          } else location.reload();
+        });
+      })();
+    </script>
+  </body>
+</html>
