@@ -256,32 +256,35 @@
                   </nav>
                 </div>
           
-                <!-- Segunda fila: botones CSV -->
-                <div class="mt-3 d-flex justify-content-end gap-2 flex-wrap">
-                  <!-- Exportar: TODOS lo ven -->
-                <button class="btn btn-sm btn-outline-primary" id="btnExportCsv">
-                  <i class="bi bi-envelope-paper me-1"></i>
-                  Descargar borrador de correo
+
+              </div>
+            </div>
+          </section>
+          <section>
+            <!-- Segunda fila: botones CSV -->
+            <div class="mt-3 d-flex justify-content-end gap-2 flex-wrap">
+              <!-- Exportar: TODOS lo ven -->
+            <button class="btn btn-sm btn-outline-primary" id="btnExportCsv">
+              <i class="bi bi-envelope-paper me-1"></i>
+              Descargar borrador de correo
+            </button>
+      
+              <!-- Importar: solo admin (lo controla JS con display:none/flex) -->
+              <div
+                id="importSection"
+                class="d-flex align-items-center gap-2"
+                style="display:none;"
+              >
+                <input
+                  type="file"
+                  id="fileImportCsv"
+                  accept=".csv"
+                  class="form-control form-control-sm"
+                />
+                <button class="btn btn-sm btn-outline-success" id="btnImportCsv">
+                  <i class="bi bi-file-earmark-arrow-up me-1"></i>
+                  Importar CSV
                 </button>
-          
-                  <!-- Importar: solo admin (lo controla JS con display:none/flex) -->
-                  <div
-                    id="importSection"
-                    class="d-flex align-items-center gap-2"
-                    style="display:none;"
-                  >
-                    <input
-                      type="file"
-                      id="fileImportCsv"
-                      accept=".csv"
-                      class="form-control form-control-sm"
-                    />
-                    <button class="btn btn-sm btn-outline-success" id="btnImportCsv">
-                      <i class="bi bi-file-earmark-arrow-up me-1"></i>
-                      Importar CSV
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
           </section>
@@ -385,6 +388,7 @@
     </script>
   </body>
 </html>
+
 
 
 
