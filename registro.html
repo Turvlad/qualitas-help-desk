@@ -347,19 +347,37 @@
                         name="enviado_area"
                       >
                         <option value="" selected disabled>Selecciona</option>
-                        <option value="AOF">AOF</option>		
-                        <option value="Caja Metepec">Caja Metepec	</option>	
-                        <option value="Caja San Jerónimo">Caja San Jerónimo	</option>	
-                        <option value="OTRS Suscripción Individual">OTRS Suscripción Individual	</option>	
-                        <option value="OTRS Valores Convenidos">OTRS Valores Convenidos</option>		
-                        <option value="Plataforma CRM"	>Plataforma CRM</option>	
-                        <option value="Devoluciones (Milka)">	Devoluciones (Milka)</option>	
-                        <option value="Control de agentes">Control de agentes</option>
-                        <option value="Devoluciones OPL">Devoluciones OPL</option>
+                        <option value="AOF">AOF</option>
+                        <option value="Caja Metepec">Caja Metepec</option>
+                        <option value="Caja San Jerónimo">
+                          Caja San Jerónimo
+                        </option>
+                        <option value="OTRS Suscripción Individual">
+                          OTRS Suscripción Individual
+                        </option>
+                        <option value="OTRS Valores Convenidos">
+                          OTRS Valores Convenidos
+                        </option>
+                        <option value="Plataforma CRM">Plataforma CRM</option>
+                        <option value="Devoluciones (Milka)">
+                          Devoluciones (Milka)
+                        </option>
+                        <option value="Control de agentes">
+                          Control de agentes
+                        </option>
+                        <option value="Devoluciones OPL">
+                          Devoluciones OPL
+                        </option>
                         <option value="OTR tarifas">OTR tarifas</option>
-                        <option value="Claudia Vázquez (BP)">Claudia Vázquez (BP)</option>	
-                        <option value="Cuentas Coorporativas (multianuales)">Cuentas Coorporativas (multianuales)</option>
-                        <option value="Suscripción flotillas"	>Suscripción flotillas</option>
+                        <option value="Claudia Vázquez (BP)">
+                          Claudia Vázquez (BP)
+                        </option>
+                        <option value="Cuentas Coorporativas (multianuales)">
+                          Cuentas Coorporativas (multianuales)
+                        </option>
+                        <option value="Suscripción flotillas">
+                          Suscripción flotillas
+                        </option>
                       </select>
                     </div>
 
@@ -532,7 +550,6 @@
                   <div id="resume" class="row g-3 small"><!-- JS --></div>
                 </div>
               </section>
-
             </form>
           </div>
 
@@ -657,8 +674,6 @@
         const editIdParam = urlParams.get("id");
         const usuarioStrGlobal = localStorage.getItem("hd_usuario");
         const esAdmin = window.hdIsAdmin === true;
-
-
 
         const agenteInput = document.getElementById("f-agente");
         const agenteInfo = document.getElementById("agente-info");
@@ -988,7 +1003,57 @@
             chipResp.hidden = true;
           }
         }
+        function validateHoraNegocio(
+          fechaInput,
+          horaInput,
+          errorEl,
+          labelCampo
+        ) {
+          if (!fechaInput || !horaInput) return true;
 
+          const fecha = fechaInput.value;
+          const hora = horaInput.value;
+
+          // Si no hay nada capturado, no marcamos error (es opcional)
+          if (!fecha && !hora) {
+            if (errorEl) errorEl.textContent = "";
+            horaInput.classList.remove("is-invalid");
+            return true;
+          }
+
+          // Si llenan uno sí y otro no, marcamos error
+          if (!fecha || !hora) {
+            if (errorEl)
+              errorEl.textContent = `Completa ${labelCampo} (fecha y hora).`;
+            horaInput.classList.add("is-invalid");
+            return false;
+          }
+
+          const dt = new Date(`${fecha}T${hora}`);
+          if (Number.isNaN(dt.getTime())) {
+            if (errorEl) errorEl.textContent = "Fecha/hora no válida.";
+            horaInput.classList.add("is-invalid");
+            return false;
+          }
+
+          const day = dt.getDay(); // 0=dom, 6=sáb
+          const minutes = dt.getHours() * 60 + dt.getMinutes();
+          const start = 8 * 60 + 30; // 08:30
+          const end = 18 * 60 + 30; // 18:30
+
+          if (day === 0 || day === 6 || minutes < start || minutes > end) {
+            if (errorEl) {
+              errorEl.textContent = `${labelCampo} debe ser de lunes a viernes, entre 08:30 y 18:30.`;
+            }
+            horaInput.classList.add("is-invalid");
+            return false;
+          }
+
+          // OK
+          if (errorEl) errorEl.textContent = "";
+          horaInput.classList.remove("is-invalid");
+          return true;
+        }
         // ====== MOCK "BASE DE DATOS" DE ACTIVIDADES ======
         const STORAGE_KEY_ACTIVIDADES = "hd_actividades";
 
@@ -1073,10 +1138,13 @@
               editingActividad.fechaRecepcion ||
               (editingActividad.fechaRegistro || "").slice(0, 10);
             data.hora_recepcion =
-              data.hora_recepcion || editingActividad.horaRecepcion || editingActividad.horaRegistro;
+              data.hora_recepcion ||
+              editingActividad.horaRecepcion ||
+              editingActividad.horaRegistro;
 
             // Envío al área
-            data.enviado_area = data.enviado_area || editingActividad.areaDestino;
+            data.enviado_area =
+              data.enviado_area || editingActividad.areaDestino;
             data.fecha_envio_area =
               data.fecha_envio_area || editingActividad.fechaEnvioArea;
             data.hora_envio_area =
@@ -1117,10 +1185,7 @@
           } else if (data.fecha_resp_area && data.hora_resp_area) {
             dtFinProceso = parseDT(data.fecha_resp_area, data.hora_resp_area);
           } else if (data.fecha_envio_area && data.hora_envio_area) {
-            dtFinProceso = parseDT(
-              data.fecha_envio_area,
-              data.hora_envio_area
-            );
+            dtFinProceso = parseDT(data.fecha_envio_area, data.hora_envio_area);
           }
 
           // Tiempo total del proceso
@@ -1197,7 +1262,8 @@
             usuarioNombre,
             usuarioRol,
 
-            agenteClave: data.agente_clave || editingActividad?.agenteClave || null,
+            agenteClave:
+              data.agente_clave || editingActividad?.agenteClave || null,
             formaSolicitud:
               data.forma_solicitud || editingActividad?.formaSolicitud || null,
             tipoSolicitud:
@@ -1214,7 +1280,8 @@
 
             fechaEnvioAgente: data.fecha_envio_agente || null,
             horaEnvioAgente: data.hora_envio_agente || null,
-            asuntoCorreo: data.asunto_correo || editingActividad?.asuntoCorreo || null,
+            asuntoCorreo:
+              data.asunto_correo || editingActividad?.asuntoCorreo || null,
 
             fechaSeguimiento: data.fecha_seguimiento || null,
             comentarios: data.comentarios || null,
@@ -1269,7 +1336,9 @@
               .includes("final");
 
             // ===== Paso 1 =====
-            const paso1 = document.querySelector('#pane-general section[data-step="1"]');
+            const paso1 = document.querySelector(
+              '#pane-general section[data-step="1"]'
+            );
 
             if (paso1) {
               if (!esAdmin) {
@@ -1364,31 +1433,28 @@
 
             if (!validateStep()) return;
 
-            // Regla de horario envío al agente
-            const fechaEnv = form.elements["fecha_envio_agente"]?.value;
-            const horaEnv = form.elements["hora_envio_agente"]?.value;
+            // Validación final de horarios antes de guardar
+            const okHoraArea = validateHoraNegocio(
+              form.elements["fecha_envio_area"],
+              form.elements["hora_envio_area"],
+              document.getElementById("error-hora-envio-area"),
+              "Fecha/Hora envío al Área"
+            );
 
-            if (fechaEnv && horaEnv) {
-              const dtEnv = new Date(`${fechaEnv}T${horaEnv}`);
-              const day = dtEnv.getDay(); // 0 dom, 6 sáb
-              const minutes = dtEnv.getHours() * 60 + dtEnv.getMinutes();
+            const okHoraAgente = validateHoraNegocio(
+              form.elements["fecha_envio_agente"],
+              form.elements["hora_envio_agente"],
+              document.getElementById("error-hora-envio-agente"),
+              "Fecha/Hora envío al Agente"
+            );
 
-              const start = 8 * 60 + 30;
-              const end = 18 * 60 + 30;
-
-              if (day === 0 || day === 6 || minutes < start || minutes > end) {
-                alert(
-                  "La fecha/hora de envío al agente debe estar entre lunes y viernes, de 08:30 a 18:30.\n\nPor favor ajusta el campo 'Fecha/Hora envío al Agente'."
-                );
-                if (form.elements["hora_envio_agente"]) {
-                  form.elements["hora_envio_agente"].focus();
-                }
-                return;
-              }
+            if (!okHoraArea || !okHoraAgente) {
+              // No avanzamos si hay error de horario en alguno
+              return;
             }
 
             const fd = new FormData(form);
-            
+
             if (editingId != null) {
               const hoy = new Date().toISOString().slice(0, 10);
               fd.set("fecha_seguimiento", hoy);
@@ -1523,7 +1589,47 @@
               form.elements[name].addEventListener("input", computeDurations);
           });
 
-          // Cargar borrador (solo si NO es edición) 
+          // Validaciones en línea de horario de negocio
+          const fechaEnvAreaInput = form.elements["fecha_envio_area"];
+          const horaEnvAreaInput = form.elements["hora_envio_area"];
+          const fechaEnvAgInput = form.elements["fecha_envio_agente"];
+          const horaEnvAgInput = form.elements["hora_envio_agente"];
+          const errorHoraArea = document.getElementById(
+            "error-hora-envio-area"
+          );
+          const errorHoraAgente = document.getElementById(
+            "error-hora-envio-agente"
+          );
+
+          function revalidateHoraArea() {
+            validateHoraNegocio(
+              fechaEnvAreaInput,
+              horaEnvAreaInput,
+              errorHoraArea,
+              "Fecha/Hora envío al Área"
+            );
+          }
+
+          function revalidateHoraAgente() {
+            validateHoraNegocio(
+              fechaEnvAgInput,
+              horaEnvAgInput,
+              errorHoraAgente,
+              "Fecha/Hora envío al Agente"
+            );
+          }
+
+          if (fechaEnvAreaInput)
+            fechaEnvAreaInput.addEventListener("change", revalidateHoraArea);
+          if (horaEnvAreaInput)
+            horaEnvAreaInput.addEventListener("change", revalidateHoraArea);
+
+          if (fechaEnvAgInput)
+            fechaEnvAgInput.addEventListener("change", revalidateHoraAgente);
+          if (horaEnvAgInput)
+            horaEnvAgInput.addEventListener("change", revalidateHoraAgente);
+
+          // Cargar borrador (solo si NO es edición)
           (function () {
             const draft = JSON.parse(
               localStorage.getItem("helpdesk_draft") || "null"
@@ -1683,6 +1789,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
-
-
-
