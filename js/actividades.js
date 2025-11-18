@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const subject = `Actividades Help Desk - ${userLabel} - ${fechaLabel}`;
   
     const bodyText =
-      "Hola,\r\n\r\nTe comparto el CSV con las actividades.\r\n\r\nSaludos.\r\n";
+      "\r\n\r\n Registro de actividades diarias \r\n\r\n - ${userLabel} - ${fechaLabel}.\r\n";
 
     const boundary = "----=_HelpDesk_" + Date.now();
 
@@ -458,4 +458,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // Primera carga
   refresh();
 });
+
 
