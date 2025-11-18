@@ -107,8 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 👉 3) Armar el asunto con usuario + fecha
     const subject = `Actividades Help Desk - ${userLabel} - ${fechaLabel}`;
   
-    const bodyText =
-      "\r\n\r\n Registro de actividades diarias \r\n\r\n - ${userLabel} - ${fechaLabel}.\r\n";
+    const bodyText = `\r\n\r\n Registro de actividades diarias \r\n\r\n - ${userLabel} - ${fechaLabel}.\r\n`;
 
     const boundary = "----=_HelpDesk_" + Date.now();
 
@@ -458,5 +457,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Primera carga
   refresh();
 });
+
 
 
