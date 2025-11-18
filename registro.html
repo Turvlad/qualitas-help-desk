@@ -1485,90 +1485,108 @@
             window.location.href = "actividades.html";
           });
 
-          // Enter para navegar / validar
-          form.addEventListener("keydown", (e) => {
-            if (e.key !== "Enter") return;
-            const target = e.target;
-            if (!target || !(target instanceof HTMLElement)) return;
+   // Enter para navegar / validar y enviar en el último paso
+        form.addEventListener("keydown", (e) => {
+          if (e.key !== "Enter") return;
+          const target = e.target;
+          if (!target || !(target instanceof HTMLElement)) return;
 
-            const isTextArea = target.tagName === "TEXTAREA";
-            if (isTextArea && !e.shiftKey) {
-              return;
-            }
+          const isTextArea = target.tagName === "TEXTAREA";
+          // En textarea dejamos que Enter normal no haga nada especial
+          if (isTextArea && !e.shiftKey) {
+            return;
+          }
 
-            e.preventDefault();
+          e.preventDefault();
 
-            const currentSection = sections.find(
-              (s) => +s.dataset.step === current
-            );
-            if (!currentSection) return;
+          const currentSection = sections.find(
+            (s) => +s.dataset.step === current
+          );
+          if (!currentSection) return;
 
-            const focusables = Array.from(
-              currentSection.querySelectorAll("input, select, textarea, button")
-            ).filter((el) => {
-              if (!(el instanceof HTMLElement)) return false;
-              if (el.disabled) return false;
-              if (el.type === "hidden") return false;
-              return el.offsetParent !== null;
-            });
+          const focusables = Array.from(
+            currentSection.querySelectorAll("input, select, textarea, button")
+          ).filter((el) => {
+            if (!(el instanceof HTMLElement)) return false;
+            if (el.disabled) return false;
+            if (el.type === "hidden") return false;
+            return el.offsetParent !== null;
+          });
 
-            const idx = focusables.indexOf(target);
+          const idx = focusables.indexOf(target);
+          const last = lastStep();
 
-            if (target === agenteInput && !e.shiftKey) {
-              const clave = agenteInput.value.trim();
+          // Validación especial para agente
+          if (target === agenteInput && !e.shiftKey) {
+            const clave = agenteInput.value.trim();
 
-              if (!/^\d{5}$/.test(clave)) {
-                agenteInput.classList.add("is-invalid");
-                if (agenteInfo) {
-                  agenteInfo.textContent =
-                    "La clave del agente debe tener exactamente 5 dígitos.";
-                }
-                return;
-              }
-
-              const agente = buscarAgentePorClave(clave);
-              if (!agente) {
-                agenteInput.classList.add("is-invalid");
-                if (agenteInfo) {
-                  agenteInfo.textContent =
-                    "No se encontró un agente con esa clave.";
-                }
-                return;
-              }
-
-              agenteInput.classList.remove("is-invalid");
+            if (!/^\d{5}$/.test(clave)) {
+              agenteInput.classList.add("is-invalid");
               if (agenteInfo) {
-                agenteInfo.textContent = `Agente: ${agente.nombre}`;
-              }
-
-              if (idx > -1 && idx < focusables.length - 1) {
-                focusables[idx + 1].focus();
+                agenteInfo.textContent =
+                  "La clave del agente debe tener exactamente 5 dígitos.";
               }
               return;
             }
 
-            if (e.shiftKey) {
-              if (idx > 0) {
-                focusables[idx - 1].focus();
-              } else {
-                if (current > 1) {
-                  current = current - 1;
-                  showStep(current);
-                }
+            const agente = buscarAgentePorClave(clave);
+            if (!agente) {
+              agenteInput.classList.add("is-invalid");
+              if (agenteInfo) {
+                agenteInfo.textContent =
+                  "No se encontró un agente con esa clave.";
               }
               return;
+            }
+
+            agenteInput.classList.remove("is-invalid");
+            if (agenteInfo) {
+              agenteInfo.textContent = `Agente: ${agente.nombre}`;
             }
 
             if (idx > -1 && idx < focusables.length - 1) {
               focusables[idx + 1].focus();
+            }
+            return;
+          }
+
+          // Shift+Enter -> navega hacia atrás / paso anterior
+          if (e.shiftKey) {
+            if (idx > 0) {
+              focusables[idx - 1].focus();
             } else {
-              if (validateStep()) {
-                current = nextVisibleStep(current);
+              if (current > 1) {
+                current = current - 1;
                 showStep(current);
               }
             }
-          });
+            return;
+          }
 
+          // Enter normal
+          if (idx > -1 && idx < focusables.length - 1) {
+            // Todavía hay campos en el mismo paso
+            focusables[idx + 1].focus();
+          } else {
+            // Último campo del paso actual
+            if (!validateStep()) return;
+
+            if (current === last) {
+              // 🔥 Si estamos en el último paso, enviamos el form
+              if (typeof form.requestSubmit === "function") {
+                form.requestSubmit();
+              } else {
+                form.submit();
+              }
+            } else {
+              // Si no es el último paso, avanzamos al siguiente
+              current = nextVisibleStep(current);
+              showStep(current);
+            }
+          }
+        });
+
+          
           // Recalcular tiempos cuando cambian fechas/horas
           [
             "fecha",
@@ -1782,4 +1800,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
+
 
