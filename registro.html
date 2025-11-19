@@ -85,15 +85,24 @@
       </aside>
 
       <div class="app-main flex-grow-1 d-flex flex-column min-vh-100">
-        <nav class="navbar bg-white px-4" aria-label="Barra superior">
-          <span class="navbar-brand h1 mb-0">Registrar Actividad</span>
-          <div class="ms-auto small text-muted">
-            Guardado automático
-            <span id="autosaveState" class="text-success" aria-live="polite"
-              >●</span
-            >
-          </div>
-        </nav>
+        <header>
+          <nav class="navbar bg-white px-4" aria-label="Barra superior">
+            <span class="navbar-brand h1 mb-0">Registrar Actividad</span>
+      
+            <div class="d-flex align-items-center gap-3 ms-auto">
+              <span class="text-secondary small" data-usuario-nombre>Usuario</span>
+              <span class="text-muted small" data-usuario-rol>Rol</span>
+              <img
+                src="https://placeholdmon.vercel.app/60x60"
+                alt="Avatar de {data-uauario-nombre}"
+                width="40"
+                height="40"
+                loading="lazy"
+              />
+            </div>
+          </nav>
+        </header>
+      </div>
 
         <!-- Tabs: Registro general vs Renovaciones -->
         <div class="bg-white border-bottom">
@@ -2066,6 +2075,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
+
 
 
 
