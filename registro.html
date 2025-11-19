@@ -25,12 +25,12 @@
         <h1 class="h5 fw-bold mb-4">Help Desk</h1>
 
         <nav class="nav flex-column" aria-label="Navegación principal">
-          <a class="nav-link active" href="registro.html">
+          <a class="nav-link" href="registro.html">
             <i class="bi bi-plus-circle" aria-hidden="true"></i>
             <span class="nav-label"> Registrar actividad</span>
           </a>
 
-          <a class="nav-link" href="actividades.html">
+          <a class="nav-link active" href="actividades.html">
             <i class="bi bi-list-task" aria-hidden="true"></i>
             <span class="nav-label"> Actividades colaboradores</span>
           </a>
@@ -83,21 +83,25 @@
           </a>
         </nav>
       </aside>
-
       <div class="app-main flex-grow-1 d-flex flex-column min-vh-100">
-        <header>
+	      <header>
+
           <nav class="navbar bg-white px-4" aria-label="Barra superior">
+
             <span class="navbar-brand h1 mb-0">Registrar Actividad</span>
-      
+
             <div class="d-flex align-items-center gap-3 ms-auto">
-              <span class="text-secondary small" data-usuario-nombre>Usuario</span>
-              <span class="text-muted small" data-usuario-rol>Rol</span>
-              <img
-                src="https://placeholdmon.vercel.app/60x60"
-                alt="Avatar de {data-uauario-nombre}"
-                width="40"
-                height="40"
-                loading="lazy"
+
+                <span class="text-secondary small" data-usuario-nombre
+                 >Usuario</span
+               >
+               <span class="text-muted small" data-usuario-rol>Rol</span>
+               <img
+                  src="https://placeholdmon.vercel.app/60x60"
+                  alt="Avatar de {data-uauario-nombre}"
+                  width="40"
+                  height="40"
+                  loading="lazy"
               />
             </div>
           </nav>
@@ -326,31 +330,14 @@
                         id="f-tipo"
                         class="form-select"
                         name="tipo_solicitud"
-                        required>
-                          <option value="" selected disabled>Selecciona</option>
-                          <option value="Aplicación de Primas">Aplicación de Primas</option>
-                          <option value="Armar pólizas (Impresión, CG)">Armar pólizas (Impresión, CG)</option>
-                          <option value="Cambio de Contratante">Cambio de Contratante</option>
-                          <option value="Cambio de Titular">Cambio de Titular</option>
-                          <option value="Cancelación - Con dev primas">Cancelación - Con dev primas</option>
-                          <option value="Cancelación - Sin dev primas">Cancelación - Sin dev primas</option>
-                          <option value="Cotización">Cotización</option>
-                          <option value="Devolución de Primas">Devolución de Primas</option>
-                          <option value="Emisión (nueva)">Emisión (nueva)</option>
-                          <option value="Endoso 1 (alta coberturas-unidades)">Endoso 1 (alta coberturas-unidades)</option>
-                          <option value="Endoso 2 - (baja coberturas-unidades)">Endoso 2 - (baja coberturas-unidades)</option>
-                          <option value="Endoso 3 (sin modificación de primas)">Endoso 3 (sin modificación de primas)</option>
-                          <option value="Otras">Otras</option>
-                          <option value="Re-Expedición de Emisión Nueva">Re-Expedición de Emisión Nueva</option>
-                          <option value="Re-Expedición de Renovación">Re-Expedición de Renovación</option>
-                          <option value="Rehabilitar pólizas/endosos">Rehabilitar pólizas/endosos</option>
-                          <option value="Renovación">Renovación</option>
-                          <option value="Resello factura">Resello factura</option>
-                          <option value="Seguimiento Serie en SISE">Seguimiento Serie en SISE</option>
-                          <option value="Solicitud - BT normal">Solicitud - BT normal</option>
-                          <option value="Solicitud - Clave AMIS">Solicitud - Clave AMIS</option>
-                          <option value="Solicitud - Suma Asegurada">Solicitud - Suma Asegurada</option>
-
+                        required
+                      >
+                        <option value="" selected disabled>Selecciona</option>
+                        <option value="Renovación">Renovación</option>
+                        <option value="Cancelación">Cancelación</option>
+                        <option value="Aplicación de Primas">
+                          Aplicación de Primas
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -714,256 +701,11 @@
 
         // 🔹 Catálogo temporal de agentes (mock)
         const CATALOGO_AGENTES = [
-          { clave: "00203", nombre: "MOISES GARCIA YA&EZ" },
-          { clave: "00381", nombre: "EDMUNDO PALOMINO MAGDALENO" },
-          { clave: "00424", nombre: "AMADO MAURILIO ROJAS TARANGO" },
-          { clave: "00522", nombre: "RAMON LARA PE&A" },
-          { clave: "00525", nombre: "SALVADOR RAMIREZ VAZQUEZ" },
-          { clave: "00648", nombre: "RAFAEL BUITRON FERNANDEZ" },
-          { clave: "01275", nombre: "JUANA GONZALEZ VILLEGAS" },
-          { clave: "03066", nombre: "MA. LOURDES MONROY AGUILAR" },
-          { clave: "03177", nombre: "ELIA JUDITH ESPINOSA LEDESMA" },
-          { clave: "03514", nombre: "RISKMANAGEMENT, AGENTE DE SEGUROS Y DE FIANZAS, S.A. DE C.V." },
-          { clave: "03839", nombre: "FRANCISCO BALDERAS GERMAN" },
-          { clave: "04350", nombre: "JOSEFINA HERNANDEZ ORTEGA" },
-          { clave: "04583", nombre: "MISAEL CRUZ JIMENEZ" },
-          { clave: "04652", nombre: "DEMETRIO KUSULAS ZERON" },
-          { clave: "04782", nombre: "IRMA SOTO CLEMENTE" },
-          { clave: "04965", nombre: "EDWARD LAWRENCE SHAW PHILIPS" },
-          { clave: "04976", nombre: "MARIO PEREZ VILCHIS" },
-          { clave: "05318", nombre: "LILIA COLIN MUNGUIA" },
-          { clave: "05533", nombre: "ALEJANDRO LOPEZ ESTRADA" },
-          { clave: "05642", nombre: "RAMON MARTINEZ VENEGAS" },
-          { clave: "05699", nombre: "EDUARDO ADRIAN ESCAMILLA MONROY" },
-          { clave: "05707", nombre: "MAURICIO OVIEDO JIMENEZ" },
-          { clave: "05917", nombre: "JOSE GUADALUPE MOLINAR CABRAL" },
-          { clave: "06138", nombre: "OLGA ERIKA SANCHEZ WARNKE" },
-          { clave: "06305", nombre: "NORMA ANGELICA RIOS SANDOVAL" },
-          { clave: "06674", nombre: "LUIS FELIPE GARCIA ZAVALA" },
-          { clave: "06738", nombre: "MIGUEL ROBERTO HERNANDEZ PICHARDO" },
-          { clave: "06916", nombre: "JEZABEL CARPIO RAMIREZ" },
-          { clave: "06989", nombre: "MARIBEL RAMIREZ MEDINA" },
-          { clave: "07317", nombre: "MEGA AUTOMOTRIZ, SA DE CV" },
-          { clave: "07391", nombre: "AUTOFINANCIAMIENTO MEXICO, S.A. DE C.V." },
-          { clave: "08108", nombre: "MARIA GUADALUPE HERNANDEZ GONZALEZ" },
-          { clave: "08300", nombre: "MIGUEL TAFOLLA MALDONADO" },
-          { clave: "08440", nombre: "HELITA MONTIEL RODRIGUEZ" },
-          { clave: "08472", nombre: "ADRIAN MARTINEZ CUADROS" },
-          { clave: "08532", nombre: "JUAN CARLOS MILLAN CORTES" },
-          { clave: "08592", nombre: "MARIA DEL CARMEN CERON RODRIGUEZ" },
-          { clave: "09005", nombre: "VENTAS MOSTRADOR OFICINA TOLUCA" },
-          { clave: "13393", nombre: "MIGUEL ANGEL MENDOZA RIVERA" },
-          { clave: "13462", nombre: "ELENA MAGDALENA AYALA PONTON" },
-          { clave: "16064", nombre: "JOSE CORAZON TAPIA FERNANDEZ" },
-          { clave: "16181", nombre: "LUIS FELIPE GARCIA RODRIGUEZ" },
-          { clave: "16312", nombre: "CARLOS ROBERTO GALLEGOS LUNA" },
-          { clave: "16550", nombre: "IGNACIO JOSE TERROBA TORTOLERO" },
-          { clave: "17498", nombre: "LEON FELIPE BEDOYA MARTINEZ" },
-          { clave: "17507", nombre: "JUAN MUCI&O SERRANO" },
-          { clave: "17756", nombre: "FABIOLA TELLEZ ESCAMILLA" },
-          { clave: "17955", nombre: "SILVIA NASTA VICTORIA" },
-          { clave: "17960", nombre: "MA. OLGA BERNAL LAGUNAS" },
-          { clave: "22246", nombre: "GILDARDO ZU&IGA MARIN" },
-          { clave: "22714", nombre: "RUTILIO PI&A VELAZQUEZ" },
-          { clave: "22955", nombre: "MIGUEL ANGEL CEBALLOS AYALA" },
-          { clave: "23087", nombre: "JULIO CESAR ROJANO CEPEDA" },
-          { clave: "23482", nombre: "CARLOS MANUEL VERONA IZAGUIRRE" },
-          { clave: "23732", nombre: "ADMINISTRADORA DE SERV DE CALIDAD AGTE DE SEGUROS SA DE CV" },
-          { clave: "24649", nombre: "NIDIA PATINO LONA" },
-          { clave: "24869", nombre: "JUAN JOSE BARREIRO PAEZ" },
-          { clave: "25202", nombre: "JULIAN EYMAR VENCES ALVAREZ" },
-          { clave: "30391", nombre: "PABLO LOPEZ ROSALES" },
-          { clave: "30596", nombre: "LILIANA JOSEFINA SANCHEZ SANCHEZ" },
-          { clave: "30982", nombre: "IRAN DIAZ ALONSO" },
-          { clave: "31192", nombre: "LETICIA HORTENSIA TALAVERA JUAREZ" },
-          { clave: "31914", nombre: "MARISOL PAREDEZ CANTAREY" },
-          { clave: "35109", nombre: "NORMA PE&A ALMADA" },
-          { clave: "35920", nombre: "ANTONIO FERNANDEZ DE JESUS" },
-          { clave: "40496", nombre: "PF TOLLOCAN, S.A. DE C.V." },
-          { clave: "40497", nombre: "PF TOLLOCAN, S.A. DE C.V." },
-          { clave: "40498", nombre: "PF TOLLOCAN, S.A. DE C.V." },
-          { clave: "42457", nombre: "METEPEC MOTORS S.A. DE C.V." },
-          { clave: "43338", nombre: "VEHICULOS Y SERVICIOS SATELITE,SA DE CV" },
-          { clave: "43339", nombre: "VEHICULOS Y SERVICIOS SATELITE,SA DE CV" },
-          { clave: "43982", nombre: "SAN MATEO MOTORS SA DE CV" },
-          { clave: "43984", nombre: "MEGA AUTOMOTRIZ, SA DE CV" },
-          { clave: "44071", nombre: "SANCHEZ AUTOMOTRIZ SA DE CV" },
-          { clave: "44432", nombre: "INCOSOL SA DE CV" },
-          { clave: "50255", nombre: "GERSON BENJAMIN GONZALEZ ZU&IGA" },
-          { clave: "50474", nombre: "ADMINISTRADORA DE SERV DE CALIDAD AGTE DE SEGUROS SA DE CV" },
-          { clave: "50726", nombre: "YATZILTH PALACIOS GOICOCHEA" },
-          { clave: "52038", nombre: "MARIO GABINO ESTRADA FLORES" },
-          { clave: "55454", nombre: "SILVIA NASTA VICTORIA" },
-          { clave: "55571", nombre: "BERNARDO ANGULO GONZALEZ" },
-          { clave: "56127", nombre: "JOSE URIEL CORZA URIBE" },
-          { clave: "56128", nombre: "CECILIO ALFONSO SALAZAR CEBALLOS" },
-          { clave: "56250", nombre: "MANUEL RABINDRANATH ESCALERA MERAZ" },
-          { clave: "57841", nombre: "MOISES GARCIA YA&EZ" },
-          { clave: "58560", nombre: "GRUPO AFSE DE MEXICO AGENTE DE SEGUROS Y DE FIANZAS SA DE CV" },
-          { clave: "58775", nombre: "LUCINA GARCIA GONZALEZ" },
-          { clave: "59323", nombre: "SALVADOR RAMIREZ VAZQUEZ" },
-          { clave: "59596", nombre: "GRUPO RCM AGENTE DE SEGUROS Y DE FIANZAS, S.A. DE C.V." },
-          { clave: "59664", nombre: "JUAN CARLOS ROSSANO SERRANO" },
-          { clave: "60428", nombre: "ALFREDO ALEJO BECERRIL" },
-          { clave: "61117", nombre: "ALFREDO SORDO AGUILAR" },
-          { clave: "61194", nombre: "NOEMI CARDENAS ESPINOZA" },
-          { clave: "61222", nombre: "SALVADOR LOPEZ JIMENEZ" },
-          { clave: "61357", nombre: "CESAR SANCHEZ SANCHEZ DE TAGLE" },
-          { clave: "61384", nombre: "MARIA LEISLY MARTINEZ LOPEZ" },
-          { clave: "61419", nombre: "FRANCISCA ORTIZ MENDOZA" },
-          { clave: "61485", nombre: "ALFONSO ERICK SANCHEZ ESCARCEGA" },
-          { clave: "61545", nombre: "EFREN ESTRADA VELAZQUEZ" },
-          { clave: "61549", nombre: "EDGAR ALEJANDRO AGUILAR NAVARRETE" },
-          { clave: "61550", nombre: "GUADALUPE ZOE SOLEDAD GOMEZ RAMIREZ" },
-          { clave: "61605", nombre: "SALVADOR LOPEZ JIMENEZ" },
-          { clave: "61606", nombre: "FRANCISCA ORTIZ MENDOZA" },
-          { clave: "61696", nombre: "JESUS RUBEN RIOS ROBLEDO" },
-          { clave: "61801", nombre: "AIME VALDES ECHEVERRIA" },
-          { clave: "61927", nombre: "YOSELIN PASCACIO NUNEZ" },
-          { clave: "61948", nombre: "GUADALUPE ZOE SOLEDAD GOMEZ RAMIREZ" },
-          { clave: "62017", nombre: "TANIA CRISTINA JIMENEZ RUIZ" },
-          { clave: "62032", nombre: "MARIA DEL CONSUELO ZU&IGA ZATARAIN" },
-          { clave: "62302", nombre: "FERNANDO MACARIO ROMERO" },
-          { clave: "62379", nombre: "TANIA MAYA LOPEZ" },
-          { clave: "62471", nombre: "RAFAEL MAX RAMOS CALDERON" },
-          { clave: "62837", nombre: "GUILLERMO MENDOZA NU&EZ" },
-          { clave: "63825", nombre: "VICTOR HUGO PIMENTEL FLORES" },
-          { clave: "64093", nombre: "MARCO ANTONIO CABALLERO MATEOS" },
-          { clave: "64178", nombre: "GERMAN ZOE NAVARRO LOPEZ" },
-          { clave: "64293", nombre: "JUAN ALBERTO ORDO&EZ LARA" },
-          { clave: "64494", nombre: "MARIA JUANA FERMIN CONTRERAS" },
-          { clave: "64510", nombre: "TERESA AVELAR LOPEZ" },
-          { clave: "64546", nombre: "JOSE LUIS MEDINA GONZALEZ" },
-          { clave: "64578", nombre: "IVAN GARCIA GUADARRAMA" },
-          { clave: "64592", nombre: "ESTHELA REYES HERNANDEZ" },
-          { clave: "64598", nombre: "BEATRIZ SANTANA BECERRIL" },
-          { clave: "64660", nombre: "LUCRECIA LOZANO CRUZ" },
-          { clave: "64871", nombre: "EFREN LINARES ESTRADA" },
-          { clave: "64899", nombre: "MARCO ANTONIO ZAMUDIO LOPEZ" },
-          { clave: "65068", nombre: "CLAUDIA NATALIA NU&EZ ESPARZA" },
-          { clave: "65279", nombre: "FRANCO AGUILAR NAVA" },
-          { clave: "65336", nombre: "LUIS MAURICIO TELLEZ ESCAMILLA" },
-          { clave: "65434", nombre: "RICARDO ISRAEL RODRIGUEZ ARTEAGA" },
-          { clave: "65436", nombre: "GLORIA IVONNE ESPARZA DURAN" },
-          { clave: "65444", nombre: "JOSUE CURIEL NERI" },
-          { clave: "65534", nombre: "JOSE LUIS MARTINEZ ORDO&EZ" },
-          { clave: "65543", nombre: "CECILIA VILCHIS PORCAYO" },
-          { clave: "66053", nombre: "KAREN CARMIN HARO PEREZ" },
-          { clave: "66848", nombre: "FABIOLA RAMIREZ BERMUDEZ" },
-          { clave: "66903", nombre: "JOSE GERARDO SALDA&A VALDES" },
-          { clave: "66962", nombre: "SBHEIDY ESCAMILLA DORANTES" },
-          { clave: "67066", nombre: "KAREN IVETTE PLATA REYES" },
-          { clave: "67161", nombre: "JOSE LUIS GUTIERREZ OLGUIN" },
-          { clave: "67322", nombre: "RAMON ESTEBAN MENDEZ CASTANEDA" },
-          { clave: "67500", nombre: "EDGAR ALEJANDRO AGUILAR NAVARRETE" },
-          { clave: "67508", nombre: "KARLA IVONNE MACEDO CUENCA" },
-          { clave: "67530", nombre: "PERLA JANNET RANGEL JIMENEZ" },
-          { clave: "67549", nombre: "MARTIN GONZALEZ NAVA" },
-          { clave: "67979", nombre: "GUSTAVO ALBERTO ROJAS ESPINOSA" },
-          { clave: "68163", nombre: "KARINA PEREZ PEDRAL" },
-          { clave: "68292", nombre: "MUSOL MONROY CASTRO" },
-          { clave: "68543", nombre: "MAURICIO GARZA GARCIA" },
-          { clave: "68644", nombre: "ROBERTO ESPINOZA MONTES DE OCA" },
-          { clave: "69064", nombre: "Andrea Melissa Rincon Trejo" },
-          { clave: "69288", nombre: "ANAID LARA MENDOZA" },
-          { clave: "70180", nombre: "EDUARDO KICK CERVANTES" },
-          { clave: "70219", nombre: "JUAN GARCIA GARCIA" },
-          { clave: "70237", nombre: "AON RISK SOLUTIONS,AGENTE DE SEGUROS Y DE FIANZAS,S.A.DE C.V" },
-          { clave: "71763", nombre: "LILIANA JOSEFINA SANCHEZ SANCHEZ" },
-          { clave: "71827", nombre: "SERGIO ARRIETA ALDACO" },
-          { clave: "72216", nombre: "THELMA YOLANDA ESTRADA HIDALGO" },
-          { clave: "72844", nombre: "AON RISK SOLUTIONS,AGENTE DE SEGUROS Y DE FIANZAS,S.A.DE C.V" },
-          { clave: "73943", nombre: "AURELIANO SANCHEZ CUEVAS" },
-          { clave: "74564", nombre: "JAVIER ESPINOZA DOMINGUEZ" },
-          { clave: "74609", nombre: "HECTOR CARLOS GARZA GUERRA" },
-          { clave: "74894", nombre: "YAZMIN RETANA MORENO" },
-          { clave: "74978", nombre: "LUIS EDUARDO CHAPARRO SANCHEZ" },
-          { clave: "75066", nombre: "ANA LILIA SALDA&A SANCHEZ" },
-          { clave: "75109", nombre: "NADIA CAROLYNE BAUTISTA BARAJAS" },
-          { clave: "75650", nombre: "JORGE MORENO CRIVELLI" },
-          { clave: "75828", nombre: "SMART RESOLVIENDO TU VIDA, AGENTE DE SEGUROS S.A. DE C.V." },
-          { clave: "75919", nombre: "RICARDO MORALES MARTINEZ" },
-          { clave: "76497", nombre: "JUAN EMILIO RAMOS CALDERON" },
-          { clave: "77013", nombre: "FERNANDO GARCIA ESTRADA" },
-          { clave: "77610", nombre: "CYNTIA TERESA ZALDIVAR RADILLA" },
-          { clave: "77871", nombre: "GEORGINA ORTEGA ORTIZ" },
-          { clave: "77935", nombre: "MERCEDES GOMEZ FLORES" },
-          { clave: "77965", nombre: "RAMON LARA PE&A" },
-          { clave: "77966", nombre: "RAMON LARA PE&A" },
-          { clave: "77967", nombre: "RAMON LARA PE&A" },
-          { clave: "78379", nombre: "LILIANA MARIA GUTIERREZ GONZALEZ" },
-          { clave: "78502", nombre: "JUAN MANUEL LINARES CORTES" },
-          { clave: "78651", nombre: "LUCERO FLORES ORTIZ" },
-          { clave: "78901", nombre: "FRANCISCO JAVIER NU&EZ GUTIERREZ" },
-          { clave: "79045", nombre: "GLADYS ZULMIRA APONTE MENDEZ" },
-          { clave: "79078", nombre: "GABRIELA SIERRA MARTINEZ" },
-          { clave: "79271", nombre: "RAFAEL REBOLLAR FERNANDEZ" },
-          { clave: "79374", nombre: "ARNULFO ALVA RUIZ" },
-          { clave: "79669", nombre: "ALEJANDRO BENITEZ GARCIA" },
-          { clave: "79941", nombre: "ERIK BERNARDO CERON FLORES" },
-          { clave: "80110", nombre: "OSCAR AARON MARTINEZ GARCIA" },
-          { clave: "80947", nombre: "LILIANA RUBIO CARBAJAL" },
-          { clave: "81083", nombre: "ERIK BERNARDO CERON FLORES" },
-          { clave: "81097", nombre: "RUBEN CRUZ MARTINEZ" },
-          { clave: "82220", nombre: "ERIK BERNARDO CERON FLORES" },
-          { clave: "82290", nombre: "RAFAEL REBOLLAR FERNANDEZ" },
-          { clave: "82440", nombre: "GRUPO RCM AGENTE DE SEGUROS Y DE FIANZAS, S.A. DE C.V." },
-          { clave: "82736", nombre: "RAFAEL REBOLLAR FERNANDEZ" },
-          { clave: "82809", nombre: "DANIELA ROBLES CARPIO" },
-          { clave: "82821", nombre: "MA. LOURDES MONROY AGUILAR" },
-          { clave: "83053", nombre: "IINSURED BROKERS,AGENTE DE SEGUROS Y DE FIANZAS,S.A DE C.V" },
-          { clave: "83591", nombre: "OMAR GARCIA GUADARRAMA" },
-          { clave: "83873", nombre: "JOSE URIEL CORZA URIBE" },
-          { clave: "84558", nombre: "IRVING ESQUIVEL ONTIVEROS" },
-          { clave: "85512", nombre: "BERENICE SOLIS VAZQUEZ" },
-          { clave: "85635", nombre: "ABDEL PATRICIA DE LA TORRE PEREZ" },
-          { clave: "86091", nombre: "KOI, AGENTE DE SEGUROS Y DE FIANZAS, S.A. DE C.V." },
-          { clave: "86534", nombre: "MONICA AMELIA GARCIA MARTINEZ" },
-          { clave: "86801", nombre: "ARTURO ANGEL SAINZ LOPEZ" },
-          { clave: "86918", nombre: "EDUARDO KICK CERVANTES" },
-          { clave: "86948", nombre: "MARSH MEXICO, AGENTE DE SEGUROS Y DE FIANZAS, SA DE CV" },
-          { clave: "87260", nombre: "TANIA MAYA LOPEZ" },
-          { clave: "87354", nombre: "ANGEL RODRIGO REYES LUNA" },
-          { clave: "87622", nombre: "JOEL JACINTO DELGADO" },
-          { clave: "87781", nombre: "FABRICIA LEON LEON" },
-          { clave: "87941", nombre: "JUAN CARLOS BOBADILLA DIAZ" },
-          { clave: "87942", nombre: "RENE OMAR TORTI RIOS" },
-          { clave: "87950", nombre: "JOSE MARIO LOPEZ ITURBIDE" },
-          { clave: "88178", nombre: "ARTURO ISAAC RAMIREZ VALDESPINO" },
-          { clave: "88189", nombre: "HYLANT MEXICO AGTE DE SEG Y DE FZAS SA D" },
-          { clave: "88199", nombre: "HYLANT MEXICO AGTE DE SEG Y DE FZAS SA D" },
-          { clave: "88200", nombre: "HYLANT MEXICO AGTE DE SEG Y DE FZAS SA D" },
-          { clave: "88201", nombre: "HYLANT MEXICO AGTE DE SEG Y DE FZAS SA D" },
-          { clave: "88203", nombre: "MAURICIO ORTIZ GONZALEZ" },
-          { clave: "88340", nombre: "MARCO AURELIO CEBALLOS CORONA" },
-          { clave: "88362", nombre: "INBROS, AGENTE DE SEGUROS Y DE FIANZAS S.A. DE C.V." },
-          { clave: "88494", nombre: "DONATO EMMANUEL SANTOS MATEO" },
-          { clave: "88591", nombre: "JUAN RAUL TAPIA GRISI" },
-          { clave: "88832", nombre: "VER NICA JACKELINE GARCIA SOLORIO" },
-          { clave: "88876", nombre: "EDER ANDREY LUQUES GAMEZ" },
-          { clave: "88877", nombre: "ERICKA SANDOVAL ALVAREZ" },
-          { clave: "89050", nombre: "IRENE DE JESUS MORALES SALAZAR" },
-          { clave: "89055", nombre: "NORMA ANGELICA RIOS SANDOVAL" },
-          { clave: "89056", nombre: "NORMA ANGELICA RIOS SANDOVAL" },
-          { clave: "89395", nombre: "ALICIA MONZERRAT MALANCO SIERRA" },
-          { clave: "89504", nombre: "ALY CORANY ABDALLAH" },
-          { clave: "89612", nombre: "QUITZIA ZEPEDA DIAZ" },
-          { clave: "89738", nombre: "MIGUEL ANGEL GOMEZ CASTILLO" },
-          { clave: "90218", nombre: "QUALITAS COMPA&IA DE SEGUROS S.A. DE C.V." },
-          { clave: "90265", nombre: "QUALITAS COMPA&IA DE SEGUROS S.A. DE C.V." },
-          { clave: "90392", nombre: "QUALITAS COMPA&IA DE SEGUROS S.A. DE C.V." },
-          { clave: "90490", nombre: "VENTAS MOSTRADOR OFICINA TOLUCA" },
-          { clave: "96147", nombre: "QUALITAS COMPA&IA DE SEGUROS S.A. DE C.V." },
-          { clave: "96282", nombre: "QUALITAS COMPA&IA DE SEGUROS S.A. DE C.V." },
-          { clave: "90392", nombre: "QUALITAS COMPA&IA DE SEGUROS S.A. DE C.V" },
-          { clave: "68702", nombre: "NABOR FRANCISCO GONZÁLEZ AGUILAR" },
-          { clave: "27855", nombre: "MONICA LOPEZ SORIANO" },
-          { clave: "28535", nombre: "SAMUEL RUIZ SANCHEZ" },
-          { clave: "28586", nombre: "Gerardo Lobo Treviño" },
-          { clave: "28583", nombre: "Christian Hernández Valdes" }
+          { clave: "88200", nombre: "Agente 88200 Hylant" },
+          { clave: "88201", nombre: "Agente 88201 Hylant 2" },
+          { clave: "09005", nombre: "09005 Ventas Mostrador" },
         ];
 
-        
         function buscarAgentePorClave(clave) {
           if (!clave) return null;
           return CATALOGO_AGENTES.find((a) => a.clave === clave) || null;
@@ -1018,6 +760,13 @@
           if (fechaInput && !fechaInput.value) fechaInput.value = fechaHoy;
           if (horaRecInput && !horaRecInput.value)
             horaRecInput.value = horaAhora;
+
+          if (fechaEnvAgenteInput && !fechaEnvAgenteInput.value) {
+            fechaEnvAgenteInput.value = fechaInput?.value || fechaHoy;
+          }
+          if (horaEnvAgenteInput && !horaEnvAgenteInput.value) {
+            horaEnvAgenteInput.value = horaRecInput?.value || horaAhora;
+          }
 
           // En NUEVOS registros no se captura fecha de seguimiento
           const fsegNuevo = form.elements["fecha_seguimiento"];
@@ -1267,57 +1016,7 @@
             chipResp.hidden = true;
           }
         }
-        function validateHoraNegocio(
-          fechaInput,
-          horaInput,
-          errorEl,
-          labelCampo
-        ) {
-          if (!fechaInput || !horaInput) return true;
 
-          const fecha = fechaInput.value;
-          const hora = horaInput.value;
-
-          // Si no hay nada capturado, no marcamos error (es opcional)
-          if (!fecha && !hora) {
-            if (errorEl) errorEl.textContent = "";
-            horaInput.classList.remove("is-invalid");
-            return true;
-          }
-
-          // Si llenan uno sí y otro no, marcamos error
-          if (!fecha || !hora) {
-            if (errorEl)
-              errorEl.textContent = `Completa ${labelCampo} (fecha y hora).`;
-            horaInput.classList.add("is-invalid");
-            return false;
-          }
-
-          const dt = new Date(`${fecha}T${hora}`);
-          if (Number.isNaN(dt.getTime())) {
-            if (errorEl) errorEl.textContent = "Fecha/hora no válida.";
-            horaInput.classList.add("is-invalid");
-            return false;
-          }
-
-          const day = dt.getDay(); // 0=dom, 6=sáb
-          const minutes = dt.getHours() * 60 + dt.getMinutes();
-          const start = 8 * 60 + 30; // 08:30
-          const end = 18 * 60 + 30; // 18:30
-
-          if (day === 0 || day === 6 || minutes < start || minutes > end) {
-            if (errorEl) {
-              errorEl.textContent = `${labelCampo} debe ser de lunes a viernes, entre 08:30 y 18:30.`;
-            }
-            horaInput.classList.add("is-invalid");
-            return false;
-          }
-
-          // OK
-          if (errorEl) errorEl.textContent = "";
-          horaInput.classList.remove("is-invalid");
-          return true;
-        }
         // ====== MOCK "BASE DE DATOS" DE ACTIVIDADES ======
         const STORAGE_KEY_ACTIVIDADES = "hd_actividades";
 
@@ -1697,24 +1396,27 @@
 
             if (!validateStep()) return;
 
-            // Validación final de horarios antes de guardar
-            const okHoraArea = validateHoraNegocio(
-              form.elements["fecha_envio_area"],
-              form.elements["hora_envio_area"],
-              document.getElementById("error-hora-envio-area"),
-              "Fecha/Hora envío al Área"
-            );
+            // Regla de horario envío al agente
+            const fechaEnv = form.elements["fecha_envio_agente"]?.value;
+            const horaEnv = form.elements["hora_envio_agente"]?.value;
 
-            const okHoraAgente = validateHoraNegocio(
-              form.elements["fecha_envio_agente"],
-              form.elements["hora_envio_agente"],
-              document.getElementById("error-hora-envio-agente"),
-              "Fecha/Hora envío al Agente"
-            );
+            if (fechaEnv && horaEnv) {
+              const dtEnv = new Date(`${fechaEnv}T${horaEnv}`);
+              const day = dtEnv.getDay(); // 0 dom, 6 sáb
+              const minutes = dtEnv.getHours() * 60 + dtEnv.getMinutes();
 
-            if (!okHoraArea || !okHoraAgente) {
-              // No avanzamos si hay error de horario en alguno
-              return;
+              const start = 8 * 60 + 30;
+              const end = 18 * 60 + 30;
+
+              if (day === 0 || day === 6 || minutes < start || minutes > end) {
+                alert(
+                  "La fecha/hora de envío al agente debe estar entre lunes y viernes, de 08:30 a 18:30.\n\nPor favor ajusta el campo 'Fecha/Hora envío al Agente'."
+                );
+                if (form.elements["hora_envio_agente"]) {
+                  form.elements["hora_envio_agente"].focus();
+                }
+                return;
+              }
             }
 
             const fd = new FormData(form);
@@ -1756,112 +1458,90 @@
             window.location.href = "actividades.html";
           });
 
-// Enter para navegar / validar y enviar en el último paso
-        form.addEventListener("keydown", (e) => {
-          if (e.key !== "Enter") return;
+          // Enter para navegar / validar
+          form.addEventListener("keydown", (e) => {
+            if (e.key !== "Enter") return;
+            const target = e.target;
+            if (!target || !(target instanceof HTMLElement)) return;
 
-          const target = e.target;
-          if (!target || !(target instanceof HTMLElement)) return;
-
-          const isTextArea = target.tagName === "TEXTAREA";
-          // En textarea dejamos que Enter haga salto de línea normal
-          if (isTextArea && !e.shiftKey) {
-            return;
-          }
-
-          // Evitamos el submit nativo del navegador
-          e.preventDefault();
-
-          const last = lastStep();
-
-          // 🔥 Si ya estamos en el último paso y NO es Shift+Enter -> enviar form
-          if (current === last && !e.shiftKey) {
-            if (!validateStep()) return;
-
-            if (typeof form.requestSubmit === "function") {
-              form.requestSubmit(); // dispara el submit + listener
-            } else {
-              form.submit();
+            const isTextArea = target.tagName === "TEXTAREA";
+            if (isTextArea && !e.shiftKey) {
+              return;
             }
-            return;
-          }
 
-          const currentSection = sections.find(
-            (s) => +s.dataset.step === current
-          );
-          if (!currentSection) return;
+            e.preventDefault();
 
-          const focusables = Array.from(
-            currentSection.querySelectorAll("input, select, textarea, button")
-          ).filter((el) => {
-            if (!(el instanceof HTMLElement)) return false;
-            if (el.disabled) return false;
-            if (el.type === "hidden") return false;
-            return el.offsetParent !== null;
-          });
+            const currentSection = sections.find(
+              (s) => +s.dataset.step === current
+            );
+            if (!currentSection) return;
 
-          const idx = focusables.indexOf(target);
+            const focusables = Array.from(
+              currentSection.querySelectorAll("input, select, textarea, button")
+            ).filter((el) => {
+              if (!(el instanceof HTMLElement)) return false;
+              if (el.disabled) return false;
+              if (el.type === "hidden") return false;
+              return el.offsetParent !== null;
+            });
 
-          // Validación especial para agente
-          if (target === agenteInput && !e.shiftKey) {
-            const clave = agenteInput.value.trim();
+            const idx = focusables.indexOf(target);
 
-            if (!/^\d{5}$/.test(clave)) {
-              agenteInput.classList.add("is-invalid");
+            if (target === agenteInput && !e.shiftKey) {
+              const clave = agenteInput.value.trim();
+
+              if (!/^\d{5}$/.test(clave)) {
+                agenteInput.classList.add("is-invalid");
+                if (agenteInfo) {
+                  agenteInfo.textContent =
+                    "La clave del agente debe tener exactamente 5 dígitos.";
+                }
+                return;
+              }
+
+              const agente = buscarAgentePorClave(clave);
+              if (!agente) {
+                agenteInput.classList.add("is-invalid");
+                if (agenteInfo) {
+                  agenteInfo.textContent =
+                    "No se encontró un agente con esa clave.";
+                }
+                return;
+              }
+
+              agenteInput.classList.remove("is-invalid");
               if (agenteInfo) {
-                agenteInfo.textContent =
-                  "La clave del agente debe tener exactamente 5 dígitos.";
+                agenteInfo.textContent = `Agente: ${agente.nombre}`;
+              }
+
+              if (idx > -1 && idx < focusables.length - 1) {
+                focusables[idx + 1].focus();
               }
               return;
             }
 
-            const agente = buscarAgentePorClave(clave);
-            if (!agente) {
-              agenteInput.classList.add("is-invalid");
-              if (agenteInfo) {
-                agenteInfo.textContent =
-                  "No se encontró un agente con esa clave.";
+            if (e.shiftKey) {
+              if (idx > 0) {
+                focusables[idx - 1].focus();
+              } else {
+                if (current > 1) {
+                  current = current - 1;
+                  showStep(current);
+                }
               }
               return;
-            }
-
-            agenteInput.classList.remove("is-invalid");
-            if (agenteInfo) {
-              agenteInfo.textContent = `Agente: ${agente.nombre}`;
             }
 
             if (idx > -1 && idx < focusables.length - 1) {
               focusables[idx + 1].focus();
-            }
-            return;
-          }
-
-          // Shift+Enter -> navega hacia atrás / paso anterior
-          if (e.shiftKey) {
-            if (idx > 0) {
-              focusables[idx - 1].focus();
             } else {
-              if (current > 1) {
-                current = prevVisibleStep(current);
+              if (validateStep()) {
+                current = nextVisibleStep(current);
                 showStep(current);
               }
             }
-            return;
-          }
+          });
 
-          // Enter normal en pasos que NO son el último
-          if (idx > -1 && idx < focusables.length - 1) {
-            // Todavía hay campos en el mismo paso
-            focusables[idx + 1].focus();
-          } else {
-            // Último campo del paso actual -> intenta pasar al siguiente
-            if (!validateStep()) return;
-            current = nextVisibleStep(current);
-            showStep(current);
-          }
-        });
-
-          
           // Recalcular tiempos cuando cambian fechas/horas
           [
             "fecha",
@@ -1874,46 +1554,6 @@
             if (form.elements[name])
               form.elements[name].addEventListener("input", computeDurations);
           });
-
-          // Validaciones en línea de horario de negocio
-          const fechaEnvAreaInput = form.elements["fecha_envio_area"];
-          const horaEnvAreaInput = form.elements["hora_envio_area"];
-          const fechaEnvAgInput = form.elements["fecha_envio_agente"];
-          const horaEnvAgInput = form.elements["hora_envio_agente"];
-          const errorHoraArea = document.getElementById(
-            "error-hora-envio-area"
-          );
-          const errorHoraAgente = document.getElementById(
-            "error-hora-envio-agente"
-          );
-
-          function revalidateHoraArea() {
-            validateHoraNegocio(
-              fechaEnvAreaInput,
-              horaEnvAreaInput,
-              errorHoraArea,
-              "Fecha/Hora envío al Área"
-            );
-          }
-
-          function revalidateHoraAgente() {
-            validateHoraNegocio(
-              fechaEnvAgInput,
-              horaEnvAgInput,
-              errorHoraAgente,
-              "Fecha/Hora envío al Agente"
-            );
-          }
-
-          if (fechaEnvAreaInput)
-            fechaEnvAreaInput.addEventListener("change", revalidateHoraArea);
-          if (horaEnvAreaInput)
-            horaEnvAreaInput.addEventListener("change", revalidateHoraArea);
-
-          if (fechaEnvAgInput)
-            fechaEnvAgInput.addEventListener("change", revalidateHoraAgente);
-          if (horaEnvAgInput)
-            horaEnvAgInput.addEventListener("change", revalidateHoraAgente);
 
           // Cargar borrador (solo si NO es edición)
           (function () {
@@ -2075,10 +1715,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
