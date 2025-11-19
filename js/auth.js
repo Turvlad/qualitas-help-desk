@@ -33,17 +33,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     },
     {
-      username: "gbocanegra",
+      username: "lubocanegra",
       password: "1234",
       nombre: "Gustavo Bocanegra",
       rol: "Colaborador", // usuario normal
     },
     {
-      username: "ivonne",
+      username: "gabgarcia",
       password: "1234",
-      nombre: "Ivonne",
+      nombre: "Gabriela García",
       rol: "Colaborador", // usuario normal
     },
+    {
+      username: "htrinidad",
+      password: "1234",
+      nombre: "Michell Trinidad",
+      rol: "Colaborador", // usuario normal
+    },
+    {
+      username: "dulcruz",
+      password: "1234",
+      nombre: "Dulce de la cruz",
+      rol: "Colaborador", // usuario normal
+    },
+    
+    
   ];
 
   // --- Toggle de contraseña accesible ---
@@ -149,3 +163,4 @@ document.addEventListener("DOMContentLoaded", () => {
     () => user && user.focus({ preventScroll: true })
   );
 });
+
