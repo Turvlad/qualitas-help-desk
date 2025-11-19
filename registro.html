@@ -759,12 +759,6 @@
           if (horaRecInput && !horaRecInput.value)
             horaRecInput.value = horaAhora;
 
-          if (fechaEnvAgenteInput && !fechaEnvAgenteInput.value) {
-            fechaEnvAgenteInput.value = fechaInput?.value || fechaHoy;
-          }
-          if (horaEnvAgenteInput && !horaEnvAgenteInput.value) {
-            horaEnvAgenteInput.value = horaRecInput?.value || horaAhora;
-          }
 
           // En NUEVOS registros no se captura fecha de seguimiento
           const fsegNuevo = form.elements["fecha_seguimiento"];
@@ -1713,6 +1707,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
+
 
 
 
