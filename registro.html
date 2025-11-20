@@ -367,6 +367,23 @@
                   </h2>
                   <div class="row g-3">
                     <div class="col-md-4">
+                      <label class="form-label" for="f-area-env">Enviado al Área</label>
+                      <div class="position-relative">
+                        <input
+                          id="f-area-env"
+                          class="form-control"
+                          name="enviado_area"
+                          placeholder="Escribe el área…"
+                          autocomplete="off"
+                        />
+                        <ul
+                          id="f-area-env-suggest"
+                          class="list-group position-absolute w-100 shadow-sm"
+                          style="z-index: 20; max-height: 220px; overflow-y: auto; display: none;"
+                        ></ul>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
                       <label class="form-label">Fecha/Hora envío al Área</label>
                       <div class="input-group">
                         <input
@@ -691,6 +708,60 @@
                 formaSelect.appendChild(opt);
                 });
             }
+
+            // ===== Autocomplete: Tipo de solicitud, Área y Agente =====
+            if (window.HD_createAutocomplete) {
+              // Tipo de solicitud
+              window.HD_createAutocomplete({
+                inputId: "f-tipo",
+                listId: "f-tipo-suggest",
+                source: TIPOS_SOLICITUD || [],
+                minChars: 0,
+                match: (q, item) => item.toLowerCase().includes(q),
+                getLabel: (item) => item,
+                getValue: (item) => item,
+              });
+          
+              // Área destino
+              window.HD_createAutocomplete({
+                inputId: "f-area-env",
+                listId: "f-area-env-suggest",
+                source: AREAS_DESTINO || [],
+                minChars: 0,
+                match: (q, item) => item.toLowerCase().includes(q),
+                getLabel: (item) => item,
+                getValue: (item) => item,
+              });
+          
+              // Agente (por si aún no lo tenías aquí)
+              window.HD_createAutocomplete({
+                inputId: "f-agente",
+                listId: "f-agente-suggest",
+                source: AGENTES || [],
+                minChars: 1,
+                match: (q, ag) =>
+                  ag.clave.toLowerCase().includes(q) ||
+                  ag.nombre.toLowerCase().includes(q),
+                getLabel: (ag) => `${ag.clave} — ${ag.nombre}`,
+                getValue: (ag) => ag.clave,
+                onSelected: (val, ag) => {
+                  const agenteInput = document.getElementById("f-agente");
+                  const agenteInfo = document.getElementById("agente-info");
+                  const agenteError = document.getElementById("agente-error");
+          
+                  if (agenteInput) {
+                    agenteInput.classList.remove("is-invalid");
+                  }
+                  if (agenteError) {
+                    agenteError.textContent = "";
+                  }
+                  if (agenteInfo && ag) {
+                    agenteInfo.textContent = `Agente: ${ag.nombre}`;
+                  }
+                },
+              });
+            }
+            
 
             // ===== Función para buscar agente por clave (usada en blur, enter, etc.) =====
             function buscarAgentePorClave(clave) {
@@ -1739,3 +1810,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
+
