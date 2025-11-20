@@ -831,16 +831,24 @@
                 'input[name="hora_envio_agente"]'
               );
 
-              // Colaborador desde el login
-              if (usuarioStrGlobal && colabInput) {
+              // Colaborador desde el login (aplica a Registro general y Renovaciones)
+              if (usuarioStrGlobal) {
                 try {
                   const u = JSON.parse(usuarioStrGlobal);
                   const nombre = u.nombre || u.username || "";
-                  if (!colabInput.value && nombre) {
-                    colabInput.value = nombre;
+              
+                  if (nombre) {
+                    // Todos los campos "colaborador" de la página
+                    document
+                      .querySelectorAll('input[name="colaborador"]')
+                      .forEach((colabInput) => {
+                        if (!colabInput.value) {
+                          colabInput.value = nombre;
+                        }
+                        colabInput.readOnly = true;
+                        colabInput.classList.add("bg-light", "text-muted");
+                      });
                   }
-                  colabInput.readOnly = true;
-                  colabInput.classList.add("bg-light", "text-muted");
                 } catch (e) {
                   console.error("No se pudo parsear hd_usuario", e);
                 }
@@ -1810,4 +1818,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
+
 
