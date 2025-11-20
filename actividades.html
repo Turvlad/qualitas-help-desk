@@ -108,7 +108,6 @@
           </nav>
         </header>
 
-
         <main class="container-fluid py-4">
           <!-- Filtros -->
           <section
@@ -119,7 +118,6 @@
               Filtros de búsqueda
             </h2>
             <form class="row g-3 align-items-end" method="get" action="#">
-
               <div class="col-md-3">
                 <label class="form-label" for="f-tipo">Tipo de Solicitud</label>
                 <div class="position-relative">
@@ -133,11 +131,16 @@
                   <ul
                     id="f-tipo-suggest"
                     class="list-group position-absolute w-100 shadow-sm"
-                    style="z-index: 20; max-height: 220px; overflow-y: auto; display: none;"
+                    style="
+                      z-index: 20;
+                      max-height: 220px;
+                      overflow-y: auto;
+                      display: none;
+                    "
                   ></ul>
                 </div>
               </div>
-              
+
               <div class="col-md-3">
                 <label class="form-label" for="f-estatus">Estatus</label>
                 <select class="form-select" id="f-estatus" name="estatus">
@@ -188,7 +191,7 @@
                   <span class="d-none d-sm-inline">Nueva Actividad</span>
                 </a>
               </div>
-          
+
               <div class="card-body p-0">
                 <div class="table-responsive">
                   <table class="table align-middle mb-0">
@@ -210,7 +213,7 @@
                   </table>
                 </div>
               </div>
-          
+
               <div class="card-footer bg-white">
                 <!-- Primera fila: info y paginación -->
                 <div
@@ -252,7 +255,6 @@
                     </ul>
                   </nav>
                 </div>
-
               </div>
             </div>
           </section>
@@ -260,16 +262,16 @@
             <!-- Segunda fila: botones CSV -->
             <div class="mt-3 d-flex justify-content-end gap-2 flex-wrap">
               <!-- Exportar: TODOS lo ven -->
-            <button class="btn btn-sm btn-outline-primary" id="btnExportCsv">
-              <i class="bi bi-envelope-paper me-1"></i>
-              Descargar borrador de correo
-            </button>
-      
+              <button class="btn btn-sm btn-outline-primary" id="btnExportCsv">
+                <i class="bi bi-envelope-paper me-1"></i>
+                Descargar borrador de correo
+              </button>
+
               <!-- Importar: solo admin (lo controla JS con display:none/flex) -->
               <div
                 id="importSection"
                 class="d-flex align-items-center gap-2"
-                style="display:none;"
+                style="display: none"
               >
                 <input
                   type="file"
@@ -277,7 +279,10 @@
                   accept=".csv"
                   class="form-control form-control-sm"
                 />
-                <button class="btn btn-sm btn-outline-success" id="btnImportCsv">
+                <button
+                  class="btn btn-sm btn-outline-success"
+                  id="btnImportCsv"
+                >
                   <i class="bi bi-file-earmark-arrow-up me-1"></i>
                   Importar CSV
                 </button>
@@ -288,34 +293,68 @@
       </div>
     </div>
 
-<script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-  defer
-></script>
-<script src="js/app.js"></script>
-<script src="js/catalogos.js"></script>
-<script src="js/autocomplete.js"></script>
-<script src="js/actividades.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+    <script src="js/app.js"></script>
+    <script src="js/catalogos.js"></script>
+    <script src="js/autocomplete.js"></script>
+    <script src="js/actividades.js"></script>
 
-    
-<script data-init>
-  (function () {
-    // Sacamos el catálogo global
-    const { TIPOS_SOLICITUD = [] } = window.HD_CATALOGOS || {};
+    <script data-init>
+      (function () {
+        const { TIPOS_SOLICITUD = [] } = window.HD_CATALOGOS || {};
 
-    const input = document.getElementById("f-tipo");
-    const list = document.getElementById("f-tipo-suggest");
+        const input = document.getElementById("f-tipo");
+        const list = document.getElementById("f-tipo-suggest");
 
-    if (input && list && typeof window.HD_createAutocomplete === "function") {
-      window.HD_createAutocomplete({
-        input,
-        list,
-        items: TIPOS_SOLICITUD,
-      });
-    }
-  })();
-</script>
-    
+        if (!input || !list) return;
+
+        // 1) Enganchamos tu helper genérico (para que filtre mientras escribes)
+        if (typeof window.HD_createAutocomplete === "function") {
+          window.HD_createAutocomplete({
+            input,
+            list,
+            items: TIPOS_SOLICITUD,
+            // si tu helper soporta esto, mejor; si no, lo ignora sin bronca
+            minChars: 0,
+          });
+        }
+
+        // 2) Forzar que al hacer foco se muestre TODA la lista si está vacío
+        function renderAllOptions() {
+          list.innerHTML = "";
+          if (!TIPOS_SOLICITUD.length) {
+            list.style.display = "none";
+            return;
+          }
+
+          TIPOS_SOLICITUD.forEach((t) => {
+            const li = document.createElement("li");
+            li.className = "list-group-item list-group-item-action";
+            li.textContent = t;
+
+            li.addEventListener("click", () => {
+              input.value = t;
+              list.style.display = "none";
+            });
+
+            list.appendChild(li);
+          });
+
+          list.style.display = "block";
+        }
+
+        input.addEventListener("focus", () => {
+          // Solo si está vacío, mostramos TODO el catálogo
+          if (!input.value) {
+            renderAllOptions();
+          }
+        });
+      })();
+    </script>
+
     <!-- Router SPA (sin cambios funcionales) -->
     <script defer>
       (function () {
@@ -404,22 +443,3 @@
     </script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
