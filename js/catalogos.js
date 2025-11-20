@@ -9,7 +9,7 @@ window.HD_CATALOGOS = {
     "Otro",
   ],
 
-  TIPO_SOLICITUD: [
+  TIPOS_SOLICITUD: [
     "Cotización",
     "Devolución de Primas",
     "Emisión (nueva)",
@@ -28,7 +28,7 @@ window.HD_CATALOGOS = {
     "Solicitud - Suma Asegurada",
   ],
 
-  AREA_DESTINO: [
+  AREAS_DESTINO: [
     "AOF",
     "Caja Metepec",
     "Caja San Jerónimo",
