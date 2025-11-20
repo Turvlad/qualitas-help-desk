@@ -161,29 +161,12 @@
               <div class="d-flex gap-2">
                 <button
                   type="button"
-                  class="btn btn-outline-secondary"
-                  aria-label="Imprimir"
-                >
-                  <i class="bi bi-printer" aria-hidden="true"></i>
-                  <span class="d-none d-sm-inline">Imprimir</span>
-                </button>
-                <button
-                  type="button"
                   class="btn btn-outline-primary"
                   data-bs-toggle="offcanvas"
                   data-bs-target="#offEdit"
                 >
                   <i class="bi bi-pencil" aria-hidden="true"></i>
                   <span class="d-none d-sm-inline">Editar</span>
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-outline-danger"
-                  data-bs-toggle="modal"
-                  data-bs-target="#modalDelete"
-                >
-                  <i class="bi bi-trash" aria-hidden="true"></i>
-                  <span class="d-none d-sm-inline">Eliminar</span>
                 </button>
               </div>
             </div>
@@ -559,101 +542,6 @@
                     </table>
                   </div>
                   <!-- /.table-responsive -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Offcanvas Edición -->
-          <div
-            class="offcanvas offcanvas-end"
-            tabindex="-1"
-            id="offEdit"
-            aria-labelledby="offEditLabel"
-          >
-            <div class="offcanvas-header">
-              <h3 class="offcanvas-title h5 mb-0" id="offEditLabel">
-                Editar actividad
-              </h3>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="offcanvas"
-                aria-label="Cerrar"
-              ></button>
-            </div>
-            <div class="offcanvas-body">
-              <form id="editForm" novalidate>
-                <div class="mb-3">
-                  <label class="form-label" for="ed-status">Estatus</label>
-                  <select class="form-select" id="ed-status" name="estatus">
-                    <option>Finalizado</option>
-                    <option>En curso</option>
-                    <option>Pendiente</option>
-                    <option>Bloqueado</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label" for="ed-coment">Comentarios</label>
-                  <textarea
-                    class="form-control"
-                    id="ed-coment"
-                    name="comentarios"
-                    rows="3"
-                  >
-Se actualizó prima y se mantuvieron coberturas.</textarea
-                  >
-                </div>
-                <div class="text-end">
-                  <button type="submit" class="btn btn-primary">
-                    Guardar cambios
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <!-- Modal Delete -->
-          <div
-            class="modal fade"
-            id="modalDelete"
-            tabindex="-1"
-            aria-labelledby="modalDeleteLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h3 class="modal-title h5" id="modalDeleteLabel">
-                    Eliminar registro
-                  </h3>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Cerrar"
-                  ></button>
-                </div>
-                <div class="modal-body" id="modalDeleteBody">
-                  ¿Seguro que deseas eliminar esta actividad? Esta acción no se
-                  puede deshacer.
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Cancelar
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-danger"
-                    id="btnConfirmDelete"
-                    aria-describedby="modalDeleteBody"
-                  >
-                    Eliminar
-                  </button>
                 </div>
               </div>
             </div>
@@ -1099,5 +987,6 @@ Se actualizó prima y se mantuvieron coberturas.</textarea
     </script>
   </body>
 </html>
+
 
 
