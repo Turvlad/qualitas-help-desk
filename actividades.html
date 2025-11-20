@@ -119,47 +119,25 @@
               Filtros de búsqueda
             </h2>
             <form class="row g-3 align-items-end" method="get" action="#">
-              <div class="col-md-3">
-                <label class="form-label" for="f-colaborador"
-                  >Colaborador</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="f-colaborador"
-                  name="q"
-                  placeholder="Buscar por nombre..."
-                />
-              </div>
+
               <div class="col-md-3">
                 <label class="form-label" for="f-tipo">Tipo de Solicitud</label>
-                <select class="form-select" id="f-tipo" name="tipo">
-                  <option value="">Todos</option>
-                  <option value="" selected disabled>Selecciona</option>
-                  <option value="Aplicación de Primas">Aplicación de Primas</option>
-                  <option value="Armar pólizas (Impresión, CG)">Armar pólizas (Impresión, CG)</option>
-                  <option value="Cambio de Contratante">Cambio de Contratante</option>
-                  <option value="Cambio de Titular">Cambio de Titular</option>
-                  <option value="Cancelación - Con dev primas">Cancelación - Con dev primas</option>
-                  <option value="Cancelación - Sin dev primas">Cancelación - Sin dev primas</option>
-                  <option value="Cotización">Cotización</option>
-                  <option value="Devolución de Primas">Devolución de Primas</option>
-                  <option value="Emisión (nueva)">Emisión (nueva)</option>
-                  <option value="Endoso 1 (alta coberturas-unidades)">Endoso 1 (alta coberturas-unidades)</option>
-                  <option value="Endoso 2 - (baja coberturas-unidades)">Endoso 2 - (baja coberturas-unidades)</option>
-                  <option value="Endoso 3 (sin modificación de primas)">Endoso 3 (sin modificación de primas)</option>
-                  <option value="Otras">Otras</option>
-                  <option value="Re-Expedición de Emisión Nueva">Re-Expedición de Emisión Nueva</option>
-                  <option value="Re-Expedición de Renovación">Re-Expedición de Renovación</option>
-                  <option value="Rehabilitar pólizas/endosos">Rehabilitar pólizas/endosos</option>
-                  <option value="Renovación">Renovación</option>
-                  <option value="Resello factura">Resello factura</option>
-                  <option value="Seguimiento Serie en SISE">Seguimiento Serie en SISE</option>
-                  <option value="Solicitud - BT normal">Solicitud - BT normal</option>
-                  <option value="Solicitud - Clave AMIS">Solicitud - Clave AMIS</option>
-                  <option value="Solicitud - Suma Asegurada">Solicitud - Suma Asegurada</option>
-                </select>
+                <div class="position-relative">
+                  <input
+                    id="f-tipo"
+                    class="form-control"
+                    name="tipo"
+                    placeholder="Escribe el tipo de solicitud…"
+                    autocomplete="off"
+                  />
+                  <ul
+                    id="f-tipo-suggest"
+                    class="list-group position-absolute w-100 shadow-sm"
+                    style="z-index: 20; max-height: 220px; overflow-y: auto; display: none;"
+                  ></ul>
+                </div>
               </div>
+              
               <div class="col-md-3">
                 <label class="form-label" for="f-estatus">Estatus</label>
                 <select class="form-select" id="f-estatus" name="estatus">
@@ -310,14 +288,34 @@
       </div>
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      defer
-    ></script>
-    <script src="js/app.js"></script>
-    <script src="js/actividades.js"></script>
-    <!-- solo en actividades.html -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  defer
+></script>
+<script src="js/app.js"></script>
+<script src="js/catalogos.js"></script>
+<script src="js/autocomplete.js"></script>
+<script src="js/actividades.js"></script>
 
+    
+<script data-init>
+  (function () {
+    // Sacamos el catálogo global
+    const { TIPOS_SOLICITUD = [] } = window.HD_CATALOGOS || {};
+
+    const input = document.getElementById("f-tipo");
+    const list = document.getElementById("f-tipo-suggest");
+
+    if (input && list && typeof window.HD_createAutocomplete === "function") {
+      window.HD_createAutocomplete({
+        input,
+        list,
+        items: TIPOS_SOLICITUD,
+      });
+    }
+  })();
+</script>
+    
     <!-- Router SPA (sin cambios funcionales) -->
     <script defer>
       (function () {
@@ -406,6 +404,7 @@
     </script>
   </body>
 </html>
+
 
 
 
