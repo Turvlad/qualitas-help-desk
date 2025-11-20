@@ -215,6 +215,36 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // === Autocomplete para filtro de Tipo de Solicitud ===
+  const { TIPOS_SOLICITUD = [] } = window.HD_CATALOGOS || {};
+
+  if (window.HD_createAutocomplete && selectTipo) {
+    window.HD_createAutocomplete({
+      inputId: "f-tipo",
+      listId: "f-tipo-suggest",
+      source: TIPOS_SOLICITUD,
+      minChars: 0,
+      match: (q, item) => item.toLowerCase().includes(q),
+      getLabel: (item) => item,
+      getValue: (item) => item,
+      onSelected: () => {
+        // cuando el usuario selecciona un tipo, se aplica filtro
+        refresh();
+      },
+    });
+
+    // Al hacer focus, mostramos toda la lista
+    selectTipo.addEventListener("focus", () => {
+      selectTipo.dispatchEvent(new Event("input"));
+    });
+
+    // Si quieres que filtre en vivo mientras escribe:
+    selectTipo.addEventListener("input", () => {
+      // No rompe nada porque refresh() ya usa applyFilters()
+      refresh();
+    });
+  }
+
   // Ajustes de UI según rol
   if (!isAdmin) {
     // Ocultar filtro de colaborador
@@ -457,6 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Primera carga
   refresh();
 });
+
 
 
 
