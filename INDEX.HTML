@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mich, el dios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap");
+
+      body {
+        font-family: "Cinzel", serif;
+        overflow: hidden; /* Evita scrollbars cuando salen los emojis */
+      }
+
+      /* Animación suave para el fondo */
+      .god-bg {
+        background: radial-gradient(circle at center, #2b1055, #000000);
+        animation: gradientPulse 10s infinite alternate;
+      }
+
+      @keyframes gradientPulse {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      /* Clase para el emoji flotante */
+      .angel-emoji {
+        position: absolute;
+        pointer-events: none;
+        font-size: 2rem;
+        user-select: none;
+        z-index: 50;
+      }
+
+      /* Efecto de brillo en el texto */
+      .glow-text {
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.5),
+          0 0 40px rgba(255, 215, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body
+    class="god-bg min-h-screen flex flex-col items-center justify-center text-center select-none relative"
+  >
+    <!-- Contenedor principal -->
+    <div class="z-10 relative group">
+      <!-- Aura detrás del texto -->
+      <div
+        class="absolute -inset-1 bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-500 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"
+      ></div>
+
+      <!-- El Texto Sagrado -->
+      <h1
+        id="god-trigger"
+        class="relative glow-text text-5xl md:text-7xl lg:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-yellow-100 to-yellow-500 cursor-pointer transform transition-transform duration-100 active:scale-95 hover:scale-105 p-4"
+      >
+        Mich, el dios
+      </h1>
+
+      <p
+        class="mt-4 text-yellow-200/50 text-sm md:text-base font-sans tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+      >
+        Haz clic para recibir su bendición
+      </p>
+    </div>
+
+    <script>
+      const trigger = document.getElementById("god-trigger");
+      const emojis = ["👼🏽", "✨", "🕊️", "☁️", "💦💦", "🍆🍆"];
+
+      // Función para crear la explosión
+      function createExplosion(x, y) {
+        // Cantidad de partículas por clic
+        const particleCount = 40;
+
+        for (let i = 0; i < particleCount; i++) {
+          const el = document.createElement("div");
+          el.classList.add("angel-emoji");
+
+          // Seleccionar emoji al azar
+          el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+          // Posición inicial (donde se hizo click)
+          el.style.left = `${x}px`;
+          el.style.top = `${y}px`;
+
+          // Variación aleatoria de tamaño
+          const size = 1 + Math.random() * 4;
+          el.style.fontSize = `${size}rem`;
+
+          document.body.appendChild(el);
+
+          // Calcular dirección aleatoria
+          const angle = Math.random() * Math.PI * 3;
+          // Velocidad aleatoria
+          const velocity = 100 + Math.random() * 500;
+
+          const destX = Math.cos(angle) * velocity;
+          const destY = Math.sin(angle) * velocity;
+
+          // Rotación aleatoria
+          const rotation = (Math.random() - 0.5) * 360;
+
+          // Usar Web Animations API para mejor rendimiento
+          const animation = el.animate(
+            [
+              {
+                transform: `translate(-50%, -50%) translate(0px, 0px) rotate(0deg) scale(0.5)`,
+                opacity: 1,
+              },
+              {
+                transform: `translate(-50%, -50%) translate(${destX}px, ${destY}px) rotate(${rotation}deg) scale(1.5)`,
+                opacity: 0.8,
+              },
+            ],
+            {
+              duration: 1000 + Math.random() * 1000, // Duración entre 1 y 2 segundos
+              easing: "cubic-bezier(0, .9, .57, 1)", // Efecto de explosión "pop"
+            }
+          );
+
+          // Eliminar elemento del DOM cuando termine la animación
+          animation.onfinish = () => el.remove();
+        }
+      }
+
+      // Event Listeners para Mouse y Touch
+      trigger.addEventListener("click", (e) => {
+        // Crear explosión en las coordenadas del mouse
+        createExplosion(e.clientX, e.clientY);
+
+        // Vibración en móviles si es compatible
+        if (navigator.vibrate) {
+          navigator.vibrate(50);
+        }
+      });
+
+      // Efecto extra: Si mueven el mouse rápido sobre el texto, soltar chispas
+      let lastMove = 0;
+      window.addEventListener("mousemove", (e) => {
+        const now = Date.now();
+        if (now - lastMove > 100) {
+          // Limitar frecuencia
+          const sparkle = document.createElement("div");
+          sparkle.innerText = "✨";
+          sparkle.style.position = "absolute";
+          sparkle.style.left = e.pageX + "px";
+          sparkle.style.top = e.pageY + "px";
+          sparkle.style.pointerEvents = "none";
+          sparkle.style.fontSize = "1.5rem";
+          sparkle.style.zIndex = "60";
+          document.body.appendChild(sparkle);
+
+          const anim = sparkle.animate(
+            [
+              { transform: "scale(0) rotate(0deg)", opacity: 1 },
+              { transform: "scale(1) rotate(180deg)", opacity: 1 },
+            ],
+            {
+              duration: 600,
+              easing: "ease-out",
+            }
+          );
+
+          anim.onfinish = () => sparkle.remove();
+          lastMove = now;
+        }
+      });
+    </script>
+  </body>
+</html>
